@@ -87,16 +87,16 @@ class DriverViewSet(viewsets.ModelViewSet):
     queryset = Driver.objects.all()
     serializer_class = DriverSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class DispatchViewSet(viewsets.ModelViewSet):
     ''' Dispatch api end point view set '''
     queryset = Dispatch.objects.all()
     serializer_class = DispatchSerializer
     
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def get_queryset(self):
         # Order by created_at in descending order to get the most recent first
         return Dispatch.objects.all().order_by('-created_at')
@@ -106,21 +106,23 @@ class VehicleViewSet(viewsets.ModelViewSet):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class ApprovalViewSet(viewsets.ModelViewSet):
     ''' Approval api end point view set'''
     queryset = Approval.objects.all()
     serializer_class = ApprovalSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class VehicleRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
     queryset = VehicleRequest.objects.select_related('user')
     serializer_class = VehicleRequestSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     
 
@@ -129,8 +131,8 @@ class VehicleApprovedRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
     serializer_class = VehicleRequestSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def get_queryset(self):
         ''' Returns queryset filtered to include only requests with status 'APPROVED' '''        
         return VehicleRequest.objects.filter(status='APPROVED').select_related('user').order_by('-created_at')
@@ -138,6 +140,9 @@ class VehicleApprovedRequestViewSet(viewsets.ModelViewSet):
 class VehiclePendingRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
     serializer_class = VehicleRequestSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get_queryset(self):
         ''' Returns queryset filtered to include only requests with status 'PENDING' '''
         return VehicleRequest.objects.filter(status='PENDING').select_related('user')
@@ -145,6 +150,8 @@ class VehiclePendingRequestViewSet(viewsets.ModelViewSet):
 class VehicleRequestByDispatch(viewsets.ModelViewSet):
     ''' Vehicle request by dispatch view set '''
     serializer_class = VehicleRequestSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         ''' Returns queryset filtered to include only requests associated with a specific dispatch '''
@@ -164,16 +171,16 @@ class RefuelViewSet(viewsets.ModelViewSet):
     queryset = Refuel.objects.select_related('vehicle')
     serializer_class = RefuelSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     ''' department api view set '''
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # class DispatchReportViewSet(viewsets.ModelViewSet):
 #     ''' dispatch report api view set '''
@@ -184,6 +191,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticated]
 
 class VehicleRequestDispatchUpdateAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     def put(self, request, pk, format=None):
         try:
             instance = VehicleRequest.objects.get(pk=pk)

@@ -1,12 +1,13 @@
 from rest_framework import routers
-from .views import VehicleRequestViewSet, VehiclePendingRequestViewSet, DriverViewSet, ApprovalViewSet, VehicleViewSet, DispatchViewSet, UserViewSet, GroupViewSet, UserLoginAPIView, RefuelViewSet, DepartmentViewSet, VehicleRequestDispatchUpdateAPIView, VehicleApprovedRequestViewSet, VehicleRequestByDispatch
-from rest_framework.authtoken.views import obtain_auth_token
+from .views import (
+    VehicleRequestViewSet, VehiclePendingRequestViewSet, DriverViewSet,
+    ApprovalViewSet, VehicleViewSet, DispatchViewSet, UserViewSet,
+    GroupViewSet, UserLoginAPIView, RefuelViewSet, DepartmentViewSet,
+    VehicleRequestDispatchUpdateAPIView, VehicleApprovedRequestViewSet,
+    VehicleRequestByDispatch
+)
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.urls import path
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -24,11 +25,8 @@ router.register(r'refuels', RefuelViewSet)
 
 # Define URL patterns
 urlpatterns = [
-    # path('api/token/', obtain_auth_token, name='api-token'), 
-    # path('api/login/', UserLoginAPIView.as_view(), name='api-login'),
-    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/', UserLoginAPIView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 # Append router URLs to urlpatterns

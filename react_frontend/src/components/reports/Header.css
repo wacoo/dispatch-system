@@ -1,0 +1,39 @@
+
+table {
+    width: 100%;
+}
+
+table, td, thead {
+    border: solid #000 1px;
+}
+
+.logo, .logo img {
+    width: 80px;
+    height: 80px;
+}
+
+.comp-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comp-info h3 {
+    margin: 8px;
+}
+
+.comp-info tr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.comp-name {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

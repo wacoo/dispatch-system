@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <style>
+        {{ asset "style.css" "utf8" }}
+    </style>
+</head>
+    <body>
+    <div class="paperA4">
+        <table>
+            <tr>
+                <td>
+                    <img src="{{asset "Picture1.png" "dataURI"}}" style="width:80px; max-width:300px;" />
+                </td>
+                <td>
+                    <p>የድርጅቱ ስም፦ ብርሃንና ሰላም ማተሚያ ድርጅት</p>
+                    <p>Company Name: Bernanena Selam Printing Enterprise</p>
+                    <table class="tbl-dept">
+                        <tr>
+                            <td>ጠቅላላ አገልግሎትና ትራንስፖርት ዳይሬክቶሬትቶሬት</td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <p>Document No. BSOF-307</p>
+                    <p>ቅጽ ቁጥር፦ </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>ርዕስ</h5>
+                    <h5>Title</h5>
+                </td>
+                <td>
+                    የመንግስት ተሽከርካሪ መቆጣጠርያ ቅጽ 007
+                </td>
+                <td>
+                    <h5>Reision N0. 00</h5>
+                    <h5>የክለሳ ቁጥር</h5>
+                </td>
+                <td>
+                    <h5>Page No. 1 of 1</h5>
+                    <h5>ገጽ</h5>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="date">
+                <td></td>
+                <td></td>
+                <td>
+                    <p>ቀን፦<u>{{cdispatch.assigned_date}}</u></p>
+                </td>
+            </tr>
+            <tr class="form1">
+                <td>የተጓዥ ስም፦ <u>{{cdispatch.request.requester.fname}} {{cdispatch.request.requester.mname}}</u></td>
+                <td>አገልግሎት የሚፈለግበት ጊዜ፦ ከ<u>{{cdispatch.departure_date}}</td>
+                <td>እስከ <u>{{cdispatch.return_date_est}}</td>
+            </tr>
+            <tr class="form1">
+                <td>የሹፌሩ ስም፦ <u>{{cdispatch.driver.fname}} {{cdispatch.driver.mname}}</u></td>
+                <td>ፊርማ_______________________</td>
+                <td>የሰሌዳ ቁጥር፦ <u>{{cdispatch.vehicle.license_plate}}</u></td>
+            </tr>
+            <tr></tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td>ተ.ቁ</td>
+                <td>የሚሄድበት ስፍራ</td>
+                <td colspan="2">የቆይታ ጊዜ</td>
+                <td>የተጠቃሚዉ ስም</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>ከ</td>
+                <td>እስከ</td>
+                <td></td>
+            </tr>
+
+            {{#each cdispatch.vehicle_requests}}
+            <tr>
+                <td>{{no}}</td>
+                <td>{{destination}}</td>
+                <td>{{../cdispatch.departure_date}}</td>
+                <td>{{../cdispatch.return_date_act}}</td>
+                <td>{{requester.fname}} {{requester.mname}}</td>
+            </tr>
+            {{/each}}
+        </table>
+        <br>
+        <table class="signatory">
+            <tr>
+                <td>___________________________</td>
+                <td>___________________________</td>
+                <td>___________________________</td>
+            </tr>
+            <tr>
+                <td>የጠያቂዉ ስም ና ፊርማ</td>
+                <td>የጠያቂዉ ሃላፊ ስም ና ፊርማ</td>
+                <td>የተ/ሽ/ስ/ሃ/ስም ና ፊርማ</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>ቀን</th>
+                <th colspan="2">የተጓዘበት</th>
+                <th colspan="2">የተመለሰበት</th>
+                <th colspan="2">የተሽከርካሪዉ</th>
+                <th>ነዳጅ የተሞላ በሊትር</th>
+                <th>የተቆጣጣሪ ስም</th>
+                <th>መግለጫ</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>ኪ/ሜ</td>
+                <td>ሰዓት</td>
+                <td>ኪ/ሜ</td>
+                <td>ሰዓት</td>
+                <td>ልዩነት</td>
+                <td>በኪ/ሜ</td>
+                <td></td> <!-- Empty cell -->
+                <td></td>
+                <td></td>
+            </tr>
+            {{#each cdispatch.vehicle_requests}}
+            <tr>
+                <td>{{../cdispatch.assigned_date}}</td>
+                <td>{{../cdispatch.departure_milage}}</td>
+                <td>{{../cdispatch.departure_date}}</td>
+                <td>{{../cdispatch.return_milage}}</td>
+                <td>{{../cdispatch.return_date_act}}</td>
+                <td></td>
+                <td>{{../cdispatch.difference}}</td>
+                <td>{{../cdispatch.refuel_liters}}</td>
+                <td>{{../cdispatch.dispatcher.fname}} {{../cdispatch.dispatcher.mname}}</td>
+                <td></td>
+            </tr>
+            {{/each}}
+            <tr></tr>
+            <tr></tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <p>
+                    <u>
+                        <h3>ማስታወሻ</h3>
+                    </u>
+                </p>
+            </tr>
+            <tr>
+                <p>
+                    ይህ ቅጽ በአንድ ቅጂ ከተሰራ በኋላ ከተሽከርካሪዉ ጋር እንዲዘዋወር ለሹፌሩ ይሰጥና አገልግሎቱ ሲያበቃ በተጥቃሚዉ ክፍል አጠቃቀሙ ተገምግሞ ለትራንስፖርት ክፍል
+                ያስረክባል፡፡
+                </p>
+            </tr>
+            <tr>
+                <p>
+                    ይህ ቅጽ ከስራ ዉጪና በበዓላት ቀናት ለሚሰጥ አገልግሎት ተቆጣጣሪ በድርጅቱ ዉስጥ ያለ የትራንስፖርት ሃላፊ ነዉ፡፡
+                </p>    
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

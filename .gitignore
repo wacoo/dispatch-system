@@ -1,1 +1,63 @@
+# Generated Python files
+__pycache__/
+*.pyc
+*.pyo
+*.class
+
+# Virtual Environments
+venv/
 env/
+
+# Database files
+db.sqlite3
+
+# Local settings
+local_settings.py
+
+# Media and static files
+media/
+staticfiles/
+
+# Logs
+*.log
+
+# Editor files
+*.idea/
+.vscode/
+
+# Temporary caches
+.pytest_cache/
+.mypy_cache/
+
+# Pip cache
+.cache/
+
+# Test coverage reports
+.coverage
+htmlcov/
+
+# Django documentation build
+docs/_build/
+
+# Thumbnails for admin interface
+thumbnails/
+
+# Django debug toolbar
+debug_toolbar/
+
+# Server logs
+nginx/logs/
+apache/logs/
+
+# IDE specific files
+.idea/
+.kite/
+.python-version
+
+# Other
+*.DS_Store
+*.env
+
+# Ignore all.py files (optional)
+*.py
+node_modules

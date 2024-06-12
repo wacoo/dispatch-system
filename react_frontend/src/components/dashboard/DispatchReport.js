@@ -15,7 +15,7 @@ import { EthiopianDate } from "mui-ethiopian-datepicker/dist/util/EthiopianDateU
 import EtDatePicker from "mui-ethiopian-datepicker";
 import { fetchUsers } from "../../redux/user/userSlice";
 import jsreport from 'jsreport-browser-client-dist';
-import { convertToEthiopianDateTime } from "../../functions/date";
+import { convertTo24HourFormat, convertToEthiopianDateTime } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
 
@@ -139,19 +139,19 @@ const DispatchReport = () => {
         dispatch(fetchUsers());
     }, []);
 
-    function convertTo24HourFormat(time12h) {
-        var [time, period] = time12h.split(' ');
-        var [hours, minutes] = time.split(':');
-        var seconds = '00'; // Adding seconds part
+    // function convertTo24HourFormat(time12h) {
+    //     var [time, period] = time12h.split(' ');
+    //     var [hours, minutes] = time.split(':');
+    //     var seconds = '00'; // Adding seconds part
         
-        if (period === 'PM' && hours !== '12') {
-            hours = String(Number(hours) + 12);
-        } else if (period === 'AM' && hours === '12') {
-            hours = '00';
-        }
+    //     if (period === 'PM' && hours !== '12') {
+    //         hours = String(Number(hours) + 12);
+    //     } else if (period === 'AM' && hours === '12') {
+    //         hours = '00';
+    //     }
         
-        return `${hours}:${minutes}:${seconds}`;
-    }
+    //     return `${hours}:${minutes}:${seconds}`;
+    // }
 
     return <>
         {/* Recent Orders */}

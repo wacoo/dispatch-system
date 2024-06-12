@@ -52,7 +52,9 @@ const createApproval = createAsyncThunk('approvals/createApproval', async (data,
         }
         console.log('Update Request Data:', updateRes.payload);
         const res = await axios.post(full_url, data, { headers: authHeader() });
-        return updateRes.data;
+        console.log('XX: ', full_url);
+        console.log('XX: ', updateRes.data);
+        return res.data;
     } catch (error) {
         console.log(error.message);
         return error.message;
@@ -60,10 +62,10 @@ const createApproval = createAsyncThunk('approvals/createApproval', async (data,
 });
 
 
-const updateRequest = createAsyncThunk('requests/updateRequest', async (id) => {
+const updateRequest = createAsyncThunk('requests/updateRequest', async ({id, status}) => {
     console.log(id);
     try {
-        const res = await axios.put(`${url}requests/${id}/`, {status: 'APPROVED'}, { headers: authHeader() });
+        const res = await axios.put(`${url}requests/${id}/`, {status}, { headers: authHeader() });
         console.log('Update Request Response:', res.data);
         return res.data;
     } catch (error) {

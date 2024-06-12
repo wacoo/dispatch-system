@@ -68,7 +68,7 @@ const DepartmentContent = () => {
                 setSuccess(true);
                 dispatch(fetchDepartments());
             } else {
-                // setError(res.payload);
+                setError(res.payload);
                 console.log(res.payload);
             }
         }

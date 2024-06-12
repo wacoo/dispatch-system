@@ -1,4 +1,4 @@
-import { Alert, Autocomplete, Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material"
+import { Alert, Autocomplete, Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material"
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -24,7 +24,7 @@ import { fetchUsers } from "../../redux/user/userSlice";
 // import { Viewer } from '@grapecity/activereports-react';
 import { addRequest } from '../../redux/request/requestSlice';
 import EtDatePicker from "mui-ethiopian-datepicker";
-import { convertToEthiopianDateTime } from "../../functions/date";
+import { times, convertTo24HourFormat, convertToEthiopianDateTime } from "../../functions/date";
 // import DispatchReport from "../reports/DispatchReport";
 
 
@@ -65,7 +65,7 @@ const DispatchContent = () => {
 
     const vehicleRequests = useSelector((state) => state.requests.vahicleRequests) ?? [];
     // const requestsByDispatch = useSelector((state) => state.dispatches.requestsByDispatchId) ?? [];
-    const disp = useSelector((state) => state.dispatches.dispatchById) ?? {};
+    // const disp = useSelector((state) => state.dispatches.dispatchById) ?? {};
     // const prevDisp = usePrevious(disp);
 
     useEffect(() => {
@@ -128,13 +128,13 @@ const DispatchContent = () => {
         return () => clearTimeout(timer);
     }, [error, success]);
 
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
+    // function formatDate(dateString) {
+    //     const date = new Date(dateString);
+    //     const year = date.getFullYear();
+    //     const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    //     const day = String(date.getDate()).padStart(2, '0');
+    //     return `${year}-${month}-${day}`;
+    // }
 
     function getTodayAsString() {
         const today = new Date();
@@ -143,19 +143,7 @@ const DispatchContent = () => {
         const day = String(today.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     }
-    function convertTo24HourFormat(time12h) {
-        var [time, period] = time12h.split(' ');
-        var [hours, minutes] = time.split(':');
-        var seconds = '00'; // Adding seconds part
-        
-        if (period === 'PM' && hours !== '12') {
-            hours = String(Number(hours) + 12);
-        } else if (period === 'AM' && hours === '12') {
-            hours = '00';
-        }
-        
-        return `${hours}:${minutes}:${seconds}`;
-    }
+    
 
     const generateReport = async (name, data) => {
         try {
@@ -181,9 +169,9 @@ const DispatchContent = () => {
     };
 
       
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (e) => {        
         console.log(dispatchData);
+        e.preventDefault();
         dispatch(createDispatch(dispatchData)).then((res) => {
             // console.log(res.payload.fname);
             if (res.payload?.id) {
@@ -193,53 +181,53 @@ const DispatchContent = () => {
                 //     });
                 //     dispatch(clearRequests());
                 // })
-                const fetchRequests = vehicleRequests.map((request) =>
-                    dispatch(fetchRequestsByByDispatch({ id: request, dispatch: res.payload?.id }))
-                );
                 
+                // const fetchRequests = vehicleRequests.map((request) => {
+                //     console.log(request.id);
+                //     dispatch(fetchRequestsByByDispatch({ id: request.id, dispatch: res.payload?.id }))
+                // });
+                
+                const fetchRequests = [...vehicleRequests];
                 console.log(fetchRequests);
-                Promise.all(fetchRequests).then((results) => {
-                    // All fetchRequestsByByDispatch actions have completed
-                    dispatch(clearRequests());
-                    //dispatch(fetchRequestsByDispatch({dispatchId: res.payload.id}));
-                    setId(res.payload?.id);
-                    setSuccess(true);              
-                    //generateReport('wage', {});
-                    console.log(res.payload);
-                    //generateReport('dispatch', res.payload);
-                    let data = {...res.payload};
-        
-                    // Step 2: Create a deep copy of vehicle_requests
-                    data.vehicle_requests = disp.vehicle_requests?.map(req => ({ ...req }));
-        
-                    // if (data && data.vehicle_requests){                        
-                    //     data.vehicle_requests.forEach(request => {
-                    //         dispatch(updateRequest({id: request.id, status: 'ACTIVE'}));
-                    //     });
-                    // }
-                    // Step 3: Assign the first vehicle request to data.request
-                    data.request = data.vehicle_requests[0];
-                    data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
-                    data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_est);
-                    data.return_date_est = '';
-                    data.return_date_act = '';
-                    data.departure_milage = '';
-                    data.return_milage = '';
-        
-                    // Step 4: Modify the deep copied vehicle_requests array
-                    if (Array.isArray(data.vehicle_requests)) {
-                        data.vehicle_requests.forEach((req, idx) => {
-                            req.no = idx + 1;
-                        });
-                    } else {
-                        console.error("data.vehicle_requests is not an array");
-                    }
-                    console.log(data);
-                    generateReport('dispatch', data);
-                }).catch((error) => {
-                    // Handle any errors if necessary
-                    console.error('Error fetching requests:', error);
-                });
+                // All fetchRequestsByByDispatch actions have completed
+                dispatch(clearRequests());
+                //dispatch(fetchRequestsByDispatch({dispatchId: res.payload.id}));
+                setId(res.payload?.id);
+                setSuccess(true);              
+                //generateReport('wage', {});
+                console.log('SS:', res.payload);
+                //generateReport('dispatch', res.payload);
+                let data = {...res.payload};
+    
+                // Step 2: Create a deep copy of vehicle_requests
+                data.vehicle_requests = fetchRequests?.map(req => ({ ...req }));
+    
+                if (data && data.vehicle_requests){                        
+                    data.vehicle_requests.forEach(request => {
+                        dispatch(updateRequest({id: request.id, status: 'ACTIVE'}));
+                    });
+                }
+                // Step 3: Assign the first vehicle request to data.request
+                data.request = data.vehicle_requests[0];
+                data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
+                data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_est);
+                data.return_date_est = '';
+                data.return_date_act = '';
+                data.departure_milage = '';
+                data.return_milage = '';
+    
+                // Step 4: Modify the deep copied vehicle_requests array
+                if (Array.isArray(data.vehicle_requests)) {
+                    data.vehicle_requests.forEach((req, idx) => {
+                        req.no = idx + 1;
+                    });
+                } else {
+                    console.error("data.vehicle_requests is not an array");
+                }
+                console.log('EE:', data);
+                generateReport('dispatch', data);
+                generateReport('wage', {});
+                
                 
             } else {
                 setSuccess(false);
@@ -255,13 +243,13 @@ const DispatchContent = () => {
 
     const handleAddRequest = (e) => {
         e.preventDefault();
+        console.log('SS: ', vehicleRequest);
         dispatch(addRequest(vehicleRequest));
     }
     if (isLoadingRequests || isLoadingDrivers || isLoadingVehicles) {
         return <h1>Loading...</h1>
     }
 
-    const times = [{'1:00 (ከጠዋቱ)': '7:00 AM'}, {'2:00 (ከጠዋቱ)': '2:00 AM'}, {'3:00 (ከጠዋቱ)': '9:00 AM'}, {'4:00 (ከረፋዱ)': '10:00 AM'}, {'5:00 (ከረፋዱ)': '11:00 AM'}, {'6:00 (ከቀኑ)': '12:00 AM'}, {'7:00 (ከቀኑ)': '1:00 PM'}, {'8:00 (ከቀኑ)': '2:00 PM'}, {'9:00 (ከቀኑ)': '3:00 PM'}, {'10:00 (ከቀኑ)': '4:00 PM'}, {'11:00 (ከአመሻሹ)': '5:00 PM'}, {'12:00 (ከአመሻሹ)': '6:00 PM'}, {'1:00 (ከምሽቱ)': '7:00 PM'}, {'2:00 (ከምሽቱ)': '8:00 PM'}, {'3:00 (ከምሽቱ)': '9:00 PM'}, {'4:00 (ከምሽቱ)': '10:00 PM'}, {'5:00 (ከምሽቱ)': '11:00 PM'}, {'6:00 (ከለሊቱ)': '12:00 PM'}, {'7:00 (ከለሊቱ)': '1:00 AM'}, {'8:00 (ከለሊቱ)': '2:00 AM'}, {'9:00 (ከለሊቱ)': '3:00 AM'}, {'10:00 (ከለሊቱ)': '4:00 AM'}, {'11:00 (ከለሊቱ)': '5:00 AM'}, {'12:00 (ክጥዋቱ)': '6:00 AM'}];
     
     return <>
         {/* Recent Orders */}
@@ -284,7 +272,7 @@ const DispatchContent = () => {
                     >
                         {
                             approved_requests.map((request) => (
-                                <MenuItem value={request.id}>{`(${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.user.department}; ${request.destination}`}</MenuItem>
+                                <MenuItem value={request}>{`(${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.user.department}; ${request.destination}`}</MenuItem>
                             ))
                         }
                     </Select>
@@ -311,6 +299,27 @@ const DispatchContent = () => {
                     </FormControl>
                 </form>
             </Grid>
+
+            { vehicleRequests.length > 0 && <Table size="small" sx={{ margin: '12px', marginLeft: '24px'}}>
+            <TableHead>
+                <TableRow>
+                    <TableCell>ID</TableCell>
+                        <TableCell>Requester</TableCell>
+                        <TableCell>Department</TableCell>
+                        <TableCell>Destination</TableCell>
+                    </TableRow>
+                </TableHead>
+            <TableBody>
+                {vehicleRequests.map((request) => (
+                    <TableRow key={request.id}>
+                        <TableCell>{request.id}</TableCell>
+                        <TableCell>{`${request.user.fname} ${request.user.mname}`}</TableCell>
+                        <TableCell>{request.user.department}</TableCell>
+                        <TableCell>{request.destination}</TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>}
 
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>

@@ -110,7 +110,7 @@ const updateRequest = createAsyncThunk('requests/updateRequest', async ({ id, st
         
         console.log('Data: ', id, status);
         const full_url = `${url}requests/${id}/`;
-        const res = await axios.put(full_url, {status: status}, { headers: authHeader() });
+        const res = await axios.put(full_url, {status}, { headers: authHeader() });
         return res.data;
     } catch (error ) {
         return error.message;

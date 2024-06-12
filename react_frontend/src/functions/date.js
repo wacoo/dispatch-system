@@ -1,3 +1,23 @@
+
+
+export const times = [{ '1:00 (ከጠዋቱ)': '7:00 AM' }, { '2:00 (ከጠዋቱ)': '2:00 AM' }, { '3:00 (ከጠዋቱ)': '9:00 AM' }, { '4:00 (ከረፋዱ)': '10:00 AM' }, { '5:00 (ከረፋዱ)': '11:00 AM' }, { '6:00 (ከቀኑ)': '12:00 AM' }, { '7:00 (ከቀኑ)': '1:00 PM' }, { '8:00 (ከቀኑ)': '2:00 PM' }, { '9:00 (ከቀኑ)': '3:00 PM' }, { '10:00 (ከቀኑ)': '4:00 PM' }, { '11:00 (ከአመሻሹ)': '5:00 PM' }, { '12:00 (ከአመሻሹ)': '6:00 PM' }, { '1:00 (ከምሽቱ)': '7:00 PM' }, { '2:00 (ከምሽቱ)': '8:00 PM' }, { '3:00 (ከምሽቱ)': '9:00 PM' }, { '4:00 (ከምሽቱ)': '10:00 PM' }, { '5:00 (ከምሽቱ)': '11:00 PM' }, { '6:00 (ከለሊቱ)': '12:00 PM' }, { '7:00 (ከለሊቱ)': '1:00 AM' }, { '8:00 (ከለሊቱ)': '2:00 AM' }, { '9:00 (ከለሊቱ)': '3:00 AM' }, { '10:00 (ከለሊቱ)': '4:00 AM' }, { '11:00 (ከለሊቱ)': '5:00 AM' }, { '12:00 (ክጥዋቱ)': '6:00 AM' }];
+
+export function convertTo24HourFormat(time12h) {
+  var [time, period] = time12h.split(' ');
+  var [hours, minutes] = time.split(':');
+  var seconds = '00'; // Adding seconds part
+
+  if (period === 'PM' && hours !== '12') {
+    hours = String(Number(hours) + 12);
+  } else if (period === 'AM' && hours === '12') {
+    hours = '00';
+  }
+
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+
+
 export function convertToEthiopianDateTime(dateString, timeString) {
   // Handle cases where only date or time is provided
   if (!dateString) {

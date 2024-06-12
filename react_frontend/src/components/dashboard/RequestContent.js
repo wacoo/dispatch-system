@@ -42,7 +42,7 @@ const RequestContent = () => {
     const [error, setError] = useState('');
 
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users.users) ?? [];
+    const users = useSelector((state) => state.users.users.results) ?? [];
     const isLoading = useSelector((state) => state.users.isLoading);
 
     useEffect(() => {

@@ -15,7 +15,7 @@ import { EthiopianDate } from "mui-ethiopian-datepicker/dist/util/EthiopianDateU
 import EtDatePicker from "mui-ethiopian-datepicker";
 import { fetchUsers } from "../../redux/user/userSlice";
 import jsreport from 'jsreport-browser-client-dist';
-import { convertTo24HourFormat, convertToEthiopianDateTime } from "../../functions/date";
+import { convertTo24HourFormat, convertToEthiopianDateTime, times } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
 
@@ -28,8 +28,8 @@ const DispatchReport = () => {
     const [dtime, setDtime] = useState('12: 00 AM');
     const [rtime, setRtime] = useState('12: 00 AM');
     const dispatch = useDispatch();
-    const dispatches = useSelector((state) => state.dispatches.dispatches) ?? [];
-    const supervisors = useSelector((state) => state.users.users) ?? [];
+    const dispatches = useSelector((state) => state.dispatches.dispatches.results) ?? [];
+    const supervisors = useSelector((state) => state.users.users.results) ?? [];
     const [dispatchId, setDispatchID] = useState('');
     const [dispatchReportData, setDispatchReportData] = useState({
         "departure_milage": "",
@@ -41,7 +41,7 @@ const DispatchReport = () => {
         "refuel_liters": 0
     });
 
-    const times = [{'1:00 (ከጠዋቱ)': '7:00 AM'}, {'2:00 (ከጠዋቱ)': '2:00 AM'}, {'3:00 (ከጠዋቱ)': '9:00 AM'}, {'4:00 (ከረፋዱ)': '10:00 AM'}, {'5:00 (ከረፋዱ)': '11:00 AM'}, {'6:00 (ከቀኑ)': '12:00 AM'}, {'7:00 (ከቀኑ)': '1:00 PM'}, {'8:00 (ከቀኑ)': '2:00 PM'}, {'9:00 (ከቀኑ)': '3:00 PM'}, {'10:00 (ከቀኑ)': '4:00 PM'}, {'11:00 (ከአመሻሹ)': '5:00 PM'}, {'12:00 (ከአመሻሹ)': '6:00 PM'}, {'1:00 (ከምሽቱ)': '7:00 PM'}, {'2:00 (ከምሽቱ)': '8:00 PM'}, {'3:00 (ከምሽቱ)': '9:00 PM'}, {'4:00 (ከምሽቱ)': '10:00 PM'}, {'5:00 (ከምሽቱ)': '11:00 PM'}, {'6:00 (ከለሊቱ)': '12:00 PM'}, {'7:00 (ከለሊቱ)': '1:00 AM'}, {'8:00 (ከለሊቱ)': '2:00 AM'}, {'9:00 (ከለሊቱ)': '3:00 AM'}, {'10:00 (ከለሊቱ)': '4:00 AM'}, {'11:00 (ከለሊቱ)': '5:00 AM'}, {'12:00 (ክጥዋቱ)': '6:00 AM'}];
+    // const times = [{'1:00 (ከጠዋቱ)': '7:00 AM'}, {'2:00 (ከጠዋቱ)': '2:00 AM'}, {'3:00 (ከጠዋቱ)': '9:00 AM'}, {'4:00 (ከረፋዱ)': '10:00 AM'}, {'5:00 (ከረፋዱ)': '11:00 AM'}, {'6:00 (ከቀኑ)': '12:00 AM'}, {'7:00 (ከቀኑ)': '1:00 PM'}, {'8:00 (ከቀኑ)': '2:00 PM'}, {'9:00 (ከቀኑ)': '3:00 PM'}, {'10:00 (ከቀኑ)': '4:00 PM'}, {'11:00 (ከአመሻሹ)': '5:00 PM'}, {'12:00 (ከአመሻሹ)': '6:00 PM'}, {'1:00 (ከምሽቱ)': '7:00 PM'}, {'2:00 (ከምሽቱ)': '8:00 PM'}, {'3:00 (ከምሽቱ)': '9:00 PM'}, {'4:00 (ከምሽቱ)': '10:00 PM'}, {'5:00 (ከምሽቱ)': '11:00 PM'}, {'6:00 (ከለሊቱ)': '12:00 PM'}, {'7:00 (ከለሊቱ)': '1:00 AM'}, {'8:00 (ከለሊቱ)': '2:00 AM'}, {'9:00 (ከለሊቱ)': '3:00 AM'}, {'10:00 (ከለሊቱ)': '4:00 AM'}, {'11:00 (ከለሊቱ)': '5:00 AM'}, {'12:00 (ክጥዋቱ)': '6:00 AM'}];
     
     useEffect(() => {
         setDispatchReportData((prev) => ({

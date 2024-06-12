@@ -55,7 +55,7 @@ function preventDefault(event) {
 }
 
 export default function RequestsTable({title}) {
-  const requests = useSelector((state) => state.requests.requests) ?? [];
+  const requests = useSelector((state) => state.requests.requests.results) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
         console.log(requests);

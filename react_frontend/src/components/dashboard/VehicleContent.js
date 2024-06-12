@@ -34,7 +34,7 @@ const VehicleContent = () => {
         vehicle_status: 'AVAILABLE',
     })
 
-    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     // const handleSubmit = (e) => {
     //     e.preventDefault();
     //     console.log(vehicleData);

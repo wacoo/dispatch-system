@@ -37,8 +37,8 @@ const ApprovalContent = () => {
         approval_date: formattedDate,
     });
 
-    const requests = useSelector((state) => state.requests.pending_requests) ?? [];
-    const managers = useSelector((state) => state.users.users) ?? [];
+    const requests = useSelector((state) => state.requests.pending_requests.results) ?? [];
+    const managers = useSelector((state) => state.users.users.results) ?? [];
 
     useEffect(() => {
         setApprovalData((prev) => ({

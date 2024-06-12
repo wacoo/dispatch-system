@@ -55,10 +55,10 @@ const DispatchContent = () => {
     const [error, setError] = useState('');
     const [id, setId] = useState('');
     const dispatch = useDispatch();
-    const approved_requests = useSelector((state) => state.requests.approved_requests) ?? [];
-    const drivers = useSelector((state) => state.driver.drivers) ?? [];
-    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
-    const dispatchers = useSelector((state) => state.users.users) ?? [];
+    const approved_requests = useSelector((state) => state.requests.approved_requests.results) ?? [];
+    const drivers = useSelector((state) => state.driver.drivers.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const dispatchers = useSelector((state) => state.users.users.results) ?? [];
     const isLoadingRequests = useSelector((state) => state.requests.isLoading);
     const isLoadingDrivers = useSelector((state) => state.driver.isLoading);
     const isLoadingVehicles = useSelector((state) => state.vehicles.isLoading);

@@ -55,7 +55,7 @@ function preventDefault(event) {
 }
 
 export default function ApprovalTable({title}) {
-  const approvals = useSelector((state) => state.approvals.approvals) ?? [];
+  const approvals = useSelector((state) => state.approvals.approvals.results) ?? [];
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(fetchApprovals());

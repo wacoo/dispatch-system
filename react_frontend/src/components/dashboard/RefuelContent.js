@@ -23,7 +23,7 @@ const RefuelContent = () => {
     const [error, setError] = useState('');
     const [rrdate, setRRdate] = useState(dayjs('2022-04-17'));
     const [rdate, setRdate] = useState(dayjs('2022-04-17'));
-    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const [refuelData, setRefuelData] = useState({
         vehicle: '1',
         refuel_request_date: rrdate.format('YYYY-MM-DD'), // Format date directly here

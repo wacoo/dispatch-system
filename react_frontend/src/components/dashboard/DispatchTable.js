@@ -56,7 +56,7 @@ function preventDefault(event) {
 }
 
 export default function DispatchTable({title}) {
-  const dispatches = useSelector((state) => state.dispatches.dispatches) ?? [];
+  const dispatches = useSelector((state) => state.dispatches.dispatches.results) ?? [];
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(fetchDispatches());

@@ -29,7 +29,7 @@ const UserContent = () => {
         is_superuser: false,
     });
 
-    const departments = useSelector((state) => state.departments.departments) ?? [];
+    const departments = useSelector((state) => state.departments.departments.results) ?? [];
     useEffect(() => {
         const timer = setTimeout(() => {
           setError('');

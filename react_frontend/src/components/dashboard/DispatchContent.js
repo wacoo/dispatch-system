@@ -140,7 +140,7 @@ const DispatchContent = () => {
     
                 if (data && data.vehicle_requests){                        
                     data.vehicle_requests.forEach(request => {
-                        dispatch(updateRequest({id: request.id, status: 'ACTIVE'}));
+                        dispatch(updateRequest({id: request.id, status: 'ACTIVE', dispatch: data.id}));
                     });
                 }
     

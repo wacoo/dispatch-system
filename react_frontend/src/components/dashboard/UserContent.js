@@ -35,8 +35,6 @@ const UserContent = () => {
           setError('');
           setSuccess(false);
         }, 5000);
-    
-        // Remember to clean up the timer when the component unmounts
         return () => clearTimeout(timer);
       }, [error, success]);
 
@@ -48,8 +46,7 @@ const UserContent = () => {
     useEffect(() => {
         console.log(departments);
     }, [departments]);
-    //username=None, fname=None, mname=None, lname=None, access_level=None, password=None
-    //fields = ('id', 'username', 'fname', 'mname', 'lname', 'department', 'access_level', 'password', 'is_staff', 'is_superuser')
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(userData);
@@ -61,66 +58,59 @@ const UserContent = () => {
             console.log('Here2');
         }
         dispatch(signUp(userData)).then((res) => {
-            // console.log(res.payload.fname);
             if (res.payload?.id) {
                 setSuccess(true);
-                // dispatch(getUsers);
             } else {
                 setError(res.payload);
                 console.log(res.payload);
             }
         }).catch((error) => {
-            // Handle any errors from the first then block
             setError(error);
             console.log(error);
         });
     }
 
     return <>
-        {/* Recent Orders */}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">New User</Typography>
+            <Typography variant="h4">User (ተጠቃሚ)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
-            {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="First name" type="text" name="fname" id="fname" onChange={(e) => setUserData((prev) => ({ ...prev, fname: e.target.value }))}/>
+                    <TextField label="First name (ስም)" type="text" name="fname" id="fname" onChange={(e) => setUserData((prev) => ({ ...prev, fname: e.target.value }))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Middle name" type="text" name="mname" id="mname" onChange={(e) => setUserData((prev) => ({ ...prev, mname: e.target.value }))}/>
+                    <TextField label="Middle name (አባት)" type="text" name="mname" id="mname" onChange={(e) => setUserData((prev) => ({ ...prev, mname: e.target.value }))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Last name" type="text" name="lname" id="lname" onChange={(e) => setUserData((prev) => ({ ...prev, lname: e.target.value }))}/>
-                </FormControl>
-            </Grid>
-
-            <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Username" type="text" name="uname" id="uname" onChange={(e) => setUserData((prev) => ({ ...prev, username: e.target.value }))}/>
+                    <TextField label="Last name (አያት)" type="text" name="lname" id="lname" onChange={(e) => setUserData((prev) => ({ ...prev, lname: e.target.value }))}/>
                 </FormControl>
             </Grid>
 
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Password" type="password" name="pword" id="pword" onChange={(e) => setUserData((prev) => ({ ...prev, password: e.target.value }))}/>
+                    <TextField label="Username (መለያ)" type="text" name="uname" id="uname" onChange={(e) => setUserData((prev) => ({ ...prev, username: e.target.value }))}/>
                 </FormControl>
             </Grid>
 
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Confirm password" type="password" name="confirm" id="confirm" onChange={(e) => setUserData((prev) => ({ ...prev, confirm: e.target.value }))}/>
+                    <TextField label="Password (ቁልፍ)" type="password" name="pword" id="pword" onChange={(e) => setUserData((prev) => ({ ...prev, password: e.target.value }))}/>
                 </FormControl>
             </Grid>
 
-            {/* Department Select (full width on all screen sizes) */}
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label="Confirm password (ቁልፍ በድጋሚ)" type="password" name="confirm" id="confirm" onChange={(e) => setUserData((prev) => ({ ...prev, confirm: e.target.value }))}/>
+                </FormControl>
+            </Grid>
+
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                    {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Department</InputLabel> */}
                     <Autocomplete
                         options={departments}
                         getOptionLabel={(option) => option.dept_name}
@@ -128,9 +118,9 @@ const UserContent = () => {
                         renderInput={(params) => (
                             <TextField
                             {...params}
-                            label="Department"
+                            label="Department (ክፍል)"
                             variant="outlined"
-                            sx={{ minWidth: '100%' }} // Ensure select is full width
+                            sx={{ minWidth: '100%' }}
                             />
                         )}
                     />
@@ -138,7 +128,7 @@ const UserContent = () => {
             </Grid>
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <InputLabel id="role_lbl" sx={{ marginBottom: '8px' }}>Role</InputLabel>
+                    <InputLabel id="role_lbl" sx={{ marginBottom: '8px' }}>Role (ሃላፊነት)</InputLabel>
                     <Select
                         labelId="role_lbl"
                         id="role"
@@ -147,22 +137,22 @@ const UserContent = () => {
                         // Handle value, label, onChange
                         onChange={(e) => setUserData((prev) => ({ ...prev, access_level: e.target.value }))}
                     >
-                        <MenuItem value={0}>User</MenuItem>
-                        <MenuItem value={1}>Approver</MenuItem>
-                        <MenuItem value={2}>Dispatcher</MenuItem>
-                        <MenuItem value={3}>Administrator</MenuItem>
+                        <MenuItem value={0}>User (ተጠቃሚ)</MenuItem>
+                        <MenuItem value={1}>Approver (ፍቃድ ሰጪ)</MenuItem>
+                        <MenuItem value={2}>Dispatcher (የስምሪት ሃላፊ)</MenuItem>
+                        <MenuItem value={3}>Administrator (የሲስተም አስተዳዳሪ)</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <TextField sx={{ minWidth: '100%' }} label="Phone number" type="text" name="pnumber" id="pnumber" onChange={(e) => setUserData((prev) => ({ ...prev, phone_number: e.target.value }))} />
+                    <TextField sx={{ minWidth: '100%' }} label="Phone number (ስልክ)" type="text" name="pnumber" id="pnumber" onChange={(e) => setUserData((prev) => ({ ...prev, phone_number: e.target.value }))} />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e)=> handleSubmit(e)}>
                     <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Create</Button>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
                     </FormControl>
                 </form>                
             </Grid>
@@ -173,9 +163,7 @@ const UserContent = () => {
                             User created successfully!
                     </Alert>
                 }
-                { error && <Alert severity="error">{error}</Alert>} 
-                {/* <Alert severity="info">This is an info Alert.</Alert>
-                <Alert severity="warning">This is a warning Alert.</Alert> */}
+                { error && <Alert severity="error">{error}</Alert>}
             </Grid>
         </Grid>
 

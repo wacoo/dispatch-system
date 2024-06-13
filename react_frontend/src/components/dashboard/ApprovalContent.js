@@ -79,12 +79,12 @@ const ApprovalContent = () => {
     return (
         <>
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-                <Typography variant="h4">New Approval</Typography>
+                <Typography variant="h4">Approval (የሃላፊ ፍቃድ)</Typography>
             </Grid>
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request</InputLabel>
+                        <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>
                         <Select
                             labelId="dept_lbl"
                             id="demo-simple-select"
@@ -102,7 +102,7 @@ const ApprovalContent = () => {
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        <InputLabel id="manager_lbl" sx={{ marginBottom: '8px' }}>Manager</InputLabel>
+                        <InputLabel id="manager_lbl" sx={{ marginBottom: '8px' }}>Manager (ሃላፊ)</InputLabel>
                         <Select
                             labelId="manager_lbl"
                             id="manager-select"
@@ -121,7 +121,7 @@ const ApprovalContent = () => {
                 <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>
                     <FormControl fullWidth>
                     <EtDatePicker
-                            label="Approval Date"
+                            label="Approval Date (ቀን)"
                             onChange={(selectedDate) => {
                                 setDdate(selectedDate);
                             }}
@@ -136,7 +136,7 @@ const ApprovalContent = () => {
                 <Grid item xs={12} marginTop={2}>
                     <form onSubmit={handleSubmit}>
                         <FormControl fullWidth>
-                            <Button variant="outlined" type="submit">Approve</Button>
+                            <Button variant="outlined" type="submit">Approve (ፍቀድ)</Button>
                         </FormControl>
                     </form>
                 </Grid>

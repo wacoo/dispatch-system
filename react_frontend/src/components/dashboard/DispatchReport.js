@@ -41,8 +41,6 @@ const DispatchReport = () => {
         "refuel_liters": 0
     });
 
-    // const times = [{'1:00 (ከጠዋቱ)': '7:00 AM'}, {'2:00 (ከጠዋቱ)': '2:00 AM'}, {'3:00 (ከጠዋቱ)': '9:00 AM'}, {'4:00 (ከረፋዱ)': '10:00 AM'}, {'5:00 (ከረፋዱ)': '11:00 AM'}, {'6:00 (ከቀኑ)': '12:00 AM'}, {'7:00 (ከቀኑ)': '1:00 PM'}, {'8:00 (ከቀኑ)': '2:00 PM'}, {'9:00 (ከቀኑ)': '3:00 PM'}, {'10:00 (ከቀኑ)': '4:00 PM'}, {'11:00 (ከአመሻሹ)': '5:00 PM'}, {'12:00 (ከአመሻሹ)': '6:00 PM'}, {'1:00 (ከምሽቱ)': '7:00 PM'}, {'2:00 (ከምሽቱ)': '8:00 PM'}, {'3:00 (ከምሽቱ)': '9:00 PM'}, {'4:00 (ከምሽቱ)': '10:00 PM'}, {'5:00 (ከምሽቱ)': '11:00 PM'}, {'6:00 (ከለሊቱ)': '12:00 PM'}, {'7:00 (ከለሊቱ)': '1:00 AM'}, {'8:00 (ከለሊቱ)': '2:00 AM'}, {'9:00 (ከለሊቱ)': '3:00 AM'}, {'10:00 (ከለሊቱ)': '4:00 AM'}, {'11:00 (ከለሊቱ)': '5:00 AM'}, {'12:00 (ክጥዋቱ)': '6:00 AM'}];
-    
     useEffect(() => {
         setDispatchReportData((prev) => ({
             ...prev,
@@ -54,7 +52,6 @@ const DispatchReport = () => {
         const timer = setTimeout(() => {
           setError('');
           setSuccess(false);
-        //   dispatch(fetchDispatchById({dispatchId: id}));
         }, 5000);
     
         // Remember to clean up the timer when the component unmounts
@@ -68,9 +65,6 @@ const DispatchReport = () => {
         const response = await jsreport.render({
             template: {
             name: name,
-            // content: 'Hello from {{message}}',
-            // engine: 'handlebars',
-            // recipe: 'chrome-pdf'
             },
             data: {
                 cdispatch: data
@@ -78,7 +72,6 @@ const DispatchReport = () => {
         });
         response.download('myreport.pdf');
         response.openInWindow({title: 'My Report'});
-        // setReportData(response.data.toString('utf8'));
         } catch (error) {
             console.error('Error generating report:', error);
         }
@@ -92,12 +85,8 @@ const DispatchReport = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(updateDispatch({ id: dispatchId, data: dispatchReportData })).then((res) => {
-            // console.log(res.payload.fname);
             if (res.payload?.id) {
-                setSuccess(true);                
-                // dispatch(fetchRequestsByByDispatch({id: request, dispatch: res.payload?.id}));
-                // dispatch(fetchDispatches());               
-                // generateReport('wage', {});
+                setSuccess(true);           
                 let data = { ...res.payload };
                 console.log(res.payload);
     
@@ -139,24 +128,10 @@ const DispatchReport = () => {
         dispatch(fetchUsers());
     }, []);
 
-    // function convertTo24HourFormat(time12h) {
-    //     var [time, period] = time12h.split(' ');
-    //     var [hours, minutes] = time.split(':');
-    //     var seconds = '00'; // Adding seconds part
-        
-    //     if (period === 'PM' && hours !== '12') {
-    //         hours = String(Number(hours) + 12);
-    //     } else if (period === 'AM' && hours === '12') {
-    //         hours = '00';
-    //     }
-        
-    //     return `${hours}:${minutes}:${seconds}`;
-    // }
-
     return <>
         {/* Recent Orders */}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">New Dispatch Report (የስምሪት መጠናቀቅ ማሳወቂያ ሰነድ)</Typography>
+            <Typography variant="h4"> Complete Dispatch (የስምሪት ማጠናቀቅያ)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
             {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
@@ -176,19 +151,17 @@ const DispatchReport = () => {
                                 {`(${disp.id}) ${EthiopianDate.toEth(new Date(disp.assigned_date.split('T')[0])) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
                             </MenuItem>
                         ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                        <MenuItem value={30}>Yonas</MenuItem> */}
                     </Select>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Departure milage (KM)" type="number" name="departure_milage" id="departure_milage" onChange={(e) => setDispatchReportData((prev) => ({...prev, departure_milage: e.target.value}))}/>
+                    <TextField label="Departure milage (KM) (የተጓዘበት በኪ/ሜ)" type="number" name="departure_milage" id="departure_milage" onChange={(e) => setDispatchReportData((prev) => ({...prev, departure_milage: e.target.value}))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Departure time</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Departure time (የተነሳበት ሰዓት)</InputLabel>
                     <Select
                         labelId="Depature time"
                         id="departure_time"
@@ -210,27 +183,23 @@ const DispatchReport = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Return milage (KM)" type="number" name="return_milage" id="return_milage" onChange={(e) => setDispatchReportData((prev) => ({...prev, return_milage: e.target.value}))}/>
+                    <TextField label="Return milage (KM) (የተመለሰበት በኪሜ)" type="number" name="return_milage" id="return_milage" onChange={(e) => setDispatchReportData((prev) => ({...prev, return_milage: e.target.value}))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>
                 <FormControl fullWidth>
                     <EtDatePicker
-                            label="Return Date"
+                            label="Return Date (የተመለሰበት ቀን)"
                             onChange={(selectedDate) => {
                                 setRdate(selectedDate);
                             }}
                             value={rdate}
-                            // minDate={new Date("2023-08-20")}
-                            // maxDate={new Date("2023-08-26")}
-
-                            // other TextField props here, except InputProps
                         />
                 </FormControl>
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Return time</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Return time (የተመለሰበት ሰዓት)</InputLabel>
                     <Select
                         labelId="Return time"
                         id="return_time"
@@ -253,25 +222,14 @@ const DispatchReport = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Refuel (Lts)" type="number" name="refuel" id="refuel" onChange={(e) => setDispatchReportData((prev) => ({...prev, refuel_liters: e.target.value}))}/>
+                    <TextField label="Refuel (Lts) (ነዳጀ ሙሊት በሊትር)" type="number" name="refuel" id="refuel" onChange={(e) => setDispatchReportData((prev) => ({...prev, refuel_liters: e.target.value}))}/>
                 </FormControl>
             </Grid>
             
-            {/*<Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Phone number" type="text" name="pnumber" id="pnumber" onChange={(e) => setDriverData((prev) => ({...prev, phone_number: e.target.value}))}/>
-                </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="License number" type="text" name="lnumber" id="lnumber" onChange={(e) => setDriverData((prev) => ({...prev, license_number: e.target.value}))}/>
-                </FormControl>
-            </Grid> */}
-
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e)=> handleSubmit(e)}>
                     <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Create</Button>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
                     </FormControl>
                 </form>
             </Grid>
@@ -283,8 +241,6 @@ const DispatchReport = () => {
                     </Alert>
                 }
                 { error && <Alert severity="error">{error}</Alert>} 
-                {/* <Alert severity="info">This is an info Alert.</Alert>
-                <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>
         </Grid>
 

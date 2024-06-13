@@ -37,6 +37,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/refuels" element={<Dashboard active='Refuel'/>} />
         <Route path="/dispatch_report" element={<Dashboard active='DispatchReport'/>} />
+        <Route path="/old_dispatch" element={<Dashboard active='GenerateDispatchReport'/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

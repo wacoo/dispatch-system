@@ -93,13 +93,13 @@ const VehicleContent = () => {
     return <>
         {/* Recent Orders */}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">New Vehicle</Typography>
+            <Typography variant="h4"> Vehicle (ተሽከርካሪ)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
             {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Make</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Make (ብራንድ)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="demo-simple-select"
@@ -116,17 +116,17 @@ const VehicleContent = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Model" type="text" name="model" id="model" onChange={(e) => setVehicleData((prev) => ({...prev, model: e.target.value}))}/>
+                    <TextField label="Model (ሞዴል)" type="text" name="model" id="model" onChange={(e) => setVehicleData((prev) => ({...prev, model: e.target.value}))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Year" type="number" name="year" id="year" onChange={(e) => setVehicleData((prev) => ({...prev, year: e.target.value}))}/>
+                    <TextField label="Year (የምርት ዓ/ም)" type="number" name="year" id="year" onChange={(e) => setVehicleData((prev) => ({...prev, year: e.target.value}))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Type</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Type (አይነት)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="demo-simple-select"
@@ -146,43 +146,26 @@ const VehicleContent = () => {
             
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Current milage" type="number" name="cmilage" id="cmilage" onChange={(e) => setVehicleData((prev) => ({...prev, current_milage: e.target.value}))}/>
+                    <TextField label="Current milage (የተጓዘበት ኪ/ሜ)" type="number" name="cmilage" id="cmilage" onChange={(e) => setVehicleData((prev) => ({...prev, current_milage: e.target.value}))}/>
                 </FormControl>
             </Grid>
 
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="License plate" type="text" name="plate" id="plate" onChange={(e) => setVehicleData((prev) => ({...prev, license_plate: e.target.value}))}/>
+                    <TextField label="License plate (ሰሌዳ)" type="text" name="plate" id="plate" onChange={(e) => setVehicleData((prev) => ({...prev, license_plate: e.target.value}))}/>
                 </FormControl>
             </Grid>
 
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Fuel level" type="number" name="fuel_level" id="fuel_level" onChange={(e) => setVehicleData((prev) => ({...prev, fuel_level: e.target.value}))}/>
+                    <TextField label="Fuel level (የተሞላ ነዳጀ)" type="number" name="fuel_level" id="fuel_level" onChange={(e) => setVehicleData((prev) => ({...prev, fuel_level: e.target.value}))}/>
                 </FormControl>
             </Grid>
-            {/* <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Vehicle Status</InputLabel>
-                    <Select
-                        labelId="dept_lbl"
-                        id="demo-simple-select"
-                        label="Make"
-                        sx={{ minWidth: '100%' }} // Ensure select is full width
-                        // Handle value, label, onChange
-                        onChange={(e) => setVehicleData((prev) => ({...prev, vehicle_status: e.target.value}))}
-                    >
-                        <MenuItem value={'AVAILABLE'}>AVAILABLE</MenuItem>
-                        <MenuItem value={'IN_USE'}>IN USE</MenuItem>
-                        <MenuItem value={'RESERVED'}>RESERVED</MenuItem>
-                        <MenuItem value={'TRUCK'}>OUT OF SERVICE</MenuItem>
-                    </Select>
-                </FormControl>
-            </Grid> */}
+            
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e)=> handleSubmit(e)}>
                     <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Create</Button>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
                     </FormControl>
                 </form>
             </Grid>
@@ -208,7 +191,7 @@ const VehicleContent = () => {
         { update && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
         <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Vehicle</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel>
                     <Select
                         labelId="req_lbl"
                         id="user"
@@ -229,7 +212,7 @@ const VehicleContent = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Status</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Status (ያለበት ሁኔታ)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="demo-simple-select"
@@ -238,17 +221,17 @@ const VehicleContent = () => {
                         // Handle value, label, onChange
                         onChange={(e) => setUpdateVehicleData((prev) => ({...prev, vehicle_status: e.target.value}))}
                     >
-                        <MenuItem value={'AVAILABLE'}>AVAILABLE</MenuItem>
-                        <MenuItem value={'IN_USE'}>IN USE</MenuItem>
-                        <MenuItem value={'RESERVED'}>RESERVED</MenuItem>
-                        <MenuItem value={'OUT_OF_SERVICE'}>OUT OF SERVICE</MenuItem>
+                        <MenuItem value={'AVAILABLE'}>AVAILABLE (ዝግጁ)</MenuItem>
+                        <MenuItem value={'IN_USE'}>IN USE (ስራ ላይ)</MenuItem>
+                        <MenuItem value={'RESERVED'}>RESERVED (ተይዟል)</MenuItem>
+                        <MenuItem value={'OUT_OF_SERVICE'}>OUT OF SERVICE (ብልሽት ላይ)</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e)=> handleUpdate(e)}>
                     <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Update</Button>
+                        <Button variant="outlined" type="submit">Update (ቀይር)</Button>
                     </FormControl>
                 </form>
             </Grid>

@@ -64,33 +64,12 @@ const DispatchContent = () => {
     const isLoadingVehicles = useSelector((state) => state.vehicles.isLoading);
 
     const vehicleRequests = useSelector((state) => state.requests.vahicleRequests) ?? [];
-    // const requestsByDispatch = useSelector((state) => state.dispatches.requestsByDispatchId) ?? [];
-    // const disp = useSelector((state) => state.dispatches.dispatchById) ?? {};
-    // const prevDisp = usePrevious(disp);
-
     useEffect(() => {
         dispatch(fetchApprovedRequests());
         dispatch(fetchDrivers());
         dispatch(fetchVehicles());
         dispatch(fetchUsers());
     }, []);
-
-    // function usePrevious(value) {
-    //     const ref = useRef();
-    //     useEffect(() => {
-    //         ref.current = value;
-    //     }, [value]);
-    //     return ref.current;
-    // }
-
-
-    // useEffect(() => {
-    //     console.log(approved_requests);
-    //     console.log(drivers);
-    //     console.log(vehicles);
-    //     console.log(dispatchers);
-    //     console.log(vehicleRequests);
-    // }, [approved_requests, drivers, vehicles, dispatchers, vehicleRequests]);
 
     useEffect(() => {
         setDispatchData((prev) => ({
@@ -99,23 +78,6 @@ const DispatchContent = () => {
             return_date_est: new Date(rdate).toISOString().split('T')[0]
         }));
     }, [ddate, rdate]);
-
-    // useEffect(() => {
-    //     dispatch(setRdateValue(new Date(rdate).toISOString()));
-    // }, [rdate]);
-
-    // useEffect(() => {
-    //     console.log(ddateValue);
-    //     console.log(rdateValue);
-    // }, [ddateValue, rdateValue]);
-
-
-    useEffect(() => {
-        // console.log(isLoading);
-        // console.log(users);
-        console.log(ddateValue);
-        console.log(rdateValue);
-    }, [ddateValue, rdateValue]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -127,14 +89,6 @@ const DispatchContent = () => {
         // Remember to clean up the timer when the component unmounts
         return () => clearTimeout(timer);
     }, [error, success]);
-
-    // function formatDate(dateString) {
-    //     const date = new Date(dateString);
-    //     const year = date.getFullYear();
-    //     const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-    //     const day = String(date.getDate()).padStart(2, '0');
-    //     return `${year}-${month}-${day}`;
-    // }
 
     function getTodayAsString() {
         const today = new Date();
@@ -169,37 +123,19 @@ const DispatchContent = () => {
     };
 
       
-    const handleSubmit = (e) => {        
-        console.log(dispatchData);
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(createDispatch(dispatchData)).then((res) => {
-            // console.log(res.payload.fname);
+        try {
+            const res = await dispatch(createDispatch(dispatchData));
+    
             if (res.payload?.id) {
-                // vehicleRequests.forEach((request) => {
-                //     dispatch(fetchRequestsByByDispatch({id: request, dispatch: res.payload?.id})).then((reslt) => {
-
-                //     });
-                //     dispatch(clearRequests());
-                // })
-                
-                // const fetchRequests = vehicleRequests.map((request) => {
-                //     console.log(request.id);
-                //     dispatch(fetchRequestsByByDispatch({ id: request.id, dispatch: res.payload?.id }))
-                // });
-                
                 const fetchRequests = [...vehicleRequests];
-                console.log(fetchRequests);
-                // All fetchRequestsByByDispatch actions have completed
                 dispatch(clearRequests());
-                //dispatch(fetchRequestsByDispatch({dispatchId: res.payload.id}));
                 setId(res.payload?.id);
-                setSuccess(true);              
-                //generateReport('wage', {});
-                console.log('SS:', res.payload);
-                //generateReport('dispatch', res.payload);
+                setSuccess(true);
+                
                 let data = {...res.payload};
     
-                // Step 2: Create a deep copy of vehicle_requests
                 data.vehicle_requests = fetchRequests?.map(req => ({ ...req }));
     
                 if (data && data.vehicle_requests){                        
@@ -207,7 +143,7 @@ const DispatchContent = () => {
                         dispatch(updateRequest({id: request.id, status: 'ACTIVE'}));
                     });
                 }
-                // Step 3: Assign the first vehicle request to data.request
+    
                 data.request = data.vehicle_requests[0];
                 data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
                 data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_est);
@@ -216,7 +152,6 @@ const DispatchContent = () => {
                 data.departure_milage = '';
                 data.return_milage = '';
     
-                // Step 4: Modify the deep copied vehicle_requests array
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {
                         req.no = idx + 1;
@@ -224,26 +159,22 @@ const DispatchContent = () => {
                 } else {
                     console.error("data.vehicle_requests is not an array");
                 }
-                console.log('EE:', data);
-                generateReport('dispatch', data);
-                generateReport('wage', {});
-                
-                
+    
+                // Await the generateReport calls
+                await generateReport('dispatch', data);
+                // await generateReport('wage', {});
+    
             } else {
                 setSuccess(false);
                 setError(res.payload);
-                console.log(res.payload);
             }
-        }).catch((error) => {
-            // Handle any errors from the first then block
+        } catch (error) {
             setError(error);
-            console.log(error);
-        });
-    }
+        }
+    };
 
     const handleAddRequest = (e) => {
         e.preventDefault();
-        console.log('SS: ', vehicleRequest);
         dispatch(addRequest(vehicleRequest));
     }
     if (isLoadingRequests || isLoadingDrivers || isLoadingVehicles) {
@@ -252,16 +183,14 @@ const DispatchContent = () => {
 
     
     return <>
-        {/* Recent Orders */}
-
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">New Vehicle Dispatch</Typography>
+            <Typography variant="h4">Vehicle Dispatch (የተሽከርካሪ ጥያቄዎች)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-        <Typography variant="h5">Add requests</Typography>
+        <Typography variant="h5">Add requests (ጥያቄዎችን ጨምር)</Typography>
         <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="demo-simple-select"
@@ -276,19 +205,6 @@ const DispatchContent = () => {
                             ))
                         }
                     </Select>
-                    {/* <Autocomplete
-                            options={approved_requests}
-                            getOptionLabel={(option) => `(${option.id}) ${option.request_date.slice(0, 10)}; ${option.user.fname} ${option.user.mname}; ${option.user.department}; ${option.destination}`}
-                            onChange={(event, value) => setVehicleRequest(value ? value.id : '' )}
-                            renderInput={(params) => (
-                                <TextField
-                                {...params}
-                                label="Request"
-                                variant="outlined"
-                                sx={{ minWidth: '100%' }} // Ensure select is full width
-                                />
-                            )}
-                    /> */}
                 </FormControl>
             </Grid>
 
@@ -327,7 +243,7 @@ const DispatchContent = () => {
             
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Vehicle</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel>
                     <Select
                         labelId="vehicle"
                         id="vehicle"
@@ -347,7 +263,7 @@ const DispatchContent = () => {
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Driver</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Driver (ሹፌር)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="demo-simple-select"
@@ -362,42 +278,24 @@ const DispatchContent = () => {
                             ))
                         
                         }
-                        {/* <MenuItem value={20}>Dinberu</MenuItem>
-                        <MenuItem value={30}>Negessie</MenuItem> */}
+                        
                     </Select>
                 </FormControl>
             </Grid>
-            {/* <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>
-                <FormControl fullWidth>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={['DateTimePicker']}>
-                        <DatePicker
-                        label='Assigned date'
-                        value={value}
-                        onChange={(newValue) => setValue(newValue)}
-                        />
-                        </DemoContainer>
-                    </LocalizationProvider>
-                </FormControl>
-            </Grid> */}
             <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>
                 <FormControl fullWidth>
                 <EtDatePicker
-                        label="Departure Date"
+                        label="Departure Date (መነሻ ቀን)"
                         onChange={(selectedDate) => {
                             setDdate(selectedDate);
                         }}
                         value={ddate}
-                        // minDate={new Date("2023-08-20")}
-                        // maxDate={new Date("2023-08-26")}
-
-                        // other TextField props here, except InputProps
                     />
                 </FormControl>
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Departure time</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Departure time (መነሻ ሰዓት)</InputLabel>
                     <Select
                         labelId="Depature time"
                         id="departure_time"
@@ -417,34 +315,21 @@ const DispatchContent = () => {
                     </Select>
                 </FormControl>
             </Grid>
-            {/* <Grid item xs={12}  md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Departure milage" type="number" name="dmilage" id="dmilage" onChange={(e) => setDispatchData((prev) => ({...prev, departure_milage: e.target.value}))}/>
-                </FormControl>
-            </Grid>
-            <Grid item xs={12}  md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Departure fuel level" type="number" name="dfuel" id="dfuel" onChange={(e) => setDispatchData((prev) => ({...prev, departure_fuel_level: e.target.value}))}/>
-                </FormControl>
-            </Grid> */}
+            
             <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>
                 <FormControl fullWidth>
                     <EtDatePicker
-                            label="Return Date"
+                            label="Return Date (መመለሻ ቀን)"
                             onChange={(selectedDate) => {
                                 setRdate(selectedDate);
                             }}
                             value={rdate}
-                            // minDate={new Date("2023-08-20")}
-                            // maxDate={new Date("2023-08-26")}
-
-                            // other TextField props here, except InputProps
                         />
                 </FormControl>
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Return time</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Return time (መመለሻ ሰዓት)</InputLabel>
                     <Select
                         labelId="Return time"
                         id="return_time"
@@ -465,19 +350,10 @@ const DispatchContent = () => {
                     </Select>
                 </FormControl>
             </Grid>
-            {/* <Grid item xs={12}  md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Return milage" type="number" name="rmilage" id="rmilage" onChange={(e) => setDispatchData((prev) => ({...prev, return_milage: e.target.value}))}/>
-                </FormControl>
-            </Grid>
-            <Grid item xs={12}  md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Return fuel level" type="number" name="rfuel" id="rfuel" onChange={(e) => setDispatchData((prev) => ({...prev, return_fuel_level: e.target.value}))}/>
-                </FormControl>
-            </Grid> */}
+            
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatcher</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatcher (ያሰማራዉ)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="user"
@@ -491,15 +367,13 @@ const DispatchContent = () => {
                                 {`${user.fname} ${user.mname}`}
                             </MenuItem>
                         ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                        <MenuItem value={30}>Yonas</MenuItem> */}
                     </Select>
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Create</Button>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
                     </FormControl>
                 </form>
             </Grid>
@@ -510,8 +384,6 @@ const DispatchContent = () => {
                     </Alert>
                 }
                 {error && <Alert severity="error">{error}</Alert>}
-                {/* <Alert severity="info">This is an info Alert.</Alert>
-                <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>
         </Grid>
         <Grid container spacing={2} sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px'}}>

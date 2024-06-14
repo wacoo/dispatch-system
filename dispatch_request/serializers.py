@@ -169,6 +169,7 @@ class DispatchSerializer(serializers.ModelSerializer):
                         'id': request['id'],                        
                         'request_date': request['request_date'],
                         'destination': request['destination'],
+                        'description': request['description'],
                         'requester': request['user'],
                         # Include more fields if needed
                     }

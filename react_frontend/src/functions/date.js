@@ -20,6 +20,8 @@ export function convertTo24HourFormat(time12h) {
 
 export function convertToEthiopianDateTime(dateString, timeString) {
   // Handle cases where only date or time is provided
+  const dString = dateString;
+  const tString = timeString;
   if (!dateString) {
     dateString = new Date().toISOString().slice(0, 10); // Get current date
   }
@@ -58,9 +60,9 @@ export function convertToEthiopianDateTime(dateString, timeString) {
   const formattedEthiopianDate = `${ethiopianYear}-${ethiopianMonth.toString().padStart(2, "0")}-${ethiopianDay.toString().padStart(2, "0")}`;
   const formattedEthiopianTime = `${ethiopianHours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")} ${period}`;
 
-  if (dateString && timeString !== '00:00:00') {
+  if (dString && tString !== '00:00:00') {
     return `${formattedEthiopianDate} ፡ ${formattedEthiopianTime}`;
-  } else if (dateString) {
+  } else if (dString) {
     return formattedEthiopianDate;
   } else {
     return formattedEthiopianTime;

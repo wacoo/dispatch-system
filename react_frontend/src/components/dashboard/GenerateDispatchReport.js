@@ -90,9 +90,15 @@ const GenerateDispatchReport = () => {
                 data.request = data.vehicle_requests[0];
                 data.difference = data.return_milage - data.departure_milage;
                 data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
-                data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_act);
-                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, data.return_time_est);
-                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, data.return_time_act);       
+                data.departure_date = convertToEthiopianDateTime(data.departure_date);
+                data.departure_time_est = convertToEthiopianDateTime(null, data.departure_time_est);
+                console.log(data.departure_time_est)
+                data.return_date_est = convertToEthiopianDateTime(data.return_date_est);
+                data.return_time_est = convertToEthiopianDateTime(null, data.return_time_est);
+                console.log(data.return_time_est)
+                data.return_date_act = convertToEthiopianDateTime(data.return_date_act);
+                data.return_time_act = convertToEthiopianDateTime(null, data.return_time_act);
+                console.log(data.return_time_act)       
                 generateReport('wage', data);
             }})      
     }

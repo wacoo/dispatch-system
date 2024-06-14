@@ -202,7 +202,7 @@ const RequestContent = () => {
            
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <TextField label="Description (ማብራርያ)" type="text" name="desc" id="desc" multiline onChange={(e) => setRequestData((prev) => ({ ...prev, description: e.target.value }))} />
+                    <TextField label="Reason (የጉዞ ምክንያት)" type="text" name="desc" id="desc" multiline onChange={(e) => setRequestData((prev) => ({ ...prev, description: e.target.value }))} />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>

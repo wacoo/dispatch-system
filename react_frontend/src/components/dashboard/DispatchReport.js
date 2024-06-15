@@ -148,7 +148,7 @@ const DispatchReport = () => {
                     >
                         {dispatches.map((disp) => (
                             <MenuItem key={disp.id} value={disp.id}>
-                                {`(${disp.id}) ${EthiopianDate.toEth(new Date(disp.assigned_date.split('T')[0])) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
+                                {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
                             </MenuItem>
                         ))}
                     </Select>

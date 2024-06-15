@@ -108,6 +108,33 @@ const GenerateDispatchReport = () => {
     }, []);
 
 
+    const handleExpense = (e) => {
+        e.preventDefault();
+        dispatch(fetchDispatchById({dispatchId: dispatchId})).then((res) => {
+            if (res.payload?.id) {       
+                let data = { ...res.payload };
+                data.request = data.vehicle_requests[0];
+                data.difference = data.return_milage - data.departure_milage;
+                data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0], null);
+                data.departure_date = convertToEthiopianDateTime(data.departure_date, null);
+                data.departure_time_est = convertToEthiopianDateTime(null, data.departure_time_est);
+                console.log(data.departure_date_est)
+                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, null);
+                data.return_time_est = convertToEthiopianDateTime(null, data.return_time_est);
+                console.log(data.return_date_est)
+                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, null);
+                data.return_time_act = convertToEthiopianDateTime(null, data.return_time_act);
+                console.log(data.return_date_act)       
+                generateReport('expense', data);
+            }})      
+    }
+    useEffect(() => {
+        dispatch(fetchDispatches());
+        dispatch(fetchUsers());
+    }, []);
+
+
+
     return <>
         {/* Recent Orders */}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
@@ -143,41 +170,75 @@ const GenerateDispatchReport = () => {
                     </FormControl>
                 </form>
             </Grid>
-            </Grid>
+        </Grid>
 
-            <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-                <Typography variant="h4">Allowance form (የአበል ቅጽ)</Typography>
-            </Grid>
-            <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
-                {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
-                <Grid item xs={12} md={6} lg={4}>
-                    <FormControl fullWidth>
-                        <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel>
-                        <Select
-                            labelId="req_lbl"
-                            id="dispatch"
-                            label="Dispatch"
-                            sx={{ minWidth: '100%' }}
-                            // Handle value, label, onChange
-                            onChange={(e) => setDispatchID(e.target.value)}
-                        >
-                            {dispatches.map((disp) => (
-                                <MenuItem key={disp.id} value={disp.id}>
-                                    {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
-                                </MenuItem>
-                            ))}
-                            {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                            <MenuItem value={30}>Yonas</MenuItem> */}
-                        </Select>
-                    </FormControl>
-                </Grid>           
-            <Grid item xs={12} marginTop={2}>
-                <form onSubmit={(e)=> handleAllowance(e)}>
-                    <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Generate Form</Button>
-                    </FormControl>
-                </form>
-            </Grid>
+        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
+            <Typography variant="h4">Allowance form (የአበል ቅጽ)</Typography>
+        </Grid>
+        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
+            {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel>
+                    <Select
+                        labelId="req_lbl"
+                        id="dispatch"
+                        label="Dispatch"
+                        sx={{ minWidth: '100%' }}
+                        // Handle value, label, onChange
+                        onChange={(e) => setDispatchID(e.target.value)}
+                    >
+                        {dispatches.map((disp) => (
+                            <MenuItem key={disp.id} value={disp.id}>
+                                {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
+                            </MenuItem>
+                        ))}
+                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
+                        <MenuItem value={30}>Yonas</MenuItem> */}
+                    </Select>
+                </FormControl>
+            </Grid>           
+        <Grid item xs={12} marginTop={2}>
+            <form onSubmit={(e)=> handleAllowance(e)}>
+                <FormControl fullWidth>
+                    <Button variant="outlined" type="submit">Generate Form</Button>
+                </FormControl>
+            </form>
+        </Grid>
+        </Grid>
+        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
+                <Typography variant="h4">Expense form (የወጪ ቅጽ)</Typography>
+        </Grid>
+        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
+            {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel>
+                    <Select
+                        labelId="req_lbl"
+                        id="dispatch"
+                        label="Dispatch"
+                        sx={{ minWidth: '100%' }}
+                        // Handle value, label, onChange
+                        onChange={(e) => setDispatchID(e.target.value)}
+                    >
+                        {dispatches.map((disp) => (
+                            <MenuItem key={disp.id} value={disp.id}>
+                                {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
+                            </MenuItem>
+                        ))}
+                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
+                        <MenuItem value={30}>Yonas</MenuItem> */}
+                    </Select>
+                </FormControl>
+            </Grid>           
+        <Grid item xs={12} marginTop={2}>
+            <form onSubmit={(e)=> handleExpense(e)}>
+                <FormControl fullWidth>
+                    <Button variant="outlined" type="submit">Generate Form</Button>
+                </FormControl>
+            </form>
+        </Grid>
         </Grid>
     </>
 

@@ -60,11 +60,11 @@ export function convertToEthiopianDateTime(dateString, timeString) {
   const formattedEthiopianDate = `${ethiopianYear}-${ethiopianMonth.toString().padStart(2, "0")}-${ethiopianDay.toString().padStart(2, "0")}`;
   const formattedEthiopianTime = `${ethiopianHours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")} ${period}`;
 
-  if (dString && tString !== '00:00:00') {
+  if (dString && ( tString && tString !== '00:00:00')) {
     return `${formattedEthiopianDate} ፡ ${formattedEthiopianTime}`;
   } else if (dString) {
     return formattedEthiopianDate;
-  } else {
+  } else if (tString) {
     return formattedEthiopianTime;
   }
 }

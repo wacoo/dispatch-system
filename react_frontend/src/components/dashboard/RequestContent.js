@@ -16,6 +16,7 @@ import { clearDateValue, createRequest, fetchRequests } from "../../redux/reques
 import { fetchUsers } from "../../redux/user/userSlice";
 import dayjs from "dayjs";
 import EtDatePicker from "mui-ethiopian-datepicker";
+import { convertTo24HourFormat, times } from "../../functions/date";
 
 
 const RequestContent = () => {
@@ -41,7 +42,7 @@ const RequestContent = () => {
     const [error, setError] = useState('');
 
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users.users) ?? [];
+    const users = useSelector((state) => state.users.users.results) ?? [];
     const isLoading = useSelector((state) => state.users.isLoading);
 
     useEffect(() => {
@@ -56,25 +57,11 @@ const RequestContent = () => {
         dispatch(fetchUsers());
     }, []);
 
-    // useEffect(() => {
-    //     dispatch(setDateValue(new Date(date).toISOString()));
-    // }, [date]);
-
-    // useEffect(() => {
-    //     dispatch(setDurationFromValue(new Date(from).toISOString()));
-    // }, [from]);
-
-    // useEffect(() => {
-    //     dispatch(setDurationToValue(new Date(to).toISOString()));
-    // }, [to]);
-
     useEffect(() => {
         const timer = setTimeout(() => {
             setError('');
             setSuccess(false);
         }, 5000);
-
-        // Remember to clean up the timer when the component unmounts
         return () => clearTimeout(timer);
     }, [error, success]);
 
@@ -82,38 +69,18 @@ const RequestContent = () => {
         e.preventDefault();
         console.log(requestData);
         dispatch(createRequest(requestData)).then((res) => {
-            // console.log(res.payload.fname);
             if (res.payload?.id) {
                 setSuccess(true);
                 console.log(res.payload);
                 dispatch(fetchRequests());
-                // dispatch(clearDateValue());
             } else {
                 setError(res.payload);
                 console.log(res.payload);
             }
         }).catch((error) => {
-            // Handle any errors from the first then block
             setError(error);
             console.log(error);
         });
-    }
-
-    
-    const times = [{'1:00 (ከጠዋቱ)': '7:00 AM'}, {'2:00 (ከጠዋቱ)': '2:00 AM'}, {'3:00 (ከጠዋቱ)': '9:00 AM'}, {'4:00 (ከረፋዱ)': '10:00 AM'}, {'5:00 (ከረፋዱ)': '11:00 AM'}, {'6:00 (ከቀኑ)': '12:00 AM'}, {'7:00 (ከቀኑ)': '1:00 PM'}, {'8:00 (ከቀኑ)': '2:00 PM'}, {'9:00 (ከቀኑ)': '3:00 PM'}, {'10:00 (ከቀኑ)': '4:00 PM'}, {'11:00 (ከአመሻሹ)': '5:00 PM'}, {'12:00 (ከአመሻሹ)': '6:00 PM'}, {'1:00 (ከምሽቱ)': '7:00 PM'}, {'2:00 (ከምሽቱ)': '8:00 PM'}, {'3:00 (ከምሽቱ)': '9:00 PM'}, {'4:00 (ከምሽቱ)': '10:00 PM'}, {'5:00 (ከምሽቱ)': '11:00 PM'}, {'6:00 (ከለሊቱ)': '12:00 PM'}, {'7:00 (ከለሊቱ)': '1:00 AM'}, {'8:00 (ከለሊቱ)': '2:00 AM'}, {'9:00 (ከለሊቱ)': '3:00 AM'}, {'10:00 (ከለሊቱ)': '4:00 AM'}, {'11:00 (ከለሊቱ)': '5:00 AM'}, {'12:00 (ክጥዋቱ)': '6:00 AM'}];
-    
-    function convertTo24HourFormat(time12h) {
-        var [time, period] = time12h.split(' ');
-        var [hours, minutes] = time.split(':');
-        var seconds = '00'; // Adding seconds part
-        
-        if (period === 'PM' && hours !== '12') {
-            hours = String(Number(hours) + 12);
-        } else if (period === 'AM' && hours === '12') {
-            hours = '00';
-        }
-        
-        return `${hours}:${minutes}:${seconds}`;
     }
 
     if (isLoading) {
@@ -121,29 +88,11 @@ const RequestContent = () => {
     }
     return <>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">New Vehicle Request</Typography>
+            <Typography variant="h4">Vehicle Request (የተሽከርካሪ ጥያቄ)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
-            {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Requester</InputLabel> */}
-                    {/* <Select
-                        labelId="req_lbl"
-                        id="user"
-                        label="Requester"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setRequestData((prev) => ({ ...prev, user: e.target.value }))}
-                    >
-                        {users.map((user) => (
-                            <MenuItem key={user.id} value={user.id}>
-                                {`${user.fname} ${user.mname}`}
-                            </MenuItem>
-                        ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                        <MenuItem value={30}>Yonas</MenuItem>}
-                    </Select> */}
                     <Autocomplete
                             options={users}
                             getOptionLabel={(option) => `${option.fname} ${option.mname}`}
@@ -151,9 +100,9 @@ const RequestContent = () => {
                             renderInput={(params) => (
                                 <TextField
                                 {...params}
-                                label="Requester"
+                                label="Requester (ጠያቂ)"
                                 variant="outlined"
-                                sx={{ minWidth: '100%' }} // Ensure select is full width
+                                sx={{ minWidth: '100%' }}
                                 />
                             )}
                         />
@@ -161,7 +110,7 @@ const RequestContent = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Vehicle type</InputLabel>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Vehicle type (የተሽከርካሪ አይነት)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="demo-simple-select"
@@ -170,31 +119,20 @@ const RequestContent = () => {
                         // Handle value, label, onChange
                         onChange={(e) => setRequestData((prev) => ({ ...prev, requested_vehicle_type: e.target.value }))}
                     >
-                        <MenuItem value={'BIKE'}>MOTOR BIKE</MenuItem>
-                        <MenuItem value={'CAR'}>CAR</MenuItem>
-                        <MenuItem value={'VAN'}>VAN</MenuItem>
-                        <MenuItem value={'MINIBUS'}>MINIBUS</MenuItem>
-                        <MenuItem value={'BUS'}>BUS</MenuItem>
-                        <MenuItem value={'TRUCK'}>TRUCK</MenuItem>
+                        <MenuItem value={'BIKE'}>MOTOR BIKE (ሞተር)</MenuItem>
+                        <MenuItem value={'CAR'}>CAR (መኪና)</MenuItem>
+                        <MenuItem value={'VAN'}>VAN (ቫን)</MenuItem>
+                        <MenuItem value={'MINIBUS'}>MINIBUS (ሚኒባስ)</MenuItem>
+                        <MenuItem value={'BUS'}>BUS (ባስ)</MenuItem>
+                        <MenuItem value={'TRUCK'}>TRUCK (የጭነት)</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Destination" type="text" name="dest" id="dest" onChange={(e) => setRequestData((prev) => ({ ...prev, destination: e.target.value }))} />
+                    <TextField label="Destination (መድረሻ)" type="text" name="dest" id="dest" onChange={(e) => setRequestData((prev) => ({ ...prev, destination: e.target.value }))} />
                 </FormControl>
             </Grid>
-            {/* <Grid item xs={12} md={6} lg={4} sx={{ mt: '-7px' }}>
-                <FormControl fullWidth>
-                    <EtDatePicker
-                        label="Request Date"
-                        onChange={(selectedDate) => {
-                            setDate(selectedDate);
-                        }}
-                        value={date}
-                    />
-                </FormControl>
-            </Grid> */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
                     <EtDatePicker
@@ -208,7 +146,7 @@ const RequestContent = () => {
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Time</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Time (ሰዓት)</InputLabel>
                     <Select
                         labelId="Time"
                         id="time"
@@ -241,7 +179,7 @@ const RequestContent = () => {
             </Grid>
             <Grid item xs={12}  md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Time</InputLabel>
+                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Time (ሰዓት)</InputLabel>
                     <Select
                         labelId="Time"
                         id="time"
@@ -261,20 +199,16 @@ const RequestContent = () => {
                     </Select>
                 </FormControl>
             </Grid>
-            {/* <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Estimated duration" type="number" name="duration" id="duration" onChange={(e) => setRequestData((prev) => ({ ...prev, estimated_duration_hrs: e.target.value }))} />
-                </FormControl>
-            </Grid> */}
+           
             <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <TextField label="Description" type="text" name="desc" id="desc" multiline onChange={(e) => setRequestData((prev) => ({ ...prev, description: e.target.value }))} />
+                    <TextField label="Reason (የጉዞ ምክንያት)" type="text" name="desc" id="desc" multiline onChange={(e) => setRequestData((prev) => ({ ...prev, description: e.target.value }))} />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Create</Button>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
                     </FormControl>
                 </form>
             </Grid>
@@ -285,8 +219,6 @@ const RequestContent = () => {
                     </Alert>
                 }
                 {error && <Alert severity="error">{error}</Alert>}
-                {/* <Alert severity="info">This is an info Alert.</Alert>
-                <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>

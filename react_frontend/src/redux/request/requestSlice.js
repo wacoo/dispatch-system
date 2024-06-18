@@ -105,12 +105,17 @@ const createRequest = createAsyncThunk('requests/createRequest', async (data) =>
     }
 });
 
-const updateRequest = createAsyncThunk('requests/updateRequest', async ({ id, status }, { rejectWithValue }) => {
+const updateRequest = createAsyncThunk('requests/updateRequest', async ({ id, status, dispatch }, { rejectWithValue }) => {
     try {
         
         console.log('Data: ', id, status);
         const full_url = `${url}requests/${id}/`;
-        const res = await axios.put(full_url, {status: status}, { headers: authHeader() });
+        const res = null;
+        if (dispatch) {
+            res = await axios.put(full_url, {status, dispatch}, { headers: authHeader() });
+        } else {
+            res = await axios.put(full_url, {status}, { headers: authHeader() });
+        }
         return res.data;
     } catch (error ) {
         return error.message;

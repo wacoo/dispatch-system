@@ -1,7 +1,6 @@
 body {
     font-size: 13px;
-    text-align: left;font-family: 'Times New Roman', Times, serif;
-    
+    text-align: left;
 }
 
 h3 {
@@ -9,8 +8,8 @@ h3 {
 }
 
 .paperA4 {
-    height: 275mm;
-    width: 210mm;
+    width: 275mm;
+    height: 210mm;
     margin-top: 12px;
     /* border: 1px solid #000; */
     border: none;
@@ -86,18 +85,8 @@ table .split {
     font-size: 20px;
 }
 
-/* Wage */
-
-.rno {
-    width: 12px;
-}
-
-
-.tno {
-    width: 45%;
-}
-
-.form2 td {
+.form2 td{
     border: none;
-    text-align: center;
+    font-size: '15px';
+    font-weight: 600;
 }

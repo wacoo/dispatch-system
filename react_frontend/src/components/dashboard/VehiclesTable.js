@@ -56,7 +56,7 @@ function preventDefault(event) {
 
 export default function VehiclesTable({title}) {
 
-  const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
+  const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
         console.log(vehicles);

@@ -35,6 +35,7 @@ import DispatchReport from './DispatchReport';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../../redux/user/userSlice';
 import Error403 from './Error403';
+import GenerateDispatchReport from './GenerateDispatchReport';
 
 function Copyright(props) {
   return (
@@ -99,7 +100,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard({ active }) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -227,6 +228,8 @@ export default function Dashboard({ active }) {
                 {active === 'DispatchReport' && (parsedUser.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
                 {active === 'Users' && (parsedUser.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
                 {active === 'Departments' && (parsedUser.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
+                {active === 'GenerateDispatchReport' && (parsedUser.user?.access_level >= 3 ? <GenerateDispatchReport /> : <Error403 />)}
+                
               </>
             )
           ) || <Error403 />}

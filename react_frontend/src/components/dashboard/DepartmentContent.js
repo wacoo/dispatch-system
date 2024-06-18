@@ -25,25 +25,13 @@ const DepartmentContent = () => {
     const [error, setError] = useState('');
     const [rrdate, setRRdate] = useState(dayjs('2022-04-17'));
     const [rdate, setRdate] = useState(dayjs('2022-04-17'));
-    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const [departmentData, setDepartmentData] = useState({
         dept_name: '',
         location: '',
         extension: '', 
         phone_number: ''
     });
-
-    // function formatDate(date) {
-    //     return date.format('YYYY-MM-DD'); // Format date using dayjs
-    // }
-
-    // useEffect(() => {
-    //     setRefuelData(prevState => ({
-    //         ...prevState,
-    //         refuel_request_date: rrdate.format('YYYY-MM-DD'),
-    //         refuel_date: rdate.format('YYYY-MM-DD'),
-    //     }));
-    // }, [rrdate, rdate]);
 
     useEffect(() => {
         dispatch(fetchVehicles());
@@ -55,58 +43,53 @@ const DepartmentContent = () => {
             setSuccess(false);
         }, 5000);
 
-        // Remember to clean up the timer when the component unmounts
         return () => clearTimeout(timer);
     }, [error, success]);
-    //username=None, fname=None, mname=None, lname=None, access_level=None, password=None
-    //fields = ('id', 'username', 'fname', 'mname', 'lname', 'department', 'access_level', 'password', 'is_staff', 'is_superuser')
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createDepartment(departmentData)).then((res) => {
-            // console.log(res.payload.fname);
             if (res.payload?.id) {
                 setSuccess(true);
                 dispatch(fetchDepartments());
             } else {
-                // setError(res.payload);
+                setError(res.payload);
                 console.log(res.payload);
             }
         }
     )}
 
     return <>
-        {/* Recent Orders */}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">New department</Typography>
+            <Typography variant="h4">Department (ክፍል)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Name" type="text" name="dname" id="dname" onChange={(e) => setDepartmentData((prev) => ({ ...prev, dept_name: e.target.value }))} />
+                <TextField label="Name (የክፍሉ ስም)" type="text" name="dname" id="dname" onChange={(e) => setDepartmentData((prev) => ({ ...prev, dept_name: e.target.value }))} />
             </FormControl>
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Location" type="text" name="location" id="location" onChange={(e) => setDepartmentData((prev) => ({ ...prev, location: e.target.value }))} />
+                <TextField label="Location (አድራሻ)" type="text" name="location" id="location" onChange={(e) => setDepartmentData((prev) => ({ ...prev, location: e.target.value }))} />
             </FormControl>
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Extension" type="text" name="extension" id="extension" onChange={(e) => setDepartmentData((prev) => ({ ...prev, extension: e.target.value }))} />
+                <TextField label="Extension (ኤክስቴንሽን)" type="text" name="extension" id="extension" onChange={(e) => setDepartmentData((prev) => ({ ...prev, extension: e.target.value }))} />
             </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Phone no." type="text" name="pnumber" id="pnumber" onChange={(e) => setDepartmentData((prev) => ({ ...prev, phone_number: e.target.value }))} />
+                <TextField label="Phone no. (ስልክ)" type="text" name="pnumber" id="pnumber" onChange={(e) => setDepartmentData((prev) => ({ ...prev, phone_number: e.target.value }))} />
             </FormControl>
         </Grid>
         
         <Grid item xs={12} marginTop={2}>
             <form onSubmit={(e)=> handleSubmit(e)}>
                 <FormControl fullWidth>
-                    <Button variant="outlined" type="submit">Create</Button>
+                    <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
                 </FormControl>
             </form>                
         </Grid>

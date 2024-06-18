@@ -56,7 +56,7 @@ function preventDefault(event) {
 }
 
 export default function DepartmentsTable({title}) {
-  const departments = useSelector((state) => state.departments.departments) ?? [];
+  const departments = useSelector((state) => state.departments.departments.results) ?? [];
   const dispatch = useDispatch();
   
   

@@ -14,6 +14,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ApprovalIcon from '@mui/icons-material/Approval';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import AirlineSeatReclineNormalIcon from '@mui/icons-material/AirlineSeatReclineNormal';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import BusinessIcon from '@mui/icons-material/Business';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,17 +46,23 @@ const MainListItems = () => {
         </ListItemIcon>
         <ListItemText primary="Requests" />
       </ListItemButton>
+      <ListItemButton onClick={() => navigate('/approvals')}>
+        <ListItemIcon>
+          <ApprovalIcon />
+        </ListItemIcon>
+        <ListItemText primary="Approvals" />
+      </ListItemButton>
       <ListItemButton onClick={() => navigate('/dispatches')}>
         <ListItemIcon>
           <AltRouteIcon />
         </ListItemIcon>
         <ListItemText primary="Dispatches" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate('/approvals')}>
+      <ListItemButton onClick={() => navigate('/dispatch_report')}>
         <ListItemIcon>
-          <ApprovalIcon />
+          <AssignmentTurnedInIcon />
         </ListItemIcon>
-        <ListItemText primary="Approvals" />
+        <ListItemText primary="Complete dispatch" />
       </ListItemButton>
       <ListItemButton onClick={() => navigate('/refuels')}>
         <ListItemIcon>
@@ -75,7 +82,7 @@ const MainListItems = () => {
         </ListItemIcon>
         <ListItemText primary="Departments" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate('/dispatch_report')}>
+      <ListItemButton  onClick={() => navigate('/old_dispatch')}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>

@@ -56,7 +56,7 @@ function preventDefault(event) {
 }
 
 export default function RefuelsTable({title}) {
-  const refuels = useSelector((state) => state.refuels.refuels) ?? [];
+  const refuels = useSelector((state) => state.refuels.refuels.results) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
         // console.log(refuels);

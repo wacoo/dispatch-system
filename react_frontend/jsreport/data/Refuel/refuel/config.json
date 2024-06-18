@@ -1,19 +1,19 @@
 {
-    "name": "expense",
+    "name": "refuel",
     "engine": "handlebars",
     "recipe": "chrome-pdf",
     "data": null,
     "chrome": {
         "printBackground": true,
-        "landscape": false
+        "landscape": true
     },
     "creationDate": {
-        "$$date": 1713505749261
+        "$$date": 1718620549981
     },
     "modificationDate": {
-        "$$date": 1718437928857
+        "$$date": 1718624202153
     },
-    "shortid": "VzhEGTN",
-    "_id": "AqLC3p6NcOUV2Xh3",
+    "shortid": "y3rlHX3",
+    "_id": "2FEYlPQYJOI9ORdR",
     "$entitySet": "templates"
 }

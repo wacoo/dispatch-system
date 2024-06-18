@@ -14,18 +14,6 @@ const initialState = {
 }
 
 const url = 'http://localhost:8000/api/';
-
-// const user = localStorage.getItem('user');
-// let token = '';
-// if (user) {
-// 	token = JSON.parse(user).token;
-// } else {
-// 	token = '';
-// }
-
-// const headers = {
-//     Authorization: `Bearer ${token}`,
-// };
 const full_url = `${url}dispatches/`;
 const fetchDispatches = createAsyncThunk('dispatches/fetchDispatches', async() => {
     try {
@@ -37,10 +25,10 @@ const fetchDispatches = createAsyncThunk('dispatches/fetchDispatches', async() =
 });
 
 const fetchDispatchById = createAsyncThunk('dispatches/fetchDispatch', async({dispatchId}) => {
-    console.log(`${full_url}${dispatchId}/`);
+    // console.log(`${full_url}${dispatchId}/`);
     try {
         const res = await axios.get(`${full_url}${dispatchId}/`, { headers: authHeader() });
-        console.log(res.data);
+        // console.log(res.data);
         return res.data;
     } catch(error) {
         return error.message;
@@ -48,10 +36,10 @@ const fetchDispatchById = createAsyncThunk('dispatches/fetchDispatch', async({di
 });
 
 const createDispatch = createAsyncThunk('dispatches/createDispatch', async (data) => {
-    console.log(full_url);
+    // console.log(full_url);
     try {
         
-        console.log(data);
+        // console.log(data);
         const res = await axios.post(full_url, data, { headers: authHeader() });
         // console.log(data);
         return res.data;
@@ -61,10 +49,10 @@ const createDispatch = createAsyncThunk('dispatches/createDispatch', async (data
 });
 
 const updateDispatch = createAsyncThunk('dispatches/updateDispatch', async ({id, data}) => {
-    console.log(id, data, `${url}dispatches/${id}/`);
+    // console.log(id, data, `${url}dispatches/${id}/`);
     try {
         const full_url2 = `${url}dispatches/${id}/`; 
-        console.log(full_url2);
+        // console.log(full_url2);
         const res = await axios.put(full_url2, data, { headers: authHeader() });
         return res.data;
     } catch (error ) {
@@ -110,7 +98,7 @@ const dispatchSlice = createSlice({
         .addCase(fetchDispatches.fulfilled, (state, action) => {
             state.isLoading = false;
             state.dispatches = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchDispatches.rejected, (state, action) => {
             state.isLoading = false;
@@ -122,7 +110,7 @@ const dispatchSlice = createSlice({
         .addCase(fetchDispatchById.fulfilled, (state, action) => {
             state.isLoading = false;
             state.dispatchById = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchDispatchById.rejected, (state, action) => {
             state.isLoading = false;
@@ -134,7 +122,7 @@ const dispatchSlice = createSlice({
         .addCase(updateDispatch.fulfilled, (state, action) => {
             state.isLoading = false;
             state.updateRes = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(updateDispatch.rejected, (state, action) => {
             state.isLoading = false;

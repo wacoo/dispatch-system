@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../redux/user/authContext';
 
 function Copyright(props) {
   return (
@@ -36,30 +37,26 @@ const defaultTheme = createTheme();
 export default function SignIn() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const user = useSelector((state) => state.users.user.user) ?? '';
-    // const token = user((state) => state.users.user.access) ?? '';  
-    console.log('parsedUser.user');
-    const storedUser = localStorage.getItem('user');
-    let parsedUser = '';
-    if (storedUser) {
-      parsedUser = JSON.parse(storedUser);
-    }
-
-    React.useEffect(() => {
-        if (parsedUser?.access){
-          navigate('/');
-        }
-    }, [parsedUser, dispatch]);
+    const userx = useSelector((state) => state.users.user) ?? '';
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const credential = {
             username: data.get('user_id'),
             password: data.get('password'),
         }
-        console.log(credential);
-        dispatch(signIn(credential));
+        dispatch(signIn(credential))
+        .then((res) => {
+          if (res.payload?.access) {
+            navigate('/');
+          } else {
+            console.error('User data not found after sign-in');
+          }
+        })
+        .catch((error) => {
+          console.error('Sign in failed:', error);
+        });
   };
 
   return (

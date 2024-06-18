@@ -12,18 +12,6 @@ const initialState = {
 }
 
 const url = 'http://localhost:8000/api/';
-
-// const user = localStorage.getItem('user');
-// let token = '';
-// if (user) {
-// 	token = JSON.parse(user).token;
-// } else {
-// 	token = '';
-// }
-
-// const headers = {
-//     Authorization: `Bearer ${token}`,
-// };
 const full_url = `${url}vehicles/`;
 const fetchVehicles = createAsyncThunk('vehicles/fetchVehicles', async() => {
     try {
@@ -45,7 +33,7 @@ const createVehicle = createAsyncThunk('vehicles/createVehicle', async (data) =>
 });
 
 const updateVehicle = createAsyncThunk('vehicles/updateVehicle', async ({id, data}) => {
-    console.log(`${full_url}${id}/`);
+    // console.log(`${full_url}${id}/`);
     try {
         const res = await axios.put(`${full_url}${id}/`, data, { headers: authHeader() });
         return res.data;
@@ -66,7 +54,7 @@ const vehicleSlice = createSlice({
         .addCase(createVehicle.fulfilled, (state, action) => {
             state.isLoading = false;
             state.newVehicle = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(createVehicle.rejected, (state, action) => {
             state.isLoading = false;
@@ -78,7 +66,7 @@ const vehicleSlice = createSlice({
         .addCase(updateVehicle.fulfilled, (state, action) => {
             state.isLoading = false;
             state.updatedVehicle = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(updateVehicle.rejected, (state, action) => {
             state.isLoading = false;
@@ -90,7 +78,7 @@ const vehicleSlice = createSlice({
         .addCase(fetchVehicles.fulfilled, (state, action) => {
             state.isLoading = false;
             state.vehicles = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchVehicles.rejected, (state, action) => {
             state.isLoading = false;

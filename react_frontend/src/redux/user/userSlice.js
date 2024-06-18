@@ -10,33 +10,22 @@ const initialState = {
     error: undefined
 };
 
-// const API_URL = 'http://localhost:8000/api/';
-
-// const signIn = (username, password) => {
-//     return axios.post(API_URL + 'login/', { username, password })
-//         .then((response) => {
-//             if (response.data.access) {
-//                 localStorage.setItem('user', JSON.stringify(response.data));
-//             }
-//             return response.data;
-//         });
-// };
 const url = 'http://localhost:8000/api/';
 const signIn = createAsyncThunk('user/signIn', async (data) => {
     try {
-        const full_url = `${url}token/`;
-        const res = await axios.post(full_url, data).then((response) => {
-            if (response.data.access) {
-                localStorage.setItem('user', JSON.stringify(response.data));
-            }
-            console.log(response.data);
-            return response.data;
-        });    } catch (error) {
-        console.log(error.message);
-        return error.message;
+      const full_url = `${url}token/`;
+      const response = await axios.post(full_url, data);
+  
+      if (response.data.access) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+      }
+  
+      return response.data;
+    } catch (error) {
+      console.error('Sign-in failed:', error.message);
+      throw error; 
     }
-});
-
+  });
 
 const logout = () => {
     localStorage.removeItem('user');
@@ -58,7 +47,6 @@ const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 
 const signUp = createAsyncThunk('users/signUp', async (data) => {
     try {
-        // console.log(headers.Authorization);
         const full_url = `${url}users/`;
         const res = await axios.post(full_url, data, { headers: authHeader() });
         return res.data;
@@ -70,6 +58,14 @@ const signUp = createAsyncThunk('users/signUp', async (data) => {
 const userSlice = createSlice({
     name: 'users',
     initialState,
+    reducers: {
+        getUser: (state, action) => {
+            const u = localStorage.getItem('user');
+            if (u) {                
+                state.user = JSON.parse(localStorage.getItem('user'));
+            }
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(signIn.pending, (state, action) => {
@@ -109,4 +105,5 @@ const userSlice = createSlice({
 });
 
 export { signIn, logout, getCurrentUser, signUp, fetchUsers };
+export const {getUser} = userSlice.actions;
 export default userSlice.reducer;

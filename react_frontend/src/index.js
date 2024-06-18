@@ -6,6 +6,7 @@ import { createTheme } from '@mui/material';
 import { Provider } from "react-redux";
 import store from './redux/store/store';
 import './index.css';
+import { AuthProvider } from './redux/user/authContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
@@ -35,8 +36,10 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Provider store={store}> 
+      <Provider store={store}>
+      <AuthProvider>
         <App />
+        </AuthProvider>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>

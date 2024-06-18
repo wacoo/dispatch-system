@@ -57,7 +57,7 @@ const driverSlice = createSlice({
         .addCase(createDriver.fulfilled, (state, action) => {
             state.isLoading = false;
             state.newDriver = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(createDriver.rejected, (state, action) => {
             state.isLoading = false;
@@ -69,7 +69,7 @@ const driverSlice = createSlice({
         .addCase(fetchDrivers.fulfilled, (state, action) => {
             state.isLoading = false;
             state.drivers = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchDrivers.rejected, (state, action) => {
             state.isLoading = false;
@@ -81,7 +81,7 @@ const driverSlice = createSlice({
         .addCase(fetchDriver.fulfilled, (state, action) => {
             state.isLoading = false;
             state.driver = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchDriver.rejected, (state, action) => {
             state.isLoading = false;

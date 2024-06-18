@@ -58,7 +58,7 @@ export default function DriversTable({title}) {
   const drivers = useSelector((state) => state.driver.drivers.results) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
-        console.log(drivers);
+        // console.log(drivers);
     }, [drivers]);
 
     React.useEffect(() => {

@@ -36,6 +36,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../../redux/user/userSlice';
 import Error403 from './Error403';
 import GenerateDispatchReport from './GenerateDispatchReport';
+import { AuthContext } from '../../redux/user/authContext';
 
 function Copyright(props) {
   return (
@@ -106,34 +107,40 @@ export default function Dashboard({ active }) {
   };
   
   const navigate = useNavigate();
-  //const [tab, setTab] = React.useState('Dashboard');
-
-  // const changeTab = (tb) => {
-  //   setTab(tb);
-  // }
-  const storedUser = localStorage.getItem('user');
-  let parsedUser = '';
-  if (storedUser) {
-    console.log('sss');
-    parsedUser = JSON.parse(storedUser);
-  }
+  
+  const { user, setUser } = React.useContext(AuthContext);
 
   React.useEffect(() => {
-    if (!parsedUser) {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+  }, [setUser]);
+
+  React.useEffect(() => {
+    if (!user) {
       navigate('/signin');
     }
-  }, [parsedUser])
+  }, [user])
   
 
   const pending_requests = useSelector((state) => state.requests.pending_requests.results) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
-        console.log(pending_requests);
+        // console.log(pending_requests);
     }, [pending_requests]);
 
     React.useEffect(() => {
         dispatch(fetchPendingRequests());
     }, []);
+
+
+  const handleLogout = () => {
+    logout();
+    navigate('/signin');
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -172,7 +179,7 @@ export default function Dashboard({ active }) {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            {storedUser && <IconButton color="inherit" onClick={() => logout()}>
+            {user && <IconButton color="inherit" onClick={() => handleLogout()}>
               
               <Badge badgeContent={pending_requests.length} color="secondary">
                 <LogoutIcon />
@@ -214,21 +221,21 @@ export default function Dashboard({ active }) {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          {parsedUser.user?.access_level >= 0 && ( // Ensure valid user
+          {user?.user?.access_level >= 0 && ( // Ensure valid user
             active && ( // Check if user is active
               <>
                 {active === 'Dashboard' && <DashboardContent />}
                 {active === 'Requests' && <RequestContent />}
                 {/* Access level checks for other content */}
-                {active === 'Approvals' && (parsedUser.user?.access_level >= 1 ? <ApprovalContent /> : <Error403 />)}
-                {active === 'Vehicles' && (parsedUser.user?.access_level >= 2 ? <VehicleContent /> : <Error403 />)}
-                {active === 'Drivers' && (parsedUser.user?.access_level >= 2 ? <DriverContent /> : <Error403 />)}
-                {active === 'Refuel' && (parsedUser.user?.access_level >= 2 ? <RefuelContent /> : <Error403 />)}
-                {active === 'Dispatches' && (parsedUser.user?.access_level >= 2 ? <DispatchContent /> : <Error403 />)}
-                {active === 'DispatchReport' && (parsedUser.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
-                {active === 'Users' && (parsedUser.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
-                {active === 'Departments' && (parsedUser.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
-                {active === 'GenerateDispatchReport' && (parsedUser.user?.access_level >= 3 ? <GenerateDispatchReport /> : <Error403 />)}
+                {active === 'Approvals' && (user.user?.access_level >= 1 ? <ApprovalContent /> : <Error403 />)}
+                {active === 'Vehicles' && (user.user?.access_level >= 2 ? <VehicleContent /> : <Error403 />)}
+                {active === 'Drivers' && (user.user?.access_level >= 2 ? <DriverContent /> : <Error403 />)}
+                {active === 'Refuel' && (user.user?.access_level >= 2 ? <RefuelContent /> : <Error403 />)}
+                {active === 'Dispatches' && (user.user?.access_level >= 2 ? <DispatchContent /> : <Error403 />)}
+                {active === 'DispatchReport' && (user.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
+                {active === 'Users' && (user.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
+                {active === 'Departments' && (user.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
+                {active === 'GenerateDispatchReport' && (user.user?.access_level >= 3 ? <GenerateDispatchReport /> : <Error403 />)}
                 
               </>
             )

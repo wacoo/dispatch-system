@@ -184,10 +184,10 @@ const DispatchContent = () => {
     
     return <>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Vehicle Dispatch (የተሽከርካሪ ጥያቄዎች)</Typography>
+            <Typography variant="h4">Vehicle Dispatch (የተሽከርካሪ ስምሪት)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-        <Typography variant="h5">Add requests (ጥያቄዎችን ጨምር)</Typography>
+        <Typography variant="h5">Add requests (የተሽከርካሪ ጥያቄዎችን)</Typography>
         <Grid item xs={12}>
                 <FormControl fullWidth>
                     <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>

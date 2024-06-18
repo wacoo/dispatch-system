@@ -41,9 +41,9 @@ const VehicleContent = () => {
     //     dispatch(createVehicle(vehicleData));
     // }
 
-    useEffect(() => {
-        console.log(vehicleData);
-    }, [dispatch]);
+    // useEffect(() => {
+    //     console.log(vehicleData);
+    // }, [dispatch]);
 
     const handleUpdate = (e) => {
         e.preventDefault();

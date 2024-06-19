@@ -12,10 +12,10 @@ const initialState = {
 
 const url = 'http://localhost:8000/api/';
 
-const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : '';
-const headers = {
-    Authorization: `Bearer ${token}`,
-};
+// const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : '';
+// const headers = {
+//     Authorization: `Bearer ${token}`,
+// };
 
 const full_url = `${url}refuels/`;
 const fetchRefuels = createAsyncThunk('refuels/fetchRefuels', async() => {
@@ -26,15 +26,6 @@ const fetchRefuels = createAsyncThunk('refuels/fetchRefuels', async() => {
         return error.message;
     }
 });
-
-// const fetchDriver = createAsyncThunk('drivers/fetchDriver', async(id) => {
-//     try {
-//         const res = await axios.get(`${full_url}/${id}/`);
-//         return res.data;
-//     } catch(error) {
-//         return error.message;
-//     }
-// });
 
 const createRefuel = createAsyncThunk('refuels/createRefuel', async (data) => {
     // console.log('Data: ',data);
@@ -69,24 +60,12 @@ const refuelSlice = createSlice({
         .addCase(fetchRefuels.fulfilled, (state, action) => {
             state.isLoading = false;
             state.refuels = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchRefuels.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
-        // .addCase(fetchDriver.pending, (state, action) => {
-        //     state.isLoading = true;
-        // })
-        // .addCase(fetchDriver.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.driver = action.payload;
-        //     console.log(action.payload);
-        // })
-        // .addCase(fetchDriver.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.error = action.error.message;
-        // })
     }
 })
 

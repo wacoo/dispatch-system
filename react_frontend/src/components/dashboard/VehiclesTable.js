@@ -58,9 +58,9 @@ export default function VehiclesTable({title}) {
 
   const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
   const dispatch = useDispatch();
-    React.useEffect(() => {
-        console.log(vehicles);
-    }, [vehicles]);
+    // React.useEffect(() => {
+    //     console.log(vehicles);
+    // }, [vehicles]);
 
     React.useEffect(() => {
         dispatch(fetchVehicles());

@@ -11,27 +11,12 @@ const initialState = {
     dispatchIdUpdate: {},
     updatedRequest: {},
     requestsByDispatchId: [],
-    vahicleRequests: [], //requests selected while dispatching
-    // dateValue: '',
-    // durationFromValue: '',
-    // durationToValue:'',
+    vahicleRequests: [],
     isLoading: false,
     error: undefined
 }
 
 const url = 'http://localhost:8000/api/';
-
-// const user = localStorage.getItem('user');
-// let token = '';
-// if (user) {
-// 	token = JSON.parse(user).token;
-// } else {
-// 	token = '';
-// }
-
-// const headers = {
-//     Authorization: `Bearer ${token}`,
-// };
 let full_url = `${url}requests/`;
 const fetchRequests = createAsyncThunk('requests/fetchRequests', async() => {
     const full_url = `${url}requests/`;
@@ -46,7 +31,7 @@ const fetchRequests = createAsyncThunk('requests/fetchRequests', async() => {
 const fetchRequestsByByDispatch= createAsyncThunk('requests/fetchRequestsByDispatch', async({id, dispatch}) => {
     const full_url = `${url}requests/`;
     try {
-        console.log('Here:', dispatch);
+        // console.log('Here:', dispatch);
         const res = await axios.put(`${full_url}${id}/`, {dispatch: dispatch}, { headers: authHeader() });
         return res.data;
     } catch(error) {
@@ -57,7 +42,7 @@ const fetchRequestsByByDispatch= createAsyncThunk('requests/fetchRequestsByDispa
 const fetchPendingRequests = createAsyncThunk('requests/fetchPendingRequests', async() => {
     try {
         const full_url = `${url}pending_requests/`;
-        console.log(full_url);
+        // console.log(full_url);
         const res = await axios.get(full_url, { headers: authHeader() });
         return res.data;
     } catch(error) {
@@ -66,10 +51,10 @@ const fetchPendingRequests = createAsyncThunk('requests/fetchPendingRequests', a
 });
 
 const fetchApprovedRequests = createAsyncThunk('requests/fetchApprovedRequests', async() => {
-    console.log(`${url}approved_requests/`);
+    // console.log(`${url}approved_requests/`);
     try {
         const full_url = `${url}approved_requests/`;
-        console.log(full_url);
+        // console.log(full_url);
         const res = await axios.get(full_url, { headers: authHeader() });
         return res.data;
     } catch(error) {
@@ -78,10 +63,10 @@ const fetchApprovedRequests = createAsyncThunk('requests/fetchApprovedRequests',
 });
 
 const fetchRequestsByDispatch = createAsyncThunk('requests/fetchRequestsByDispatch', async({dispatchId}) => {
-    console.log(`${url}approved_requests/`);
+    // console.log(`${url}approved_requests/`);
     try {
         const full_url = `${url}requests_by_id/`;
-        console.log(full_url);
+        // console.log(full_url);
         const res = await axios.get(full_url, {
             params: {
             dispatch_id: dispatchId
@@ -108,7 +93,7 @@ const createRequest = createAsyncThunk('requests/createRequest', async (data) =>
 const updateRequest = createAsyncThunk('requests/updateRequest', async ({ id, status, dispatch }, { rejectWithValue }) => {
     try {
         
-        console.log('Data: ', id, status);
+        // console.log('Data: ', id, status);
         const full_url = `${url}requests/${id}/`;
         const res = null;
         if (dispatch) {
@@ -131,21 +116,7 @@ const requestSlice = createSlice({
         },
         clearRequests: (state) => {
             state.vahicleRequests = [];
-        },
-        // setDateValue: (state, action) => {
-        //     // console.log(action.payload);
-        //     state.dateValue = action.payload;
-        // },
-        // clearDateValue: (state) => {
-        //     state.dateValue = '';
-        // },
-        // setDurationFromValue: (state, action) => {
-        //     console.log(action.payload);
-        //     state.durationFromValue = action.payload;
-        // },
-        // setDurationToValue: (state, action) => {
-        //     state.durationToValue = action.payload;
-        // },
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -155,7 +126,7 @@ const requestSlice = createSlice({
         .addCase(createRequest.fulfilled, (state, action) => {
             state.isLoading = false;
             state.newRequest = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(createRequest.rejected, (state, action) => {
             state.isLoading = false;
@@ -167,7 +138,7 @@ const requestSlice = createSlice({
         .addCase(fetchRequests.fulfilled, (state, action) => {
             state.isLoading = false;
             state.requests = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchRequests.rejected, (state, action) => {
             state.isLoading = false;
@@ -179,7 +150,7 @@ const requestSlice = createSlice({
         .addCase(fetchPendingRequests.fulfilled, (state, action) => {
             state.isLoading = false;
             state.pending_requests = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchPendingRequests.rejected, (state, action) => {
             state.isLoading = false;
@@ -191,31 +162,19 @@ const requestSlice = createSlice({
         .addCase(fetchApprovedRequests.fulfilled, (state, action) => {
             state.isLoading = false;
             state.approved_requests = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchApprovedRequests.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
-        // .addCase(fetchRequestsByDispatch.pending, (state, action) => {
-        //     state.isLoading = true;
-        // })
-        // .addCase(fetchRequestsByDispatch.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.requestsByDispatchId = action.payload;
-        //     console.log(action.payload);
-        // })
-        // .addCase(fetchRequestsByDispatch.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.error = action.error.message;
-        // })
         .addCase(updateRequest.pending, (state, action) => {
             state.isLoading = true;
         })
         .addCase(updateRequest.fulfilled, (state, action) => {
             state.isLoading = false;
             state.updatedRequest = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(updateRequest.rejected, (state, action) => {
             state.isLoading = false;
@@ -227,7 +186,7 @@ const requestSlice = createSlice({
         .addCase(fetchRequestsByByDispatch.fulfilled, (state, action) => {
             state.isLoading = false;
             state.dispatchIdUpdate = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchRequestsByByDispatch.rejected, (state, action) => {
             state.isLoading = false;

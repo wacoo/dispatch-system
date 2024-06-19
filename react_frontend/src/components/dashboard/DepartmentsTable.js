@@ -64,9 +64,9 @@ export default function DepartmentsTable({title}) {
     dispatch(fetchDepartments());
 }, []);
 
-  React.useEffect(() => {
-        console.log(departments);
-    }, [departments]);
+  // React.useEffect(() => {
+  //       console.log(departments);
+  //   }, [departments]);
 
   return (
     <React.Fragment>

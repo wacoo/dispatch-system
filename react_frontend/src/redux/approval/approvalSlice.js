@@ -36,24 +36,15 @@ const fetchApprovals = createAsyncThunk('vehicles/fetchApprovals', async() => {
 });
 
 const createApproval = createAsyncThunk('approvals/createApproval', async (data, { dispatch }) => {
-    console.log('Data: ', data);
-    // try {
-    //     const res = await axios.put(`${url}requests/${data.request}/`, {status: 'APPROVED'});
-    //     console.log('Update Request Response:', res.data);
-    //     return res.data;
-    // } catch (error) {
-    //     console.error('Error updating request:', error.message);
-    //     throw error;
-    // }
     try {
         const updateRes = await dispatch(updateRequest({id: data.request, status: 'APPROVED'}));
         if (updateRes.error) {
             throw new Error(updateRes.error.message);
         }
-        console.log('Update Request Data:', updateRes.payload);
+        // console.log('Update Request Data:', updateRes.payload);
         const res = await axios.post(full_url, data, { headers: authHeader() });
-        console.log('XX: ', full_url);
-        console.log('XX: ', updateRes.data);
+        // console.log('XX: ', full_url);
+        // console.log('XX: ', updateRes.data);
         return res.data;
     } catch (error) {
         console.log(error.message);
@@ -63,10 +54,10 @@ const createApproval = createAsyncThunk('approvals/createApproval', async (data,
 
 
 const updateRequest = createAsyncThunk('requests/updateRequest', async ({id, status}) => {
-    console.log(id);
+    // console.log(id);
     try {
         const res = await axios.put(`${url}requests/${id}/`, {status}, { headers: authHeader() });
-        console.log('Update Request Response:', res.data);
+        // console.log('Update Request Response:', res.data);
         return res.data;
     } catch (error) {
         console.error('Error updating request:', error.message);
@@ -85,7 +76,7 @@ const approvalSlice = createSlice({
         .addCase(createApproval.fulfilled, (state, action) => {
             state.isLoading = false;
             state.newApproval = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(createApproval.rejected, (state, action) => {
             state.isLoading = false;
@@ -97,7 +88,7 @@ const approvalSlice = createSlice({
         .addCase(fetchApprovals.fulfilled, (state, action) => {
             state.isLoading = false;
             state.approvals = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
         })
         .addCase(fetchApprovals.rejected, (state, action) => {
             state.isLoading = false;

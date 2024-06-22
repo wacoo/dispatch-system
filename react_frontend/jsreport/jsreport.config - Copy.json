@@ -22,10 +22,10 @@
       "filename": "logs/error.log"
     }
   },
-  "allowLocalFilesAccess": true,
+  "trustUserCode": false,
   "reportTimeout": 60000,
-  "templatingEngines": {
-    "strategy": "http-server"
+  "workers": {
+    "numberOfWorkers": 2
   },
   "extensions": {
     "authentication": {
@@ -34,10 +34,14 @@
         "username": "admin",
         "password": "password"
       },
+      
       "enabled": false
     },
-    "scripts": {
-      "strategy": "http-server"
+    "sample-template": {
+      "createSamples": true
+    },
+    "html": {
+      "enabled": true
     }
   }
 }

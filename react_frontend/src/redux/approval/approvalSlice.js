@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import authHeader from "../user/authHeader";
+import { url } from "../url";
 
 const initialState = {
     user: {},
@@ -10,8 +11,6 @@ const initialState = {
     isLoading: false,
     error: undefined
 }
-
-const url = 'http://localhost:8000/api/';
 
 // const user = localStorage.getItem('user');
 // let token = '';

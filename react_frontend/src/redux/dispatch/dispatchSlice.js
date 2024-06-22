@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import authHeader from "../user/authHeader";
+import { url } from "../url";
 
 const initialState = {
     dispatches: [],
@@ -13,7 +14,6 @@ const initialState = {
     error: undefined
 }
 
-const url = 'http://localhost:8000/api/';
 const full_url = `${url}dispatches/`;
 const fetchDispatches = createAsyncThunk('dispatches/fetchDispatches', async() => {
     try {

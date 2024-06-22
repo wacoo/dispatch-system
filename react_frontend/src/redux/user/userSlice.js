@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import authHeader from "./authHeader";
+import { url } from "../url";
 
 const initialState = {
     user: {},
@@ -10,7 +11,6 @@ const initialState = {
     error: undefined
 };
 
-const url = 'http://localhost:8000/api/';
 const signIn = createAsyncThunk('user/signIn', async (data) => {
     try {
       const full_url = `${url}token/`;

@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { fetchPendingRequests } from "../request/requestSlice";
+import { url } from "../url";
 
 const initialState = {
     pending_requests: [],
     isLoading: false,
     error: undefined
 }
-
-const url = 'http://localhost:8000/api/';
 
 // const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : '';
 // const headers = {

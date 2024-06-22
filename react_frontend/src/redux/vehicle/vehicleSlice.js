@@ -8,6 +8,8 @@ const initialState = {
     vehicles: [],
     newVehicle: {},
     updateVehicle: {},
+    makes: [],
+    newMake: {},
     isLoading: false,
     error: undefined
 }
@@ -43,6 +45,29 @@ const updateVehicle = createAsyncThunk('vehicles/updateVehicle', async ({id, dat
     }
 });
 
+
+const createMake = createAsyncThunk('vehicles/createMake', async (data) => {
+    try {
+        const full_url2 = `${url}make/`;
+        const res = await axios.post(full_url2, data, { headers: authHeader() });
+
+        return res.data;
+    } catch (error ) {
+        return error.message;
+    }
+});
+
+const fetchMakes = createAsyncThunk('vehicles/fetchMakes', async() => {
+    try {
+        const full_url2 = `${url}make/`;
+        console.log(`${url}make/`);
+        const res = await axios.get(full_url2, { headers: authHeader() });
+        console.log(res.data.results[0].make);
+        return res.data;
+    } catch(error) {
+        return error.message;
+    }
+});
 
 const vehicleSlice = createSlice({
     name: 'vehicles',
@@ -85,8 +110,33 @@ const vehicleSlice = createSlice({
             state.isLoading = false;
             state.error = action.error.message;
         })
+        .addCase(fetchMakes.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchMakes.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.makes = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(fetchMakes.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(createMake.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(createMake.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.newMake = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(createMake.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
     }
 })
 
-export {createVehicle, fetchVehicles, updateVehicle };
+export {createVehicle, fetchVehicles, updateVehicle, fetchMakes, createMake };
 export default vehicleSlice.reducer;

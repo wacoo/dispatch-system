@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, Group
+from django.db.models.functions import Lower
 from django.utils import timezone
 from enum import Enum
 
@@ -218,6 +219,17 @@ class Department(models.Model):
   location = models.CharField(max_length=100, default='')
   extension = models.CharField(max_length=50, default='')
   phone_number = models.CharField(max_length=100, default='')
+
+class VehicleMake(models.Model):
+  ''' Vehicle make class'''
+  make = models.CharField(max_length=100, unique=True)
+  class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                Lower('make'),
+                name='unique_make_case_insensitive'
+            )
+        ]
 
 # class DispatchReport(models.Model):
 #   ''' A class to store actual dispatch data after the vehicle returns'''

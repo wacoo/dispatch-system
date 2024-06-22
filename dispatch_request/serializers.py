@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from .models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake
 
 class UserLimitedSerializer(serializers.ModelSerializer):
     ''' only for Eager fetch '''
@@ -209,6 +209,13 @@ class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Department serializer meta'''
         model = Department
+        fields = '__all__'
+
+class VehicleMakeSerializer(serializers.ModelSerializer):
+    ''' Vehicle make serializer '''
+    class Meta:
+        ''' Vehicle make serializer meta'''
+        model = VehicleMake
         fields = '__all__'
 
 # class DispatchReportSerializer(serializers.ModelSerializer):

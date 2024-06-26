@@ -1,19 +1,19 @@
 {
-    "name": "expense",
+    "name": "dispatch",
     "engine": "handlebars",
     "recipe": "chrome-pdf",
     "data": null,
+    "shortid": "Aa6E6fRgc",
     "chrome": {
         "printBackground": true,
-        "landscape": false
+        "landscape": true
     },
     "creationDate": {
-        "$$date": 1713505749261
+        "$$date": 1712836162321
     },
     "modificationDate": {
-        "$$date": 1718369338467
+        "$$date": 1716622892046
     },
-    "shortid": "VzhEGTN",
-    "_id": "AqLC3p6NcOUV2Xh3",
+    "_id": "nEUJqW5pFjP6Wx1R",
     "$entitySet": "templates"
 }

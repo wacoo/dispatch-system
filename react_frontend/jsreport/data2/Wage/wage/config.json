@@ -1,5 +1,5 @@
 {
-    "name": "expense",
+    "name": "wage",
     "engine": "handlebars",
     "recipe": "chrome-pdf",
     "data": null,
@@ -8,12 +8,12 @@
         "landscape": false
     },
     "creationDate": {
-        "$$date": 1713505749261
+        "$$date": 1713419841340
     },
     "modificationDate": {
-        "$$date": 1718369338467
+        "$$date": 1713433275041
     },
-    "shortid": "VzhEGTN",
-    "_id": "AqLC3p6NcOUV2Xh3",
+    "shortid": "KxlRy16",
+    "_id": "aHq8sGWGHG8Tf6ml",
     "$entitySet": "templates"
 }

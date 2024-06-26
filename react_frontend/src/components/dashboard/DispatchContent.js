@@ -146,12 +146,16 @@ const DispatchContent = () => {
     
                 data.request = data.vehicle_requests[0];
                 data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
+				data.assigned_date_t = '';
                 data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_est);
+				data.departure_date_t = '';
+				data.departure_time_t = '';
                 data.return_date_est = '';
                 data.return_date_act = '';
                 data.departure_milage = '';
+				data.departure_milage = '';
                 data.return_milage = '';
-    
+				data.refuel_liters = '';
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {
                         req.no = idx + 1;

@@ -97,9 +97,16 @@ const DispatchReport = () => {
                 data.request = data.vehicle_requests[0];
                 data.difference = data.return_milage - data.departure_milage;
                 data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
-                data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_act);
-                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, data.return_time_est);
-                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, data.return_time_act);
+				data.assigned_date_t = data.assigned_date;
+                data.departure_date = convertToEthiopianDateTime(data.departure_date, null);
+				data.departure_time_est = convertToEthiopianDateTime(null, data.departure_time_est);
+				data.departure_time_act = convertToEthiopianDateTime(null, data.departure_time_act);
+                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, null);
+				data.return_time_est = convertToEthiopianDateTime(null, data.return_time_est);
+                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, null);
+				data.return_time_act = convertToEthiopianDateTime(null, data.return_time_act);
+				data.departure_date_t = data.departure_date;
+				data.departure_time_t = data.departure_time_act;
                 console.log(data.assigned_date);
                 // Step 4: Modify the deep copied vehicle_requests array
                 if (Array.isArray(data.vehicle_requests)) {

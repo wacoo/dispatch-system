@@ -86,8 +86,8 @@
             <tr>
                 <td>{{no}}</td>
                 <td>{{destination}}</td>
-                <td>{{../cdispatch.departure_date}}</td>
-                <td>{{../cdispatch.return_date_act}}</td>
+                <td>{{../cdispatch.departure_date}}  {{ ../cdispatch.departure_time_est}}</td>
+                <td>{{../cdispatch.return_date_act}}  {{ ../cdispatch.return_time_est}}</td>
                 <td>{{requester.fname}} {{requester.mname}}</td>
             </tr>
             {{/each}}
@@ -130,11 +130,11 @@
             </tr>
             {{#each cdispatch.vehicle_requests}}
             <tr>
-                <td>{{../cdispatch.assigned_date}}</td>
+                <td>{{../cdispatch.assigned_date_t}}</td>
                 <td>{{../cdispatch.departure_milage}}</td>
-                <td>{{../cdispatch.departure_date}}</td>
+                <td>{{../cdispatch.departure_time_t}}</td>
                 <td>{{../cdispatch.return_milage}}</td>
-                <td>{{../cdispatch.return_date_act}}</td>
+                <td>{{../cdispatch.return_time_act}}</td>
                 <td></td>
                 <td>{{../cdispatch.difference}}</td>
                 <td>{{../cdispatch.refuel_liters}}</td>

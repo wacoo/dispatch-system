@@ -79,18 +79,20 @@
                 <td></td>
                 <td></td>
             </tr>
+            {{#each cdispatch}}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{no}}</td>
+                <td>{{refuel_request_date}}</td>
+                <td>{{refuel_date}}</td>
+                <td>{{fuel_type}}</td>
+                <td>{{fuel_type}}</td>
+                <td>{{km_during_refuel}}</td>
+                <td>{{km_during_previous_refuel}}</td>
+                <td>{{km_per_liter}}</td>
+                <td>{{current_fuel_level}}</td>
+                <td>{{remark}}</td>
             </tr>
+            {{/each}}
         </table>
         <br>
         <table class="form2">

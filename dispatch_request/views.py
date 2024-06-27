@@ -17,6 +17,7 @@ from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSer
 
 from rest_framework import viewsets
 from .models import User, Group
+from rest_framework.decorators import action
 
 # class UserLoginAPIView(APIView):
 #     # authentication_classes = [JWTAuthentication]
@@ -173,6 +174,12 @@ class RefuelViewSet(viewsets.ModelViewSet):
 
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=['get'], url_path='vehicle/(?P<vehicle_id>[^/.]+)')
+    def by_vehicle(self, request, vehicle_id=None):
+        queryset = self.get_queryset().filter(vehicle_id=vehicle_id)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     ''' department api view set '''

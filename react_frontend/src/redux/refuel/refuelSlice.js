@@ -6,6 +6,7 @@ import { url } from "../url";
 const initialState = {
     user: {},
     refuels: [],
+    refuelsById: [],
     newRefuel: {},
     isLoading: false,
     error: undefined
@@ -20,6 +21,16 @@ const full_url = `${url}refuels/`;
 const fetchRefuels = createAsyncThunk('refuels/fetchRefuels', async() => {
     try {
         const res = await axios.get(full_url, { headers: authHeader() });
+        return res.data;
+    } catch(error) {
+        return error.message;
+    }
+});
+
+const fetchRefuelsById = createAsyncThunk('refuels/fetchRefuelsById', async({vehicleId}) => {
+    try {
+        const res = await axios.get(`${full_url}vehicle/${vehicleId}/`, { headers: authHeader() });
+        console.log(res.data);
         return res.data;
     } catch(error) {
         return error.message;
@@ -65,8 +76,20 @@ const refuelSlice = createSlice({
             state.isLoading = false;
             state.error = action.error.message;
         })
+        .addCase(fetchRefuelsById.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchRefuelsById.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.refuelsById = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(fetchRefuelsById.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
     }
 })
 
-export {createRefuel, fetchRefuels};
+export {createRefuel, fetchRefuels, fetchRefuelsById};
 export default refuelSlice.reducer;

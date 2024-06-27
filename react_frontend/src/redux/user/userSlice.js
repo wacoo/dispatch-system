@@ -32,7 +32,7 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(sessionStorage.getItem('user'));
 };
 
 const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
@@ -60,9 +60,9 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         getUser: (state, action) => {
-            const u = localStorage.getItem('user');
+            const u = sessionStorage.getItem('user');
             if (u) {                
-                state.user = JSON.parse(localStorage.getItem('user'));
+                state.user = JSON.parse(sessionStorage.getItem('user'));
             }
         },
     },

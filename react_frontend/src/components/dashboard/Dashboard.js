@@ -111,7 +111,7 @@ export default function Dashboard({ active }) {
   const { user, setUser } = React.useContext(AuthContext);
 
   React.useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = sessionStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {

@@ -17,7 +17,7 @@ const signIn = createAsyncThunk('user/signIn', async (data) => {
       const response = await axios.post(full_url, data);
   
       if (response.data.access) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+        sessionStorage.setItem('user', JSON.stringify(response.data));
       }
   
       return response.data;
@@ -28,7 +28,7 @@ const signIn = createAsyncThunk('user/signIn', async (data) => {
   });
 
 const logout = () => {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
 };
 
 const getCurrentUser = () => {

@@ -20,7 +20,7 @@ import DispatchTable from "./DispatchTable";
 import { fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
-
+import { generateReport } from "../../functions/report";
 
 const GenerateDispatchReport = () => {
     const [success, setSuccess] = useState(false);
@@ -56,28 +56,28 @@ const GenerateDispatchReport = () => {
       }, [dispatches]);
 
 
-    const generateReport = async (name, data) => {
-        try {
-            console.log(data);
-            jsreport.serverUrl = 'http://localhost:4444';
-            const response = await jsreport.render({
-                template: {
-                    name: name,
-                    // content: 'Hello from {{message}}',
-                    // engine: 'handlebars',
-                    // recipe: 'chrome-pdf'
-                },
-                data: {
-                    cdispatch: data
-                }
-            });
-            response.download('myreport.pdf');
-            response.openInWindow({ title: 'My Report' });
-            // setReportData(response.data.toString('utf8'));
-        } catch (error) {
-            console.error('Error generating report:', error);
-        }
-    };
+    // const generateReport = async (name, data) => {
+    //     try {
+    //         console.log(data);
+    //         jsreport.serverUrl = 'http://localhost:4444';
+    //         const response = await jsreport.render({
+    //             template: {
+    //                 name: name,
+    //                 // content: 'Hello from {{message}}',
+    //                 // engine: 'handlebars',
+    //                 // recipe: 'chrome-pdf'
+    //             },
+    //             data: {
+    //                 cdispatch: data
+    //             }
+    //         });
+    //         response.download('myreport.pdf');
+    //         response.openInWindow({ title: 'My Report' });
+    //         // setReportData(response.data.toString('utf8'));
+    //     } catch (error) {
+    //         console.error('Error generating report:', error);
+    //     }
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();

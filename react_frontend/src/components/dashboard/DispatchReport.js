@@ -18,7 +18,7 @@ import jsreport from 'jsreport-browser-client-dist';
 import { convertTo24HourFormat, convertToEthiopianDateTime, times } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
-
+import { generateReport } from "../../functions/report";
 
 const DispatchReport = () => {
     const [success, setSuccess] = useState(false);
@@ -58,29 +58,29 @@ const DispatchReport = () => {
         return () => clearTimeout(timer);
       }, [error, success]);
 
-      const generateReport = async (name, data) => {
-        try {
-            console.log(data);
-        jsreport.serverUrl = 'http://localhost:4444';
-        const response = await jsreport.render({
-            template: {
-            name: name,
-            },
-            data: {
-                cdispatch: data
-            }
-        });
-        response.download('myreport.pdf');
-        response.openInWindow({title: 'My Report'});
-        } catch (error) {
-            console.error('Error generating report:', error);
-        }
-    };
+    //   const generateReport = async (name, data) => {
+    //     try {
+    //         console.log(data);
+    //     jsreport.serverUrl = 'http://localhost:4444';
+    //     const response = await jsreport.render({
+    //         template: {
+    //         name: name,
+    //         },
+    //         data: {
+    //             cdispatch: data
+    //         }
+    //     });
+    //     response.download('myreport.pdf');
+    //     response.openInWindow({title: 'My Report'});
+    //     } catch (error) {
+    //         console.error('Error generating report:', error);
+    //     }
+    // };
 
-    function isLeapYear(year) {
-        // Leap year in Ethiopian calendar occurs every 4 years without exception
-        return (year % 4) === 3;
-    }
+    // function isLeapYear(year) {
+    //     // Leap year in Ethiopian calendar occurs every 4 years without exception
+    //     return (year % 4) === 3;
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -46,5 +46,12 @@
       "args": ["--no-sandbox", "--disable-setuid-sandbox"],
       "protocolTimeout": 60000
     }
-  }
+  },
+  "apps": [
+    {
+      "name": "jsreport",
+      "script": "server.js",
+      "args": "--config jsreport.config.json"
+    }
+  ]
 }

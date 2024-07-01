@@ -25,6 +25,7 @@ import { fetchUsers } from "../../redux/user/userSlice";
 import { addRequest } from '../../redux/request/requestSlice';
 import EtDatePicker from "mui-ethiopian-datepicker";
 import { times, convertTo24HourFormat, convertToEthiopianDateTime } from "../../functions/date";
+import { generateReport } from "../../functions/report";
 // import DispatchReport from "../reports/DispatchReport";
 
 
@@ -99,28 +100,28 @@ const DispatchContent = () => {
     }
     
 
-    const generateReport = async (name, data) => {
-        try {
-            console.log(data);
-        jsreport.serverUrl = 'http://localhost:4444';
-        const response = await jsreport.render({
-            template: {
-            name: name,
-            // content: 'Hello from {{message}}',
-            // engine: 'handlebars',
-            // recipe: 'chrome-pdf'
-            },
-            data: {
-                cdispatch: data
-            }
-        });
-        response.download('myreport.pdf');
-        response.openInWindow({title: 'My Report'});
-        // setReportData(response.data.toString('utf8'));
-        } catch (error) {
-            console.error('Error generating report:', error);
-        }
-    };
+    // const generateReport = async (name, data) => {
+    //     try {
+    //         console.log(data);
+    //     jsreport.serverUrl = 'http://localhost:4444';
+    //     const response = await jsreport.render({
+    //         template: {
+    //         name: name,
+    //         // content: 'Hello from {{message}}',
+    //         // engine: 'handlebars',
+    //         // recipe: 'chrome-pdf'
+    //         },
+    //         data: {
+    //             cdispatch: data
+    //         }
+    //     });
+    //     response.download('myreport.pdf');
+    //     response.openInWindow({title: 'My Report'});
+    //     // setReportData(response.data.toString('utf8'));
+    //     } catch (error) {
+    //         console.error('Error generating report:', error);
+    //     }
+    // };
 
       
     const handleSubmit = async (e) => {

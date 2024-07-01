@@ -1,3 +1,3 @@
 @echo off
-jsreport start
-pause
+cd /d "%~dp0"
+node server.js

@@ -1,0 +1,1 @@
+Start-Process -FilePath "node.exe" -ArgumentList "server.js" -NoNewWindow -WorkingDirectory $PSScriptRoot

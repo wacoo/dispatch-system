@@ -1,5 +1,6 @@
 import {
     Alert,
+    Autocomplete,
     Box,
     Button,
     FormControl,
@@ -38,7 +39,7 @@ const ApprovalContent = () => {
     });
 
     const requests = useSelector((state) => state.requests.pending_requests.results) ?? [];
-    const managers = useSelector((state) => state.users.users.results) ?? [];
+    const managers = useSelector((state) => state.users.users) ?? [];
 
     useEffect(() => {
         setApprovalData((prev) => ({
@@ -63,6 +64,7 @@ const ApprovalContent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(approvalData);
         dispatch(createApproval(approvalData))
             .then((res) => {
                 if (res.payload?.id) {
@@ -84,8 +86,8 @@ const ApprovalContent = () => {
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>
-                        <Select
+                        {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel> */}
+                        {/* <Select
                             labelId="dept_lbl"
                             id="demo-simple-select"
                             label="Request"
@@ -97,13 +99,26 @@ const ApprovalContent = () => {
                                     {` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
                                 </MenuItem>
                             ))}
-                        </Select>
+                        </Select> */}
+                    <Autocomplete
+                            options={requests}
+                            getOptionLabel={(request) => ` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
+                            onChange={(event, value) => setApprovalData((prev) => ({ ...prev, request: value ? value.id : '' }))}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Requester (ጠያቂ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        />                        
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        <InputLabel id="manager_lbl" sx={{ marginBottom: '8px' }}>Manager (ሃላፊ)</InputLabel>
-                        <Select
+                        {/* <InputLabel id="manager_lbl" sx={{ marginBottom: '8px' }}>Approver (ሃላፊ)</InputLabel> */}
+                        {/* <Select
                             labelId="manager_lbl"
                             id="manager-select"
                             label="Manager"
@@ -115,7 +130,20 @@ const ApprovalContent = () => {
                                     {`${manager.fname} ${manager.mname}`}
                                 </MenuItem>
                             ))}
-                        </Select>
+                        </Select> */}
+                        <Autocomplete
+                            options={managers}
+                            getOptionLabel={(manager) => `(${manager.username}) ${manager.fname} ${manager.mname}`}
+                            onChange={(event, value) => setApprovalData((prev) => ({ ...prev, manager: value ? value.id : '' }))}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Approver (ፍቃድ ሰጪ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        /> 
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>

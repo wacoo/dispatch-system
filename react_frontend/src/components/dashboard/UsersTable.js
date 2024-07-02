@@ -55,7 +55,7 @@ function preventDefault(event) {
 }
 
 export default function DriversTable({title}) {
-  const users = useSelector((state) => state.users.users.results) ?? [];
+  const users = useSelector((state) => state.users.users) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
       console.log(users);

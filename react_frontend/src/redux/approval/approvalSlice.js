@@ -53,12 +53,14 @@ const createApproval = createAsyncThunk('approvals/createApproval', async (data,
 
 
 const updateRequest = createAsyncThunk('requests/updateRequest', async ({id, status}) => {
-    // console.log(id);
+    console.log(`${url}requests/${id}/`);
     try {
+        console.log(`${url}requests/${id}/`);
         const res = await axios.put(`${url}requests/${id}/`, {status}, { headers: authHeader() });
         // console.log('Update Request Response:', res.data);
         return res.data;
     } catch (error) {
+        console.log(`${url}requests/${id}/`);
         console.error('Error updating request:', error.message);
         throw error;
     }

@@ -37,9 +37,17 @@ const getCurrentUser = () => {
 
 const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
     try {
-        const full_url = `${url}users/`;
-        const res = await axios.get(full_url, { headers: authHeader() });
-        return res.data;
+        let allUsers = [];
+        let nextUrl = `${url}users/`;
+        
+        // Loop until nextUrl is null (no more pages)
+        while (nextUrl) {
+            const res = await axios.get(nextUrl, { headers: authHeader() });
+            allUsers = [...allUsers, ...res.data.results]; // Assuming 'results' contains your data
+            nextUrl = res.data.next; // 'next' will be null if no more pages
+        }
+        
+        return allUsers;
     } catch (error) {
         return error.message;
     }

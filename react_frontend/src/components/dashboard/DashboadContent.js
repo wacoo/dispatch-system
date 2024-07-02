@@ -10,7 +10,7 @@ const  DashboardContent = () => {
         <Grid container spacing={3}>
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
-        <Paper
+        {/* <Paper
             sx={{
             p: 2,
             display: 'flex',
@@ -21,7 +21,6 @@ const  DashboardContent = () => {
             <Chart />
         </Paper>
         </Grid>
-        {/* Recent Deposits */}
         <Grid item xs={12} md={4} lg={3}>
         <Paper
             sx={{
@@ -34,11 +33,10 @@ const  DashboardContent = () => {
             <Deposits />
         </Paper>
         </Grid>
-        {/* Recent Orders */}
         <Grid item xs={12}>
         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
             <Orders />
-        </Paper>
+        </Paper> */}
         </Grid>
     </Grid>
     </>

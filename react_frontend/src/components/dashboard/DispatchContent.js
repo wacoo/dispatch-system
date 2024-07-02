@@ -59,7 +59,7 @@ const DispatchContent = () => {
     const approved_requests = useSelector((state) => state.requests.approved_requests.results) ?? [];
     const drivers = useSelector((state) => state.driver.drivers.results) ?? [];
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
-    const dispatchers = useSelector((state) => state.users.users.results) ?? [];
+    const dispatchers = useSelector((state) => state.users.users) ?? [];
     const isLoadingRequests = useSelector((state) => state.requests.isLoading);
     const isLoadingDrivers = useSelector((state) => state.driver.isLoading);
     const isLoadingVehicles = useSelector((state) => state.vehicles.isLoading);
@@ -358,7 +358,7 @@ const DispatchContent = () => {
             
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatcher (ያሰማራዉ)</InputLabel>
+                    {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatcher (ያሰማራዉ)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="user"
@@ -372,7 +372,20 @@ const DispatchContent = () => {
                                 {`${user.fname} ${user.mname}`}
                             </MenuItem>
                         ))}
-                    </Select>
+                    </Select> */}
+                    <Autocomplete
+                            options={dispatchers}
+                            getOptionLabel={(user) => `(${user.username}) ${user.fname} ${user.mname}`}
+                            onChange={(event, value) => setDispatchData((prev) => ({ ...prev, dispatcher: value ? value.id : '' }))}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Dispatcher (ያሰማራዉ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        /> 
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>

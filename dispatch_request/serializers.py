@@ -86,7 +86,8 @@ class VehicleRequestSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Request meta '''
         model = VehicleRequest
-        fields = ('id', 'user', 'request_date', 'description', 'destination', 'requested_vehicle_type', 'destination_type', 'duration_from', 'duration_time_from', 'duration_to', 'duration_time_to', 'status', 'dispatch', 'created_at', 'updated_at')
+        fields = '__all__'
+        # fields = ('id', 'user', 'request_date', 'description', 'destination', 'requested_vehicle_type', 'destination_type', 'duration_from', 'duration_time_from', 'duration_to', 'duration_time_to', 'status', 'dispatch', 'created_at', 'updated_at')
         # read_only_fields = ('id', 'user', 'request_date', 'description', 'destination', 'requested_vehicle_type', 'destination_type', 'estimated_duration_hrs', 'dispatch', 'created_at', 'updated_at')
     # def update(self, instance, validated_data):
     #     ''' update user custom with password hashing '''

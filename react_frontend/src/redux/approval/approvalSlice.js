@@ -12,17 +12,6 @@ const initialState = {
     error: undefined
 }
 
-// const user = localStorage.getItem('user');
-// let token = '';
-// if (user) {
-// 	token = JSON.parse(user).token;
-// } else {
-// 	token = '';
-// }
-
-// const headers = {
-//     Authorization: `Bearer ${token}`,
-// };
 const full_url = `${url}approvals/`;
 
 const fetchApprovals = createAsyncThunk('vehicles/fetchApprovals', async() => {
@@ -38,6 +27,7 @@ const createApproval = createAsyncThunk('approvals/createApproval', async (data,
     try {
         const updateRes = await dispatch(updateRequest({id: data.request, status: 'APPROVED'}));
         if (updateRes.error) {
+            console.log(updateRes.error.message)
             throw new Error(updateRes.error.message);
         }
         // console.log('Update Request Data:', updateRes.payload);
@@ -54,13 +44,14 @@ const createApproval = createAsyncThunk('approvals/createApproval', async (data,
 
 const updateRequest = createAsyncThunk('requests/updateRequest', async ({id, status}) => {
     console.log(`${url}requests/${id}/`);
+    console.log(status);
     try {
-        console.log(`${url}requests/${id}/`);
-        const res = await axios.put(`${url}requests/${id}/`, {status}, { headers: authHeader() });
+        const full_url2 = `${url}requests/${id}/`;
+        console.log(full_url2);
+        const res = await axios.put(full_url2, {status}, { headers: authHeader() });
         // console.log('Update Request Response:', res.data);
         return res.data;
     } catch (error) {
-        console.log(`${url}requests/${id}/`);
         console.error('Error updating request:', error.message);
         throw error;
     }

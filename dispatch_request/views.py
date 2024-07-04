@@ -117,6 +117,7 @@ class ApprovalViewSet(viewsets.ModelViewSet):
 
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'options']
 
 class VehicleRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
@@ -124,6 +125,8 @@ class VehicleRequestViewSet(viewsets.ModelViewSet):
     serializer_class = VehicleRequestSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    # http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'options']
 
     
 

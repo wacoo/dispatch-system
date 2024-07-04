@@ -64,12 +64,10 @@ const ApprovalContent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(approvalData);
         dispatch(createApproval(approvalData))
             .then((res) => {
                 if (res.payload?.id) {
                     setSuccess(true);
-                    console.log(success);
                     dispatch(fetchApprovals());
                 } else {
                     setError(res.payload);

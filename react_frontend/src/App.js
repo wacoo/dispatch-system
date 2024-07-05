@@ -51,7 +51,7 @@ function App() {
       },
       {
         path: '/users',
-        element: <Dashboard active="users" />
+        element: <Dashboard active="Users" />
       },
       {
         path: '/departments',

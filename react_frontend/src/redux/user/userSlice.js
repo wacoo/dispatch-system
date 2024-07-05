@@ -46,7 +46,7 @@ const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
             allUsers = [...allUsers, ...res.data.results]; // Assuming 'results' contains your data
             nextUrl = res.data.next; // 'next' will be null if no more pages
         }
-        
+        console.log(allUsers);
         return allUsers;
     } catch (error) {
         return error.message;

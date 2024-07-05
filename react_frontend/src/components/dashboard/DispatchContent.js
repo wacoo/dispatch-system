@@ -161,6 +161,7 @@ const DispatchContent = () => {
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {
                         req.no = idx + 1;
+                        req.requester = req.user;
                     });
                 } else {
                     console.error("data.vehicle_requests is not an array");

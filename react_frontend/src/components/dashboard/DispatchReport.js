@@ -89,7 +89,6 @@ const DispatchReport = () => {
                 setSuccess(true);           
                 let data = { ...res.payload };
                 console.log(res.payload);
-    
                 // Step 2: Create a deep copy of vehicle_requests
                 data.vehicle_requests = res.payload.vehicle_requests.map(req => ({ ...req }));
     
@@ -112,6 +111,7 @@ const DispatchReport = () => {
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {
                         req.no = idx + 1;
+                        req.user = req.requester;
                     });
                 } else {
                     console.error("data.vehicle_requests is not an array");

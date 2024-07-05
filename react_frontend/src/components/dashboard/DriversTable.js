@@ -71,19 +71,21 @@ export default function DriversTable({title}) {
       <Table size="small">
         <TableHead>
           <TableRow>
-          <TableCell>ID</TableCell>
+            <TableCell>ID</TableCell>            
+            <TableCell>ID number</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Phone</TableCell>
-            <TableCell align="right">License number</TableCell>
+            <TableCell align="right">Position</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {drivers.map((driver) => (
             <TableRow key={driver.id}>
-              <TableCell>{driver.id}</TableCell>
+              <TableCell>{driver.id}</TableCell>              
+              <TableCell>{driver.id_no}</TableCell>
               <TableCell>{`${driver.fname} ${driver.mname}`}</TableCell>
               <TableCell>{driver.phone_number}</TableCell>
-              <TableCell  align="right">{driver.license_number}</TableCell>
+              <TableCell align="right">{driver.position}</TableCell>
             </TableRow>
           ))}
         </TableBody>

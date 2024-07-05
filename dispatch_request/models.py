@@ -128,8 +128,9 @@ class Driver(models.Model):
   fname = models.CharField(max_length=50)
   mname = models.CharField(max_length=50)
   lname = models.CharField(max_length=50, blank=True, default='')
-  phone_number = models.CharField(max_length=20, unique=True)
-  license_number = models.CharField(max_length=20, unique=True)
+  phone_number = models.CharField(max_length=20, blank=True, default='')
+  id_no = models.CharField(max_length=20, unique=True)
+  position = models.CharField(max_length=200, blank=True, default='')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 

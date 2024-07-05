@@ -109,7 +109,7 @@ class DriverLimitedSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Driver meta '''
         model= Driver
-        fields = ('id', 'fname', 'mname', 'lname', 'license_number')
+        fields = ('id', 'fname', 'mname', 'lname', 'id_no', 'position')
 class DriverSerializer(serializers.ModelSerializer):
     ''' Drivers serializer '''
     class Meta:

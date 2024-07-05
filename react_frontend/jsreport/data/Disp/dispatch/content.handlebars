@@ -55,7 +55,7 @@
                 </td>
             </tr>
             <tr class="form1">
-                <td>የተጓዥ ስም፦ <u>{{cdispatch.request.requester.fname}} {{cdispatch.request.requester.mname}}</u></td>
+                <td>የተጓዥ ስም፦ <u>{{cdispatch.request.user.fname}} {{cdispatch.request.user.mname}}</u></td>
                 <td>አገልግሎት የሚፈለግበት ጊዜ፦ ከ<u>{{cdispatch.departure_date}}</td>
                 <td>እስከ <u>{{cdispatch.return_date_est}}</td>
             </tr>
@@ -88,7 +88,7 @@
                 <td>{{destination}}</td>
                 <td>{{../cdispatch.departure_date}}  {{ ../cdispatch.departure_time_est}}</td>
                 <td>{{../cdispatch.return_date_act}}  {{ ../cdispatch.return_time_est}}</td>
-                <td>{{requester.fname}} {{requester.mname}}</td>
+                <td>{{user.fname}} {{user.mname}}</td>
             </tr>
             {{/each}}
         </table>
@@ -134,7 +134,7 @@
                 <td>{{../cdispatch.departure_milage}}</td>
                 <td>{{../cdispatch.departure_time_t}}</td>
                 <td>{{../cdispatch.return_milage}}</td>
-                <td>{{../cdispatch.return_time_act}}</td>
+                <td>{{../cdispatch.return_time_act_t}}</td>
                 <td></td>
                 <td>{{../cdispatch.difference}}</td>
                 <td>{{../cdispatch.refuel_liters}}</td>

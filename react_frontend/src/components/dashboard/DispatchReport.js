@@ -107,7 +107,7 @@ const DispatchReport = () => {
 				data.return_time_act = convertToEthiopianDateTime(null, data.return_time_act);
 				data.departure_date_t = data.departure_date;
 				data.departure_time_t = data.departure_time_act;
-                console.log(data.assigned_date);
+                data.return_time_act_t = data.return_time_act;
                 // Step 4: Modify the deep copied vehicle_requests array
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {

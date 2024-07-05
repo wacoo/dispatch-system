@@ -136,7 +136,7 @@ const DispatchContent = () => {
                 setSuccess(true);
                 
                 let data = {...res.payload};
-    
+                console.log(fetchRequests);
                 data.vehicle_requests = fetchRequests?.map(req => ({ ...req }));
     
                 if (data && data.vehicle_requests){                        
@@ -153,6 +153,7 @@ const DispatchContent = () => {
 				data.departure_time_t = '';
                 data.return_date_est = '';
                 data.return_date_act = '';
+                data.return_time_est_t = '';
                 data.departure_milage = '';
 				data.departure_milage = '';
                 data.return_milage = '';
@@ -279,7 +280,7 @@ const DispatchContent = () => {
                     >
                         {
                             drivers.map((driver) => (
-                                <MenuItem value={driver.id}>{`(${driver.license_number}) ${driver.fname} ${driver.mname}`}</MenuItem>
+                                <MenuItem value={driver.id}>{`(${driver.id_no}) ${driver.fname} ${driver.mname}; ${driver.position}`}</MenuItem>
                             ))
                         
                         }

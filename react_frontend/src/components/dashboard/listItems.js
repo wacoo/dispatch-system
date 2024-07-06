@@ -17,9 +17,11 @@ import AirlineSeatReclineNormalIcon from '@mui/icons-material/AirlineSeatRecline
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import BusinessIcon from '@mui/icons-material/Business';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../redux/user/authContext';
 
-const MainListItems = () => {
+const MainListItems = ({active}) => {
   const navigate = useNavigate();
+  const { user, setUser } = React.useContext(AuthContext);
   return (
     <React.Fragment>
       <ListItemButton onClick={() => navigate('/')} >
@@ -28,66 +30,66 @@ const MainListItems = () => {
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate('/drivers')}>
+      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/drivers')}>
         <ListItemIcon>
           <AirlineSeatReclineNormalIcon />
         </ListItemIcon>
         <ListItemText primary="Drivers" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/vehicles')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/vehicles')}>
         <ListItemIcon>
           <DirectionsCarIcon />
         </ListItemIcon>
         <ListItemText primary="Vehicles" />
-      </ListItemButton>
-      <ListItemButton  onClick={() => navigate('/requests')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 0 && <ListItemButton  onClick={() => navigate('/requests')}>
         <ListItemIcon>
         <ContactSupportIcon />
         </ListItemIcon>
         <ListItemText primary="Requests" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/approvals')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 1 && <ListItemButton onClick={() => navigate('/approvals')}>
         <ListItemIcon>
           <ApprovalIcon />
         </ListItemIcon>
         <ListItemText primary="Approvals" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/dispatches')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/dispatches')}>
         <ListItemIcon>
           <AltRouteIcon />
         </ListItemIcon>
         <ListItemText primary="Dispatches" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/dispatch_report')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/dispatch_report')}>
         <ListItemIcon>
           <AssignmentTurnedInIcon />
         </ListItemIcon>
         <ListItemText primary="Complete dispatch" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/refuels')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/refuels')}>
         <ListItemIcon>
           <LocalGasStationIcon />
         </ListItemIcon>
         <ListItemText primary="Refuels" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/users')}>
+      </ListItemButton>}
+      {user.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/users')}>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Users" />
-      </ListItemButton>
-      <ListItemButton onClick={() => navigate('/departments')}>
+      </ListItemButton>}
+      {user.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/departments')}>
         <ListItemIcon>
           <BusinessIcon />
         </ListItemIcon>
         <ListItemText primary="Departments" />
-      </ListItemButton>
-      <ListItemButton  onClick={() => navigate('/old_dispatch')}>
+      </ListItemButton>}
+      {user.user?.access_level >= 2 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Dispatch report" />
-      </ListItemButton>
+      </ListItemButton>}
       <ListItemButton>
         <ListItemIcon>
           <BarChartIcon />

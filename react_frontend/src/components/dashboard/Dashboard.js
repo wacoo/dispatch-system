@@ -235,7 +235,7 @@ export default function Dashboard({ active }) {
                 {active === 'DispatchReport' && (user.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
                 {active === 'Users' && (user.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
                 {active === 'Departments' && (user.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
-                {active === 'GenerateDispatchReport' && (user.user?.access_level >= 3 ? <GenerateDispatchReport /> : <Error403 />)}
+                {active === 'GenerateDispatchReport' && (user.user?.access_level >= 2 ? <GenerateDispatchReport /> : <Error403 />)}
                 
               </>
             )

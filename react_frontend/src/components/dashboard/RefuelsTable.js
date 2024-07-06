@@ -74,13 +74,14 @@ export default function RefuelsTable({title}) {
           <TableRow>
           <TableCell>ID</TableCell>
             <TableCell>Vehicle</TableCell>
-            <TableCell>Request date</TableCell>
+            <TableCell>Req. date</TableCell>
             <TableCell>Refuel date</TableCell>
-            <TableCell>Fuel type</TableCell>
-            <TableCell>KM before refuel</TableCell>
-            <TableCell>KM during previous refuel</TableCell>
-            <TableCell>KM per liter</TableCell>
-            <TableCell>Current fuel level</TableCell>
+            <TableCell>Benzine</TableCell>
+            <TableCell>Nafta</TableCell>
+            <TableCell>KM/B/Refuel</TableCell>
+            <TableCell>KM/D/P/Refuel</TableCell>
+            <TableCell>KM/Lts</TableCell>
+            <TableCell>Fuel level</TableCell>
             <TableCell>Remark</TableCell>
           </TableRow>
         </TableHead>
@@ -91,7 +92,8 @@ export default function RefuelsTable({title}) {
               <TableCell>{`(${refuel.vehicle.license_plate}) ${refuel.vehicle.make} ${refuel.vehicle.model} ${refuel.vehicle.year}; ${refuel.vehicle.type}`}</TableCell>
               <TableCell>{convertToEthiopianDateTime(refuel.refuel_request_date)}</TableCell>
               <TableCell>{convertToEthiopianDateTime(refuel.refuel_date)}</TableCell>
-              <TableCell>{refuel.fuel_type}</TableCell>
+              <TableCell>{refuel.benzine}</TableCell>
+              <TableCell>{refuel.nafta}</TableCell>
               <TableCell>{refuel.km_during_refuel}</TableCell>
               <TableCell>{refuel.km_during_previous_refuel}</TableCell>
               <TableCell>{refuel.km_per_liter}</TableCell>

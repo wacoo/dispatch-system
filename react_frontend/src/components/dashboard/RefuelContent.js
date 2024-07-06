@@ -15,20 +15,22 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import RefuelsTable from "./RefuelsTable";
 import { createRefuel, fetchRefuels } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
+import EtDatePicker from "mui-ethiopian-datepicker";
 
 
 const RefuelContent = () => {
     const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState('');
-    const [rrdate, setRRdate] = useState(dayjs('2022-04-17'));
-    const [rdate, setRdate] = useState(dayjs('2022-04-17'));
+    const [rrdate, setRRdate] = useState(null);
+    const [rdate, setRdate] = useState(null);
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const [refuelData, setRefuelData] = useState({
         vehicle: '1',
-        refuel_request_date: rrdate.format('YYYY-MM-DD'), 
-        refuel_date: rdate.format('YYYY-MM-DD'), 
-        fuel_type: '',        
+        refuel_request_date: '', 
+        refuel_date: '', 
+        nafta: '',
+        benzine: '',        
         km_during_refuel: '',
         km_during_previous_refuel: '',
         km_per_liter: '',
@@ -39,10 +41,11 @@ const RefuelContent = () => {
     useEffect(() => {
         setRefuelData(prevState => ({
             ...prevState,
-            refuel_request_date: rrdate.format('YYYY-MM-DD'),
-            refuel_date: rdate.format('YYYY-MM-DD'),
+            refuel_request_date: new Date(rdate).toISOString().split('T')[0],
+            refuel_date: new Date(rrdate).toISOString().split('T')[0]
+
         }));
-    }, [rrdate, rdate]);
+    }, [rdate, rrdate]);
 
     useEffect(() => {
         dispatch(fetchVehicles());
@@ -94,49 +97,39 @@ const RefuelContent = () => {
                 </FormControl>
             </Grid>
 
-            <Grid item xs={12} md={6} lg={4} sx={{ mt: '-7px' }}>
+            <Grid item xs={12} md={6} lg={4} sx={{ mt: '1px' }}>
             <FormControl fullWidth>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={['DateTimePicker']}>
-                        <DatePicker
-                            label='Refuel request date (ሙሊት የተጠየቀበት ቀን)'
-                            value={rrdate}
-                            onChange={(newValue) => setRRdate(newValue)}
-                        />
-                    </DemoContainer>
-                </LocalizationProvider>
+                <EtDatePicker
+                        label="Refuel date (የተሞላበት ቀን)"
+                        onChange={(selectedDate) => {
+                            setRRdate(selectedDate);
+                        }}
+                        value={rrdate}
+                    />
             </FormControl>
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={['DateTimePicker']}>
-                        <DatePicker
-                            label='Refuel date (የተሞላበት ቀን)'
-                            value={rdate}
-                            onChange={(newValue) => setRdate(newValue)}
-                        />
-                    </DemoContainer>
-                </LocalizationProvider>
+                <EtDatePicker
+                        label="Refuel date (የተሞላበት ቀን)"
+                        onChange={(selectedDate) => {
+                            setRdate(selectedDate);
+                        }}
+                        value={rdate}
+                    />
             </FormControl>
         </Grid>
 
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <InputLabel id="fuel_type" sx={{ marginBottom: '8px' }}>Fuel type (የነዳጅ አይነት)</InputLabel>
-                <Select
-                    labelId="fuel_type"
-                    id="fuel_type"
-                    label="Fuel type"
-                    sx={{ minWidth: '100%' }}
-                    // Handle value, label, onChange
-                    onChange={(e) => setRefuelData((prev) => ({ ...prev, fuel_type: e.target.value }))}
-                >
-                    <MenuItem value={'BENZINE'}>BENZINE (ቤንዚን)</MenuItem>
-                    <MenuItem value={'NAFTA'}>NAFTA (ናፍጣ)</MenuItem>
-                </Select>
+                <TextField label="Nafta (ናፍጣ)" type="number" name="nafta" id="nafta" onChange={(e) => setRefuelData((prev) => ({ ...prev, nafta: e.target.value }))} />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+            <FormControl fullWidth>
+                <TextField label="Benzine (ቤንዚን)" type="number" name="benzine" id="benzine" onChange={(e) => setRefuelData((prev) => ({ ...prev, benzine: e.target.value }))} />
             </FormControl>
         </Grid>
 

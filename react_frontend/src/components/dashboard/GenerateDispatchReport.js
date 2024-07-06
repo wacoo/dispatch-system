@@ -51,7 +51,7 @@ const GenerateDispatchReport = () => {
     useEffect(() => {
         // You can initialize dispatchID here if necessary, for example:
         if (dispatches.length > 0) {
-          setDispatchID(dispatches[1].id);
+          setDispatchID(dispatches[1]?.id);
         }
       }, [dispatches]);
 

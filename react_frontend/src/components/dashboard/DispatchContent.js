@@ -20,7 +20,7 @@ import jsreport from 'jsreport-browser-client-dist'
 import { DatePicker } from "@mui/x-date-pickers";
 import {fetchDrivers } from "../../redux/driver/driverSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
-import { fetchUsers } from "../../redux/user/userSlice";
+import { fetchDispatchers, fetchUsers } from "../../redux/user/userSlice";
 // import { Viewer } from '@grapecity/activereports-react';
 import { addRequest } from '../../redux/request/requestSlice';
 import EtDatePicker from "mui-ethiopian-datepicker";
@@ -59,7 +59,7 @@ const DispatchContent = () => {
     const approved_requests = useSelector((state) => state.requests.approved_requests.results) ?? [];
     const drivers = useSelector((state) => state.driver.drivers.results) ?? [];
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
-    const dispatchers = useSelector((state) => state.users.users) ?? [];
+    const dispatchers = useSelector((state) => state.users.dispatchers) ?? [];
     const isLoadingRequests = useSelector((state) => state.requests.isLoading);
     const isLoadingDrivers = useSelector((state) => state.driver.isLoading);
     const isLoadingVehicles = useSelector((state) => state.vehicles.isLoading);
@@ -69,7 +69,7 @@ const DispatchContent = () => {
         dispatch(fetchApprovedRequests());
         dispatch(fetchDrivers());
         dispatch(fetchVehicles());
-        dispatch(fetchUsers());
+        dispatch(fetchDispatchers());
     }, []);
 
     useEffect(() => {
@@ -197,21 +197,19 @@ const DispatchContent = () => {
         <Typography variant="h5">Add requests (የተሽከርካሪ ጥያቄዎችን)</Typography>
         <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>
-                    <Select
-                        labelId="dept_lbl"
-                        id="demo-simple-select"
-                        label="Select Request"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setVehicleRequest(e.target.value)}
-                    >
-                        {
-                            approved_requests.map((request) => (
-                                <MenuItem value={request}>{`(${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.user.department}; ${request.destination}`}</MenuItem>
-                            ))
-                        }
-                    </Select>
+                    <Autocomplete
+                            options={approved_requests}
+                            getOptionLabel={(request) => ` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
+                            onChange={(event, value) => setVehicleRequest(value)}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Request (የመኪና ጥያቄ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        />
                 </FormControl>
             </Grid>
 

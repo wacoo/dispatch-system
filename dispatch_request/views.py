@@ -141,6 +141,26 @@ class VehicleApprovedRequestViewSet(viewsets.ModelViewSet):
         ''' Returns queryset filtered to include only requests with status 'APPROVED' '''        
         return VehicleRequest.objects.filter(status='APPROVED').select_related('user').order_by('-created_at')
 
+class ApproversViewSet(viewsets.ModelViewSet):
+    '''Vehicle request API view set for approvers.'''
+    
+    serializer_class = UserSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):       
+        return User.objects.filter(access_level='1')
+    
+class DispatchersViewSet(viewsets.ModelViewSet):
+    '''Vehicle request API view set for approvers.'''
+    
+    serializer_class = UserSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):       
+        return User.objects.filter(access_level='2')
+    
 class VehiclePendingRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
     serializer_class = VehicleRequestSerializer

@@ -4,7 +4,7 @@ from .views import (
     ApprovalViewSet, VehicleViewSet, DispatchViewSet, UserViewSet,
     GroupViewSet, UserLoginAPIView, RefuelViewSet, DepartmentViewSet,
     VehicleRequestDispatchUpdateAPIView, VehicleApprovedRequestViewSet,
-    VehicleRequestByDispatch, VehicleMakeViewSet
+    VehicleRequestByDispatch, VehicleMakeViewSet, DispatchersViewSet, ApproversViewSet
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.urls import path
@@ -22,6 +22,8 @@ router.register(r'vehicles', VehicleViewSet)
 router.register(r'dispatches', DispatchViewSet)
 router.register(r'refuels', RefuelViewSet)
 router.register(r'make', VehicleMakeViewSet)
+router.register(r'approvers', ApproversViewSet, basename='approvers')
+router.register(r'dispatchers', DispatchersViewSet, basename='dispatchers')
 # router.register(r'dispatch_reports', DispatchReportViewSet)
 
 # Define URL patterns

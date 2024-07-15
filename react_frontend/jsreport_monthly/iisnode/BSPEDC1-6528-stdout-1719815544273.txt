@@ -1,0 +1,98 @@
+2024-07-01T06:32:51.553Z - [32minfo[39m: Initializing jsreport (version: 4.3.1, configuration file: jsreport.config.json, nodejs: 22.3.0)
+2024-07-01T06:32:51.559Z - [32minfo[39m: Searching for available extensions in C:\dispatch-system\react_frontend\jsreport\
+2024-07-01T06:32:51.591Z - [32minfo[39m: Extensions location cache not found, crawling directories
+2024-07-01T06:32:52.997Z - [32minfo[39m: Found 35 extension(s)
+2024-07-01T06:32:55.099Z - [34mdebug[39m: Writing extension locations cache to C:\WINDOWS\TEMP\jsreport\core\locations.json
+2024-07-01T06:32:55.101Z - [34mdebug[39m: Discovered 35 extensions
+2024-07-01T06:32:55.507Z - [34mdebug[39m: Extension authentication@4.1.1 is disabled, skipping
+2024-07-01T06:32:55.509Z - [32minfo[39m: Using extension base@4.0.0
+2024-07-01T06:32:55.521Z - [32minfo[39m: Using extension child-templates@4.1.0
+2024-07-01T06:32:55.532Z - [32minfo[39m: Using extension cli@4.0.4
+2024-07-01T06:32:55.645Z - [32minfo[39m: Using extension components@4.0.0
+2024-07-01T06:32:55.673Z - [32minfo[39m: Using extension data@4.1.0
+2024-07-01T06:32:56.421Z - [32minfo[39m: Using extension express@4.1.1
+2024-07-01T06:33:36.120Z - [32minfo[39m: Using extension freeze@4.0.0
+2024-07-01T06:33:36.174Z - [32minfo[39m: Using extension fs-store@4.0.3
+2024-07-01T06:33:47.843Z - [32minfo[39m: Using extension handlebars@4.0.1
+2024-07-01T06:33:47.852Z - [32minfo[39m: Using extension import-export@4.0.3
+2024-07-01T06:33:48.368Z - [32minfo[39m: Using extension jsrender@4.0.0
+2024-07-01T06:33:48.371Z - [32minfo[39m: Using extension licensing@4.0.2
+2024-07-01T06:33:50.985Z - [32minfo[39m: Using extension localization@4.0.1
+2024-07-01T06:33:50.988Z - [32minfo[39m: Using extension npm@4.0.0
+2024-07-01T06:33:50.994Z - [32minfo[39m: Using extension pdf-utils@4.1.1
+2024-07-01T06:33:51.303Z - [32minfo[39m: Using extension reports@4.1.1
+2024-07-01T06:33:51.327Z - [32minfo[39m: Using extension tags@4.0.1
+2024-07-01T06:33:51.364Z - [32minfo[39m: Using extension text@4.0.0
+2024-07-01T06:33:51.371Z - [32minfo[39m: Using extension version-control@4.0.0
+2024-07-01T06:33:51.537Z - [32minfo[39m: Using extension assets@4.1.0
+2024-07-01T06:33:52.255Z - [32minfo[39m: Using extension authorization@4.0.0
+2024-07-01T06:33:52.369Z - [34mdebug[39m: Extension authorization@4.0.0 was disabled
+2024-07-01T06:33:52.369Z - [32minfo[39m: Using extension browser-client@4.1.0
+2024-07-01T06:33:52.530Z - [32minfo[39m: Using extension chrome-pdf@4.1.0
+2024-07-01T06:33:52.563Z - [34mdebug[39m: Chrome strategy is chrome-pool, numberOfWorkers: 1
+2024-07-01T06:33:52.564Z - [34mdebug[39m: Chrome custom launch options are args=--no-sandbox,--disable-setuid-sandbox, protocolTimeout=60000
+2024-07-01T06:33:52.564Z - [32minfo[39m: Using extension docx@4.2.1
+2024-07-01T06:33:52.591Z - [32minfo[39m: Using extension html-to-xlsx@4.1.1
+2024-07-01T06:34:31.774Z - [32minfo[39m: html-to-xlsx detected chrome as available html engine
+2024-07-01T06:34:31.775Z - [32minfo[39m: Using extension pptx@4.2.0
+2024-07-01T06:34:31.795Z - [32minfo[39m: Using extension scheduling@4.0.0
+2024-07-01T06:34:33.982Z - [32minfo[39m: Using extension scripts@4.1.0
+2024-07-01T06:34:34.039Z - [32minfo[39m: Using extension static-pdf@4.1.0
+2024-07-01T06:34:34.046Z - [32minfo[39m: Using extension studio@4.1.0
+2024-07-01T06:34:40.620Z - [32minfo[39m: Using extension xlsx@4.1.0
+2024-07-01T06:34:40.640Z - [32minfo[39m: Using extension public-templates@4.0.0
+2024-07-01T06:34:40.802Z - [34mdebug[39m: Extension public-templates@4.0.0 was disabled
+2024-07-01T06:34:40.802Z - [32minfo[39m: Using extension sample-template@4.0.0
+2024-07-01T06:34:40.832Z - [32minfo[39m: Using extension studio-theme-dark@4.0.0
+2024-07-01T06:34:40.856Z - [32minfo[39m: Code sandboxing is disabled, users can potentially penetrate the local system if you allow code from external users to be part of your reports
+2024-07-01T06:34:40.856Z - [33mwarn[39m: options.allowLocalFilesAccess is deprecated, use options.trustUserCode instead
+2024-07-01T06:34:40.857Z - [32minfo[39m: Using general timeout for rendering (reportTimeout: 60000)
+2024-07-01T06:34:40.857Z - [32minfo[39m: Using fs provider for template store.
+2024-07-01T06:34:40.863Z - [32minfo[39m: fs store is persisting using fs for C:\dispatch-system\react_frontend\jsreport\data
+2024-07-01T06:34:40.869Z - [32minfo[39m: fs store is loading data
+2024-07-01T06:34:41.837Z - [32minfo[39m: fs store is initialized successfully
+2024-07-01T06:34:41.845Z - [34mdebug[39m: studio default theme is: light
+2024-07-01T06:34:41.865Z - [32minfo[39m: Creating default express app.
+2024-07-01T06:34:44.391Z - [32minfo[39m: jsreport server successfully started on http port: 4444
+2024-07-01T06:34:44.393Z - [32minfo[39m: Verifying license key free
+2024-07-01T06:34:44.397Z - [32minfo[39m: Using free license
+2024-07-01T06:34:44.401Z - [34mdebug[39m: Creating samples is disabled
+2024-07-01T06:34:44.402Z - [32minfo[39m: Initializing worker threads
+2024-07-01T06:34:44.403Z - [34mdebug[39m: Extensions in workers: base, child-templates, components, data, express, handlebars, jsrender, localization, npm, pdf-utils, reports, text, version-control, assets, browser-client, chrome-pdf, docx, html-to-xlsx, pptx, scripts, static-pdf, studio, xlsx
+2024-07-01T06:34:54.356Z - [32minfo[39m: 2 worker threads initialized in 9953ms
+2024-07-01T06:34:54.357Z - [32minfo[39m: Starting temp files cleanup with 180000ms threshold
+2024-07-01T06:34:54.357Z - [32minfo[39m: reporter initialized
+2024-07-01T06:34:58.370Z - [34mdebug[39m: OData query on templates
+2024-07-01T06:34:58.383Z - [34mdebug[39m: OData query on settings
+2024-07-01T06:34:58.385Z - [34mdebug[39m: OData query on folders
+2024-07-01T06:34:58.395Z - [34mdebug[39m: OData query on components
+2024-07-01T06:34:58.416Z - [34mdebug[39m: OData query on data
+2024-07-01T06:34:58.422Z - [34mdebug[39m: OData query on tags
+2024-07-01T06:34:58.429Z - [34mdebug[39m: OData query on assets
+2024-07-01T06:34:58.435Z - [34mdebug[39m: OData query on scripts
+2024-07-01T06:34:58.440Z - [34mdebug[39m: OData query on schedules
+2024-07-01T06:34:58.480Z - [34mdebug[39m: OData query on templates
+2024-07-01T06:34:58.504Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:34:58.538Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:34:58.574Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:34:58.583Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:34:58.608Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:34:58.615Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:34:58.634Z - [34mdebug[39m: OData query on templates
+2024-07-01T06:35:32.974Z - [34mdebug[39m: OData query on templates
+2024-07-01T06:35:32.988Z - [34mdebug[39m: OData query on folders
+2024-07-01T06:35:32.990Z - [34mdebug[39m: OData query on settings
+2024-07-01T06:35:32.993Z - [34mdebug[39m: OData query on components
+2024-07-01T06:35:32.998Z - [34mdebug[39m: OData query on data
+2024-07-01T06:35:33.002Z - [34mdebug[39m: OData query on tags
+2024-07-01T06:35:33.006Z - [34mdebug[39m: OData query on assets
+2024-07-01T06:35:33.012Z - [34mdebug[39m: OData query on scripts
+2024-07-01T06:35:33.017Z - [34mdebug[39m: OData query on schedules
+2024-07-01T06:35:33.071Z - [34mdebug[39m: OData query on templates
+2024-07-01T06:35:33.078Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:35:33.090Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:35:33.103Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:35:33.130Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:35:33.138Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:35:33.162Z - [34mdebug[39m: OData query on profiles
+2024-07-01T06:35:33.169Z - [34mdebug[39m: OData query on templates

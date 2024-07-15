@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <style>
+        {{ asset "style.css" "utf8" }}
+    </style>
+</head>
+    <body>
+    <div class="paperA4">
+        <table>
+            <tr>
+                <td>
+                    <img src="{{asset "Picture1.png" "dataURI"}}" style="width:80px; max-width:300px;" />
+                </td>
+                <td>
+                    <p>የድርጅቱ ስም፦ ብርሃንና ሰላም ማተሚያ ድርጅት</p>
+                    <p>Company Name: Bernanena Selam Printing Enterprise</p>
+                </td>
+                <td colspan="2">
+                    <p>Document No. BSOF-304</p>
+                    <p>ቅጽ ቁጥር፦ </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>ርዕስ</h5>
+                    <h5>Title</h5>
+                </td>
+                <td>
+                    የዉሎ አበል ቅድሚያ ክፍያ መጠየቅያና መክፈያ
+                </td>
+                <td>
+                    <h5>Reision N0. 00</h5>
+                    <h5>የክለሳ ቁጥር</h5>
+                </td>
+                <td>
+                    <h5>Page No. 1 of 1</h5>
+                    <h5>ገጽ</h5>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr class="date">
+                <td></td>
+                <td>
+                    <p>ቀን፦ <u>{{cdispatch.assigned_date}}</u></p>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr class="form1">
+                <td>1. የተጓዥ ስም፦ <u>{{cdispatch.request.requester.fname}} {{cdispatch.request.requester.mname}}</u></td>
+                <td>የስራ መደብ <u>{{cdispatch.dd}} </td>
+            </tr>
+            <tr class="form1">
+                <td>2. የሄደበት ስፍራ፦ <u>{{cdispatch.request.destination}}</u></td>
+            </tr>
+            <tr class="form1">
+                <td>3. የጉዞ ምክንያት <u>{{cdispatch.request.description}}</u></td>
+            </tr>
+            <tr class="form1">
+                <td>4. የተነሳበት ቀን <u>{{cdispatch.departure_date}}</u></td>
+               <td>ሰዓት <u>{{cdispatch.departure_time_est}}</u></td>
+            </tr>
+            <tr class="form1">
+                <td>5. የተመለሰበት ቀን <u>{{cdispatch.departure_date}}</u></td>
+               <td>ሰዓት <u>{{cdispatch.departure_time_est}}</u></td>
+            </tr>
+            <tr class="form1">
+               <td>6. በጉዞ ላይ የቆየበት ቀናት <u>{{cdispatch.return_date_est}}</u></td>
+            </tr>
+            <tr class="form1">
+               <td>7. የቀን ዉሎ አበል ልክ በብር _________________________________</td>
+               <td>በፊደል /_____________________________</td>
+            </tr>
+            <tr class="form1">
+               <td>8. ወጪዎቸ</td>
+            </tr>
+        </table>
+        <table>
+            <tr class="form1">
+                <td></td>
+                <td class="tno">8.1 ለዉሎ አበል ___________________________</td>
+                <td>ብር _______________________________</td>
+            </tr>
+            <tr class="form1">
+                <td></td>
+                <td>8.2 ለሌሎች/ይግለጹ ሰነድም ያያይዙ</td>
+            </tr>
+            <tr class="form1">
+                <td class="rno"></td>
+                <td class="tno"><dd>8.2.1 _____________________________</td>
+                <td class="tno">ብር ______________________________ </td>
+            </tr>
+            <tr class="form1">
+               <td class="rno"></td>
+                <td class="tno"><dd>8.2.2 _____________________________</td>
+                <td class="tno">ብር ______________________________ </td>
+            </tr>
+            <tr class="form1">
+                <td class="rno"></td>
+                <td class="tno"><dd>8.2.3 _____________________________</td>
+                <td class="tno">ብር ______________________________ </td>
+            </tr>
+            <tr class="form1">
+                <td></td>
+                <td>8.3 በቅድምያ የተወሰደ ________________________</td>
+            </tr>
+            <tr class="form1">
+                <td></td>
+                <td>8.4 ልዩነት ለድርጅት ተመላሽ ___________________</td>
+            </tr>
+             <tr class="form1">
+                <td></td>
+                <td>8.5 ለተጓዥ ተከፋይ _________________________</td>
+            </tr>
+            </table>
+        <table>
+            <tr class="form1">
+            <td>9. ስራዉ መሰራቱን ያረጋገጠዉ ዳይሬክቶሬት ስም ________________________ ፊርማ _____________ ቀን _____________</td>
+            </tr>
+        </table>
+        </table>
+        <table>
+            <tr class="form1">
+            <td>10. ልዩነት ለድርጅት ተመላሸ /ለተጓዥ ተከፋይ አንድ ይሰረዝ/__________________________________</td>
+            </tr>
+        </table>
+        <table class="form1">
+            <tr>
+                <td></td>
+                <td> ያዘጋጀዉ ሰዉ ስም ____________________________</td>
+                <td> ያረጋገጠው ሰዉ ስም ___________________________</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> ፊርማ ____________________________________</td>
+                <td> ፊርማ ____________________________________</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td> ያጸደቀዉ ሰዉ ስም ____________________________</td>
+                <td> የተቀባይ ስም ________________________________</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> ፊርማ ____________________________________</td>
+                <td> ፊርማ ____________________________________</td>
+            </tr>
+
+        </table>
+        <br>
+        <br>
+        {{!-- <table class="notice">
+            <tr>
+                <p>
+                    <u>
+                        <strong>ማስታወሻ</strong>
+                    </u>
+                </p>
+            </tr>
+            <tr>
+                <p>
+                    ይህ ቅጽ በአንድ ቅጂ ተዘጋጅቶ ከጉዞ መልስ ከሚዘጋጀዉ የዉሎ አበል ማወራረጃ ቅጽ ጋር መያያዝ አለበት፡፡
+                ያስረክባል፡፡
+                </p>
+            </tr>
+        </table> --}}
+    </div>
+</body>
+</html>

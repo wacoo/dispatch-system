@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <style>
+        {{ asset "style.css" "utf8" }}
+    </style>
+</head>
+    <body>
+    <div class="paperA4">
+        <table>
+            <tr>
+                <td>
+                    <img src="{{asset "Picture1.png" "dataURI"}}" style="width:80px; max-width:300px;" />
+                </td>
+                <td>
+                    <p>የድርጅቱ ስም፦ ብርሃንና ሰላም ማተሚያ ድርጅት</p>
+                    <p>Company Name: Bernanena Selam Printing Enterprise</p>
+                </td>
+                <td colspan="2">
+                    <p>Document No. BSOF-300</p>
+                    <p>ቅጽ ቁጥር፦ </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>ርዕስ</h5>
+                    <h5>Title</h5>
+                </td>
+                <td>
+                    የነዳጅ መቆጣጠርያ ቅጽ
+                </td>
+                <td>
+                    <h5>Reision N0. 01</h5>
+                    <h5>የክለሳ ቁጥር</h5>
+                </td>
+                <td>
+                    <h5>Page No. 1 of 1</h5>
+                    <h5>ገጽ</h5>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="date">
+                <td>የሰሌዳ ቁጥር፦ </td>
+                <td></td>
+                <td class="right">ካርድ የተከፈተበት ቀን፦ <u>{{cdispatch.departure_date}}</td>
+            </tr>
+            <tr class="date">
+                <td></td>
+                <td></td>
+                <td class="right">ተሽከርካሪዉ በሊትር የሚጓዘዉ፦ <u>{{cdispatch.vehicle.license_plate}}</u></td>
+            </tr>
+            <tr></tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>ተ.ቁ.</th>
+                <th>የተጠየቀበት ቀን</th>
+                <th>የተቀዳበት ቀን</th>
+                <th colspan="2">የተቀዳዉ በሊትር</th>
+                <th>ነዳጅ ሲቀዳ የነበረዉ ኪ.ሜ.</th>
+                <th>የተጓዘዉ ኪ.ሜ.</th>
+                <th>በሊትር የተጓዘዉ ኪ.ሜ.</th>
+                <th>በመኪናዉ ታንከር ያለዉ ነዳጅ</th>
+                <th>አስተያየት</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>ቤንዚን</td>
+                <td>ናፍጣ</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {{#each cdispatch}}
+            <tr>
+                <td>{{no}}</td>
+                <td>{{refuel_request_date}}</td>
+                <td>{{refuel_date}}</td>
+                <td>{{benzine}}</td>
+                <td>{{nafta}}</td>
+                <td>{{km_during_refuel}}</td>
+                <td>{{km_during_previous_refuel}}</td>
+                <td>{{km_per_liter}}</td>
+                <td>{{current_fuel_level}}</td>
+                <td>{{remark}}</td>
+            </tr>
+            {{/each}}
+        </table>
+        <br>
+        <table class="form2">
+            <tr>
+                <td>
+                    <p>
+                        1. ተሽከርካሪዉን የሚያሽከረከርዉ ሹፌር ስም__________________________________________ ፊርማ ____________________
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        2. የጠቀላላ አገልግሎት የዶኪመንቴሽን ሰራተኛ/ ተወካየ ስም _______________________________ ፊርማ ፟____________________
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        3. የንብረት አስተዳደር ምዝገባና ቁጥጥር ተወካይ ስም ___________________________________ ፊርማ ____________________
+                    </p>
+                </td>    
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

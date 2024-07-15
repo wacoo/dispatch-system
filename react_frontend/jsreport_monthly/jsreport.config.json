@@ -1,0 +1,57 @@
+{
+  "httpPort": 5555,
+  "store": {
+    "provider": "fs"
+  },
+  "blobStorage": {
+    "provider": "fs"
+  },
+  "logger": {
+    "console": {
+      "transport": "console",
+      "level": "debug"
+    },
+    "file": {
+      "transport": "file",
+      "level": "info",
+      "filename": "logs/reporter.log"
+    },
+    "error": {
+      "transport": "file",
+      "level": "error",
+      "filename": "logs/error.log"
+    }
+  },
+  "allowLocalFilesAccess": true,
+  "reportTimeout": 60000,
+  "templatingEngines": {
+    "strategy": "http-server"
+  },
+  "extensions": {
+    "authentication": {
+      "cookieSession": {},
+      "admin": {
+        "username": "admin",
+        "password": "password"
+      },
+      "enabled": false
+    },
+    "scripts": {
+      "strategy": "http-server"
+    }
+  },
+  "chrome": {
+    "timeout": 60000,
+    "launchOptions": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"],
+      "protocolTimeout": 60000
+    }
+  },
+  "apps": [
+    {
+      "name": "jsreport",
+      "script": "server.js",
+      "args": "--config jsreport.config.json"
+    }
+  ]
+}

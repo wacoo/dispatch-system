@@ -30,61 +30,61 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/drivers')}>
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/drivers')}>
         <ListItemIcon>
           <AirlineSeatReclineNormalIcon />
         </ListItemIcon>
         <ListItemText primary="Drivers" />
       </ListItemButton>}
-      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/vehicles')}>
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/vehicles')}>
         <ListItemIcon>
           <DirectionsCarIcon />
         </ListItemIcon>
         <ListItemText primary="Vehicles" />
       </ListItemButton>}
-      {user.user?.access_level >= 0 && <ListItemButton  onClick={() => navigate('/requests')}>
+      {user?.user?.access_level >= 0 && <ListItemButton  onClick={() => navigate('/requests')}>
         <ListItemIcon>
         <ContactSupportIcon />
         </ListItemIcon>
         <ListItemText primary="Requests" />
       </ListItemButton>}
-      {user.user?.access_level >= 1 && <ListItemButton onClick={() => navigate('/approvals')}>
+      {user?.user?.access_level >= 1 && <ListItemButton onClick={() => navigate('/approvals')}>
         <ListItemIcon>
           <ApprovalIcon />
         </ListItemIcon>
         <ListItemText primary="Approvals" />
       </ListItemButton>}
-      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/dispatches')}>
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/dispatches')}>
         <ListItemIcon>
           <AltRouteIcon />
         </ListItemIcon>
         <ListItemText primary="Dispatches" />
       </ListItemButton>}
-      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/dispatch_report')}>
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/dispatch_report')}>
         <ListItemIcon>
           <AssignmentTurnedInIcon />
         </ListItemIcon>
         <ListItemText primary="Complete dispatch" />
       </ListItemButton>}
-      {user.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/refuels')}>
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/refuels')}>
         <ListItemIcon>
           <LocalGasStationIcon />
         </ListItemIcon>
         <ListItemText primary="Refuels" />
       </ListItemButton>}
-      {user.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/users')}>
+      {user?.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/users')}>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItemButton>}
-      {user.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/departments')}>
+      {user?.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/departments')}>
         <ListItemIcon>
           <BusinessIcon />
         </ListItemIcon>
         <ListItemText primary="Departments" />
       </ListItemButton>}
-      {user.user?.access_level >= 2 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
+      {user?.user?.access_level >= 2 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>

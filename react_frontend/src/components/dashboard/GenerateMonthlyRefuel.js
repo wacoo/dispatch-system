@@ -36,15 +36,6 @@ const GenerateDispatchReport = () => {
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const [dispatchId, setDispatchID] = useState('');
     const [vehicleId, setVehicleID] = useState('');
-    const [from, setFrom] = useState(null);
-    const [to, setTo] = useState(null);
-
-    const [refuelMData, setRefuelMData] = useState(
-        {
-            from: '',
-            to: ''
-        }
-    );
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -57,15 +48,6 @@ const GenerateDispatchReport = () => {
         return () => clearTimeout(timer);
     }, [error, success]);
 
-
-    useEffect(() => {
-        setRefuelMData(prevData => ({
-            ...prevData,
-            from: new Date(from).toISOString(),
-            to: new Date(to).toISOString()
-        }));
-    }, [from, to]);
-
     useEffect(() => {
         // You can initialize dispatchID here if necessary, for example:
         if (dispatches.length > 0) {
@@ -73,43 +55,19 @@ const GenerateDispatchReport = () => {
         }
       }, [dispatches]);
 
-
-    // const generateReport = async (name, data) => {
-    //     try {
-    //         console.log(data);
-    //         jsreport.serverUrl = 'http://localhost:4444';
-    //         const response = await jsreport.render({
-    //             template: {
-    //                 name: name,
-    //                 // content: 'Hello from {{message}}',
-    //                 // engine: 'handlebars',
-    //                 // recipe: 'chrome-pdf'
-    //             },
-    //             data: {
-    //                 cdispatch: data
-    //             }
-    //         });
-    //         response.download('myreport.pdf');
-    //         response.openInWindow({ title: 'My Report' });
-    //         // setReportData(response.data.toString('utf8'));
-    //     } catch (error) {
-    //         console.error('Error generating report:', error);
-    //     }
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(fetchDispatchById({ dispatchId: dispatchId })).then((res) => {
+        dispatch(fetchRefuels()).then((res) => {
             console.log(res.payload);
-            if (res.payload?.id) {
-                let data = { ...res.payload };
-                data.request = data.vehicle_requests[0];
-                data.difference = data.return_milage - data.departure_milage;
-                data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
-                data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_act);
-                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, data.return_time_est);
-                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, data.return_time_act);
-                generateReport('dispatch', data);
+            if (res.payload) {
+                // let data = { ...res.payload };
+                // data.request = data.vehicle_requests[0];
+                // data.difference = data.return_milage - data.departure_milage;
+                // data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
+                // data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_act);
+                // data.return_date_est = convertToEthiopianDateTime(data.return_date_est, data.return_time_est);
+                // data.return_date_act = convertToEthiopianDateTime(data.return_date_act, data.return_time_act);
+                generateReport('monthly', refuels);
             }
         })
     }
@@ -168,32 +126,6 @@ const GenerateDispatchReport = () => {
     const handleRefuelReport = (e) => {
         e.preventDefault();
         dispatch(fetchRefuelsById({ vehicleId: vehicleId })).then((res) => {
-            if (res.payload[0]?.id) {
-                let data = [...res.payload];
-                if (Array.isArray(data)) {
-                    data = data.map((ref, idx) => ({
-                        ...ref,
-                        no: idx + 1
-                    }));
-                } else {
-                    console.error("data is not an array");
-                }
-                console.log(res.payload);
-                generateReport('refuel', data);
-            }
-        });
-    }
-
-    useEffect(() => {
-        dispatch(fetchDispatches());
-        dispatch(fetchUsers());
-        dispatch(fetchRefuels());
-    }, []);
-
-
-    const handleRefuelAllReport = (e) => {
-        e.preventDefault();
-        dispatch(fetchRefuels({ vehicleId: vehicleId })).then((res) => {
             if (res.payload[0]?.id) {
                 let data = [...res.payload];
                 if (Array.isArray(data)) {
@@ -356,41 +288,6 @@ const GenerateDispatchReport = () => {
                     </FormControl>
                 </form>
             </Grid>
-            <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Monthly Refuels(የነዳጅ መቆጣጠርያ ቅጽ)</Typography>
-        </Grid>
-        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
-            {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
-            <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <EtDatePicker
-                        label="From (ከ)"
-                        onChange={(selectedDate) => {
-                            setFrom(selectedDate);
-                        }}
-                        value={from}
-                    />
-                </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <EtDatePicker
-                        label="To ()"
-                        onChange={(selectedDate) => {
-                            setTo(selectedDate);
-                        }}
-                        value={from}
-                    />
-                </FormControl>
-            </Grid>
-            <Grid item xs={12} marginTop={2}>
-                <form onSubmit={(e) => handleRefuelAllReport(e)}>
-                    <FormControl fullWidth>
-                        <Button variant="outlined" type="submit">Generate Report</Button>
-                    </FormControl>
-                </form>
-            </Grid>
-        </Grid>
         </Grid>
     </>
 

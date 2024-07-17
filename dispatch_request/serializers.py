@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from .models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter
 
 class UserLimitedSerializer(serializers.ModelSerializer):
     ''' only for Eager fetch '''
@@ -193,7 +193,7 @@ class DispatchSerializer(serializers.ModelSerializer):
 class RefuelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Refuel
-        fields=('id', 'vehicle', 'refuel_request_date', 'refuel_date', 'nafta', 'benzine', 'km_during_refuel', 'km_during_previous_refuel', 'km_per_liter', 'current_fuel_level', 'remark')
+        fields=('id', 'vehicle', 'refuel_request_date', 'refuel_date', 'nafta', 'benzine', 'nafta_price_ppl', 'benzine_price_ppl', 'km_during_refuel', 'km_during_previous_refuel', 'km_per_liter', 'current_fuel_level', 'remark')
         #fields = '__all__'
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -204,6 +204,46 @@ class RefuelSerializer(serializers.ModelSerializer):
         # except VehicleRequest.DoesNotExist:
         #     representation['request'] = None
         return representation
+
+class PricePerLiterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PricePerLiter
+        fields = '__all__'
+
+# class RefuelALLSerializer(serializers.ModelSerializer):
+#     total_benzine_liters = serializers.SerializerMethodField()
+#     total_benzine_price = serializers.SerializerMethodField()
+#     total_nafta_liters = serializers.SerializerMethodField()
+#     total_nafta_price = serializers.SerializerMethodField()
+
+#     class Meta:
+#         model = Refuel
+#         fields = ('id', 'vehicle', 'total_benzine_liters', 'total_benzine_price',
+#                   'total_nafta_liters', 'total_nafta_price')
+
+#     def to_representation(self, instance):
+#         representation = super().to_representation(instance)
+#         try:
+#             representation['vehicle'] = VehicleLimitedSerializer(instance.vehicle).data
+#         except Vehicle.DoesNotExist:
+#             representation['vehicle'] = None
+#         return representation
+
+#     def get_total_benzine_liters(self, obj):
+#         total_liters = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_benzine_liters'))['actual_benzine_liters__sum']
+#         return total_liters if total_liters is not None else 0
+
+#     def get_total_benzine_price(self, obj):
+#         total_price = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_benzine_price'))['actual_benzine_price__sum']
+#         return total_price if total_price is not None else 0
+
+#     def get_total_nafta_liters(self, obj):
+#         total_liters = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_nafta_liters'))['actual_nafta_liters__sum']
+#         return total_liters if total_liters is not None else 0
+
+#     def get_total_nafta_price(self, obj):
+#         total_price = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_nafta_price'))['actual_nafta_price__sum']
+#         return total_price if total_price is not None else 0
     
 class DepartmentSerializer(serializers.ModelSerializer):
     ''' Department serializer '''

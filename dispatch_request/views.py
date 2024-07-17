@@ -12,8 +12,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake
-from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSerializer, VehicleSerializer, DispatchSerializer, GroupSerializer, UserSerializer, RefuelSerializer, DepartmentSerializer, VehicleMakeSerializer
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter
+from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSerializer, VehicleSerializer, DispatchSerializer, GroupSerializer, UserSerializer, RefuelSerializer, DepartmentSerializer, VehicleMakeSerializer, PricePerLiterSerializer
 
 from rest_framework import viewsets
 from .models import User, Group
@@ -220,13 +220,13 @@ class VehicleMakeViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-# class DispatchReportViewSet(viewsets.ModelViewSet):
-#     ''' dispatch report api view set '''
-#     queryset = DispatchReport.objects.all()
-#     serializer_class = DispatchReportSerializer
+class PricePerLiterViewSet(viewsets.ModelViewSet):
+    ''' PricePerLiter api view set '''
+    queryset = PricePerLiter.objects.all()
+    serializer_class = PricePerLiterSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class VehicleRequestDispatchUpdateAPIView(APIView):
     authentication_classes = [JWTAuthentication]

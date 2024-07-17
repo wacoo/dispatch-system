@@ -1,4 +1,4 @@
-import { Alert, Autocomplete, Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Box, Button, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, Switch, TextField, Typography } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import Chart from "./Chart"
 import Deposits from "./Deposits"
@@ -24,19 +24,31 @@ const RefuelContent = () => {
     const [error, setError] = useState('');
     const [rrdate, setRRdate] = useState(null);
     const [rdate, setRdate] = useState(null);
+    const [addPPL, setAddPPL] = useState(false);
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const [refuelData, setRefuelData] = useState({
         vehicle: '1',
         refuel_request_date: '', 
         refuel_date: '', 
         nafta: '',
-        benzine: '',        
+        benzine: '',
+        nafta_price_ppl: 0,
+        benzine_price_ppl: 0,
         km_during_refuel: '',
         km_during_previous_refuel: '',
         km_per_liter: '',
         current_fuel_level: '',
         remark: '',
     });
+
+
+    const [PPLData, setPPLData] = useState({
+        nafta: 0,
+        benzine: 0,
+        nafta_active: false,
+        benzine_active: false,
+    })
+
 
     useEffect(() => {
         setRefuelData(prevState => ({
@@ -46,6 +58,10 @@ const RefuelContent = () => {
 
         }));
     }, [rdate, rrdate]);
+
+    useEffect(() => {
+        
+    }, [PPLData]);
 
     useEffect(() => {
         dispatch(fetchVehicles());
@@ -72,6 +88,52 @@ const RefuelContent = () => {
             }
         }
     )}
+
+
+    const handleAddPPL = async (e) => {
+        e.preventDefault();
+        if (PPLData.nafta > 0) {
+            setPPLData(prevState => ({
+                ...prevState,
+                nafta_active: true
+            }))
+        } else if (PPLData.benzine > 0) {
+            setPPLData(prevState => ({
+                ...prevState,
+                benzine_active : true
+            }))
+
+        }
+
+        if (PPLData.nafta <= 0) {
+            setPPLData(prevState => ({
+                ...prevState,
+                nafta_active: false
+            }))
+        } else if (PPLData.benzine <= 0) {
+            setPPLData(prevState => ({
+                ...prevState,
+                benzine_active : false
+            }))
+
+        }
+        // console.log(PPLData.nafta);
+        
+
+        console.log(PPLData);
+        // dispatch(createPPL(PPLData)).then((res) => {
+        //     if (res.payload?.id) {
+        //         setSuccessMake(true);
+        //     } else {
+        //         setErrorMake(res.payload);
+        //         console.log(res.payload);
+        //     }
+        // }).catch((error) => {
+        //     // Handle any errors from the first then block
+        //     setErrorMake(error);
+        //     console.log(error);
+        // });
+    };
 
     return <>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
@@ -179,8 +241,44 @@ const RefuelContent = () => {
                 {/* <Alert severity="info">This is an info Alert.</Alert>
                 <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>
+
+            <Grid item xs={12} marginTop={2}>
+                <FormControlLabel control={<Switch />} label="Change vehicle status" onClick={() => setAddPPL(!addPPL)}/>
+            </Grid>
         </Grid>
 
+        { addPPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
+            <Typography variant="h4">Price per Liter ()</Typography>
+        </Grid> }
+        { addPPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label="Nafta ()" type="number" name="nafta" id="nafta" onChange={(e) => setPPLData((prev) => ({...prev, nafta: e.target.value}))}/>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label="Benzine ()" type="number" name="benzine" id="benzine" onChange={(e) => setPPLData((prev) => ({...prev, benzine: e.target.value}))}/>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} marginTop={2}>
+                <form onSubmit={(e)=> handleAddPPL(e)}>
+                    <FormControl fullWidth>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
+                    </FormControl>
+                </form>                
+            </Grid>
+            <Grid item xs={12} marginTop={2}>
+                {
+                    // successMake && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+                    //         PPL added successfully!
+                    // </Alert>
+                }
+                {/* { errorMake && <Alert severity="error">{errorMake}</Alert>}  */}
+                {/* <Alert severity="info">This is an info Alert.</Alert>
+                <Alert severity="warning">This is a warning Alert.</Alert> */}
+            </Grid>
+        </Grid>}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
             <Typography variant="h4">Refuels</Typography>
         </Grid>

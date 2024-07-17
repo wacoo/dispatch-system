@@ -209,7 +209,8 @@ class Refuel(models.Model):
   refuel_date = models.DateField(default='')
   nafta = models.CharField(max_length=50, blank=True, default='')
   benzine = models.CharField(max_length=50, blank=True, default='')
-  #fuel_type = models.CharField(max_length=50, choices=[(tag.name, tag.value) for tag in FuelType], default=FuelType.NAFTA.value)
+  nafta_price_ppl = models.FloatField(blank=True, default=0)
+  benzine_price_ppl = models.FloatField(blank=True, default=0)
   km_during_refuel = models.IntegerField()
   km_during_previous_refuel = models.IntegerField()
   km_per_liter = models.FloatField()
@@ -222,6 +223,14 @@ class Department(models.Model):
   location = models.CharField(max_length=100, default='')
   extension = models.CharField(max_length=50, default='')
   phone_number = models.CharField(max_length=100, default='')
+
+
+class PricePerLiter(models.Model):
+  ''' Refuel class'''
+  nafta = models.CharField(max_length=200)
+  benzine = models.CharField(max_length=100, default='')
+  nafta_active = models.BooleanField()
+  benzine_active = models.BooleanField()
 
 class VehicleMake(models.Model):
   ''' Vehicle make class'''

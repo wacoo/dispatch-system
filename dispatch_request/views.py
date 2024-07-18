@@ -222,11 +222,12 @@ class VehicleMakeViewSet(viewsets.ModelViewSet):
 
 class PricePerLiterViewSet(viewsets.ModelViewSet):
     ''' PricePerLiter api view set '''
-    queryset = PricePerLiter.objects.all()
     serializer_class = PricePerLiterSerializer
-
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return PricePerLiter.objects.filter(nafta_active=True) | PricePerLiter.objects.filter(benzine_active=True)
 
 class VehicleRequestDispatchUpdateAPIView(APIView):
     authentication_classes = [JWTAuthentication]

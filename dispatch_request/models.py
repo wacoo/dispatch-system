@@ -226,8 +226,8 @@ class Department(models.Model):
 
 
 class PricePerLiter(models.Model):
-  ''' Refuel class'''
-  nafta = models.CharField(max_length=200)
+  ''' Price per liter class'''
+  nafta = models.CharField(max_length=200, default='')
   benzine = models.CharField(max_length=100, default='')
   nafta_active = models.BooleanField()
   benzine_active = models.BooleanField()

@@ -24,7 +24,7 @@ router.register(r'refuels', RefuelViewSet)
 router.register(r'make', VehicleMakeViewSet)
 router.register(r'approvers', ApproversViewSet, basename='approvers')
 router.register(r'dispatchers', DispatchersViewSet, basename='dispatchers')
-router.register(r'price_per_liter', DispatchersViewSet, basename='price_per_liter')
+router.register(r'price_per_liter', PricePerLiterViewSet, basename='price_per_liter')
 # router.register(r'dispatch_reports', DispatchReportViewSet)
 
 # Define URL patterns

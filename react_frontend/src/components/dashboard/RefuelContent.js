@@ -13,7 +13,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import RefuelsTable from "./RefuelsTable";
-import { createRefuel, fetchRefuels } from "../../redux/refuel/refuelSlice";
+import { createPPL, createRefuel, fetchActivePPL, fetchRefuels, updatePPL } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 import EtDatePicker from "mui-ethiopian-datepicker";
 
@@ -21,11 +21,14 @@ import EtDatePicker from "mui-ethiopian-datepicker";
 const RefuelContent = () => {
     const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
+    const [successAdd, setSuccessAdd] = useState(false);
     const [error, setError] = useState('');
+    const [errorAdd, setErrorAdd] = useState('');
     const [rrdate, setRRdate] = useState(null);
     const [rdate, setRdate] = useState(null);
     const [addPPL, setAddPPL] = useState(false);
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const [refuelData, setRefuelData] = useState({
         vehicle: '1',
         refuel_request_date: '', 
@@ -65,16 +68,20 @@ const RefuelContent = () => {
 
     useEffect(() => {
         dispatch(fetchVehicles());
+        dispatch(fetchActivePPL());
     }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setError('');
+            setErrorAdd('');
             setSuccess(false);
+            setSuccessAdd(false);
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, [error, success]);
+    }, [error, success, errorAdd, successAdd]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createRefuel(refuelData)).then((res) => {
@@ -92,48 +99,61 @@ const RefuelContent = () => {
 
     const handleAddPPL = async (e) => {
         e.preventDefault();
-        if (PPLData.nafta > 0) {
-            setPPLData(prevState => ({
-                ...prevState,
-                nafta_active: true
-            }))
-        } else if (PPLData.benzine > 0) {
-            setPPLData(prevState => ({
-                ...prevState,
-                benzine_active : true
-            }))
-
-        }
-
-        if (PPLData.nafta <= 0) {
-            setPPLData(prevState => ({
-                ...prevState,
-                nafta_active: false
-            }))
-        } else if (PPLData.benzine <= 0) {
-            setPPLData(prevState => ({
-                ...prevState,
-                benzine_active : false
-            }))
-
-        }
+        
         // console.log(PPLData.nafta);
         
-
-        console.log(PPLData);
-        // dispatch(createPPL(PPLData)).then((res) => {
-        //     if (res.payload?.id) {
-        //         setSuccessMake(true);
-        //     } else {
-        //         setErrorMake(res.payload);
-        //         console.log(res.payload);
-        //     }
-        // }).catch((error) => {
-        //     // Handle any errors from the first then block
-        //     setErrorMake(error);
-        //     console.log(error);
-        // });
+        dispatch(createPPL(PPLData)).then((res) => {
+            if (res.payload?.id) {
+                dispatch(fetchActivePPL());
+                setSuccessAdd(true);
+                ppls.forEach((ppl) => {
+                    if (ppl.nafta_active == true || ppl.benzine_active == true) {
+                        dispatch(updatePPL({id: ppl.id, benzine_active: false, nafta_active: false}));
+                    }
+                });
+            } else {
+                setErrorAdd(res.payload);
+                console.log(res.payload);
+            }
+        }).catch((error) => {
+            // Handle any errors from the first then block
+            setErrorAdd(error);
+            console.log(error);
+        });
     };
+
+
+    const handlePriceChange = (e, gas) => {
+        const val = e.target.value;
+        if (gas === "nafta") {
+            if (val > 0) {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    nafta_active: true
+                }))
+            } else {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    nafta_active: false
+                }))
+            }            
+            setPPLData((prev) => ({...prev, nafta: val}))
+        }
+        if (gas === "benzine") {
+            if (val > 0) {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    benzine_active: true
+                }))
+            } else {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    benzine_active: false
+                }))
+            }            
+            setPPLData((prev) => ({...prev, benzine: val}))
+        }
+    }
 
     return <>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
@@ -243,22 +263,22 @@ const RefuelContent = () => {
             </Grid>
 
             <Grid item xs={12} marginTop={2}>
-                <FormControlLabel control={<Switch />} label="Change vehicle status" onClick={() => setAddPPL(!addPPL)}/>
+                <FormControlLabel control={<Switch />} label="Add fuel price" onClick={() => setAddPPL(!addPPL)}/>
             </Grid>
         </Grid>
 
         { addPPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Price per Liter ()</Typography>
+            <Typography variant="h4">Price per Liter (የነዳጅ ዋጋ በሊትር)</Typography>
         </Grid> }
         { addPPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Nafta ()" type="number" name="nafta" id="nafta" onChange={(e) => setPPLData((prev) => ({...prev, nafta: e.target.value}))}/>
+                    <TextField label={`Nafta (ናፍጣ): ${ppls[ppls.length - 1]?.nafta}` || "Nafta (ናፍጣ)"} type="number" name="nafta" id="nafta" onChange={(e) => handlePriceChange(e, 'nafta')}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Benzine ()" type="number" name="benzine" id="benzine" onChange={(e) => setPPLData((prev) => ({...prev, benzine: e.target.value}))}/>
+                    <TextField label={`Benzine (ቤንዚን): ${ppls[ppls.length - 1]?.benzine}` || "Benzine (ቤንዚን)"} type="number" name="benzine" id="benzine" onChange={(e) => handlePriceChange(e, 'benzine')}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
@@ -270,11 +290,11 @@ const RefuelContent = () => {
             </Grid>
             <Grid item xs={12} marginTop={2}>
                 {
-                    // successMake && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-                    //         PPL added successfully!
-                    // </Alert>
+                    successAdd && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+                            PPL added successfully!
+                    </Alert>
                 }
-                {/* { errorMake && <Alert severity="error">{errorMake}</Alert>}  */}
+                { errorAdd && <Alert severity="error">{errorAdd}</Alert>} 
                 {/* <Alert severity="info">This is an info Alert.</Alert>
                 <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>

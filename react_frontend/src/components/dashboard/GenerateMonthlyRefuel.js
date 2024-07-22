@@ -67,6 +67,7 @@ const GenerateDispatchReport = () => {
                 // data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_act);
                 // data.return_date_est = convertToEthiopianDateTime(data.return_date_est, data.return_time_est);
                 // data.return_date_act = convertToEthiopianDateTime(data.return_date_act, data.return_time_act);
+                const monthly = calculateRefuelData(refuelData, startDate, endDate, benzinePricePerLiter, naftaPricePerLiter);
                 generateReport('monthly', refuels);
             }
         })

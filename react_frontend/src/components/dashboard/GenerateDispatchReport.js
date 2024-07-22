@@ -15,12 +15,12 @@ import { EthiopianDate } from "mui-ethiopian-datepicker/dist/util/EthiopianDateU
 import EtDatePicker from "mui-ethiopian-datepicker";
 import { fetchUsers } from "../../redux/user/userSlice";
 import jsreport from 'jsreport-browser-client-dist';
-import { convertTo24HourFormat, convertToEthiopianDateTime, times } from "../../functions/date";
+import { convertTo24HourFormat, convertToEthiopianDateTime, formatDateToYYYYMMDD, times } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
 import { fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
-import { generateReport } from "../../functions/report";
+import { calculateRefuelData, generateReport } from "../../functions/report";
 
 const GenerateDispatchReport = () => {
     const [success, setSuccess] = useState(false);
@@ -33,6 +33,7 @@ const GenerateDispatchReport = () => {
     const dispatches = useSelector((state) => state.dispatches.dispatches.results) ?? [];
     const refuels = useSelector((state) => state.refuels.refuels.results) ?? [];
     // const supervisors = useSelector((state) => state.users.users.results) ?? [];
+    const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const [dispatchId, setDispatchID] = useState('');
     const [vehicleId, setVehicleID] = useState('');
@@ -61,8 +62,8 @@ const GenerateDispatchReport = () => {
     useEffect(() => {
         setRefuelMData(prevData => ({
             ...prevData,
-            from: new Date(from).toISOString(),
-            to: new Date(to).toISOString()
+            from: formatDateToYYYYMMDD(new Date(from)),
+            to: formatDateToYYYYMMDD(new Date(to))
         }));
     }, [from, to]);
 
@@ -193,21 +194,26 @@ const GenerateDispatchReport = () => {
 
     const handleRefuelAllReport = (e) => {
         e.preventDefault();
-        dispatch(fetchRefuels({ vehicleId: vehicleId })).then((res) => {
-            if (res.payload[0]?.id) {
-                let data = [...res.payload];
-                if (Array.isArray(data)) {
-                    data = data.map((ref, idx) => ({
-                        ...ref,
-                        no: idx + 1
-                    }));
-                } else {
-                    console.error("data is not an array");
-                }
-                console.log(res.payload);
-                generateReport('refuel', data);
-            }
-        });
+        console.log(refuels, refuelMData, ppls);
+        const montly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls.benzine, ppls.nafta);
+        
+        console.log('M: ', montly);
+        generateReport('monthly', montly);
+        // dispatch(fetchRefuels({ vehicleId: vehicleId })).then((res) => {
+        //     if (res.payload[0]?.id) {
+        //         let data = [...res.payload];
+        //         if (Array.isArray(data)) {
+        //             data = data.map((ref, idx) => ({
+        //                 ...ref,
+        //                 no: idx + 1
+        //             }));
+        //         } else {
+        //             console.error("data is not an array");
+        //         }
+        //         console.log(res.payload);
+        //         generateReport('refuel', data);
+        //     }
+        // });
     }
 
     useEffect(() => {

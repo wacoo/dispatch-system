@@ -232,6 +232,13 @@ class PricePerLiter(models.Model):
   nafta_active = models.BooleanField()
   benzine_active = models.BooleanField()
 
+class MonthlyPlan(models.Model):
+  ''' refuel monthly plan'''  
+  vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+  month = models.CharField(max_length=100, default='')
+  km = models.CharField(max_length=100, default='')
+  liters = models.FloatField(blank=True, default=0)
+
 class VehicleMake(models.Model):
   ''' Vehicle make class'''
   make = models.CharField(max_length=100, unique=True)

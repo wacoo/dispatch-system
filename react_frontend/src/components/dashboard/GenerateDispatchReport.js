@@ -20,7 +20,7 @@ import DispatchTable from "./DispatchTable";
 import { fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
-import { calculateRefuelData, generateReport } from "../../functions/report";
+import { calculateRefuelData, generateReport, generateReportTwo } from "../../functions/report";
 
 const GenerateDispatchReport = () => {
     const [success, setSuccess] = useState(false);
@@ -195,10 +195,10 @@ const GenerateDispatchReport = () => {
     const handleRefuelAllReport = (e) => {
         e.preventDefault();
         console.log(refuels, refuelMData, ppls);
-        const montly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls.benzine, ppls.nafta);
+        const monthly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls[ppls.length - 1].benzine, ppls[ppls.length - 1].nafta);
         
-        console.log('M: ', montly);
-        generateReport('monthly', montly);
+        // console.log('M: ', ppls[ppls]);
+        generateReportTwo('monthly', monthly);
         // dispatch(fetchRefuels({ vehicleId: vehicleId })).then((res) => {
         //     if (res.payload[0]?.id) {
         //         let data = [...res.payload];

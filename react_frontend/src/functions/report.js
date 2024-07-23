@@ -24,6 +24,30 @@ export const generateReport = async (name, data) => {
     }
 };
 
+export const generateReportTwo = async (name, data) => {
+    try {
+        console.log(data);
+    // jsreport.serverUrl = 'http://localhost:4444';
+    jsreport.serverUrl = 'http://192.168.5.6:5555';
+    const response = await jsreport.render({
+        template: {
+        name: name,
+        // content: 'Hello from {{message}}',
+        // engine: 'handlebars',
+        // recipe: 'chrome-pdf'
+        },
+        data: {
+            cmonthly: data
+        }
+    });
+    response.download('myreport.pdf');
+    response.openInWindow({title: 'My Report'});
+    // setReportData(response.data.toString('utf8'));
+    } catch (error) {
+        console.error('Error generating report:', error);
+    }
+};
+
 
 // const refuelData = [
 //     {
@@ -76,7 +100,7 @@ export const generateReport = async (name, data) => {
 //         refuel_date: "2024-07-16",
 //         benzine: "90",
 //         benzine_price_ppl: 0,
-//         current_fuel_level: 70,
+//         current_fuel_level: "70",
 //         km_during_previous_refuel: 4500,
 //         km_during_refuel: 5000,
 //         km_per_liter: 5,
@@ -94,13 +118,29 @@ export const generateReport = async (name, data) => {
 //     }
 // ];
 
+function parseNumbers(obj) {
+    const parsedObj = {};
+    for (const key in obj) {
+        if (typeof obj[key] === 'string' && !isNaN(obj[key])) {
+            parsedObj[key] = parseFloat(obj[key]);
+        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+            parsedObj[key] = parseNumbers(obj[key]);
+        } else {
+            parsedObj[key] = obj[key];
+        }
+    }
+    return parsedObj;
+}
+
 export function calculateRefuelData(refuelData, startDate, endDate, benzinePricePerLiter, naftaPricePerLiter) {
+    const parsedRefuelData = refuelData.map(entry => parseNumbers(entry));
+
     const start = new Date(startDate);
     const end = new Date(endDate);
 
     const results = {};
 
-    refuelData.forEach(entry => {
+    parsedRefuelData.forEach(entry => {
         const refuelDate = new Date(entry.refuel_date);
 
         if (refuelDate >= start && refuelDate <= end) {
@@ -109,29 +149,38 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
             if (!results[vehicleId]) {
                 results[vehicleId] = {
                     vehicle: entry.vehicle,
-                    totalKilometers: 0,
+                    initialKilometers: null,
+                    lastKilometers: null,
                     totalBenzineCost: 0,
                     totalNaftaCost: 0,
+                    totalBenzineUsed: 0,
+                    totalNaftaUsed: 0,
                     initialFuelLevel: 0,
                     calculatedFuelLevel: 0
                 };
             }
 
-            results[vehicleId].totalKilometers += entry.km_during_refuel;
+            // Record the initial kilometers using km_during_previous_refuel for the first entry within the date range
+            if (results[vehicleId].initialKilometers === null) {
+                results[vehicleId].initialKilometers = entry.km_during_previous_refuel;
+            }
 
-            const benzineCost = parseFloat(entry.benzine || 0) * benzinePricePerLiter;
-            const naftaCost = parseFloat(entry.nafta || 0) * naftaPricePerLiter;
+            results[vehicleId].lastKilometers = entry.km_during_refuel;
 
-            results[vehicleId].totalBenzineCost += benzineCost;
-            results[vehicleId].totalNaftaCost += naftaCost;
+            const benzineUsed = entry.benzine || 0;
+            const naftaUsed = entry.nafta || 0;
 
-            const initialFuelLevel = parseFloat(entry.benzine || 0) + parseFloat(entry.nafta || 0);
+            results[vehicleId].totalBenzineCost += benzineUsed * benzinePricePerLiter;
+            results[vehicleId].totalNaftaCost += naftaUsed * naftaPricePerLiter;
+
+            results[vehicleId].totalBenzineUsed += benzineUsed;
+            results[vehicleId].totalNaftaUsed += naftaUsed;
 
             if (refuelDate.getTime() === start.getTime()) {
                 results[vehicleId].initialFuelLevel = entry.current_fuel_level;
             }
 
-            results[vehicleId].calculatedFuelLevel += initialFuelLevel;
+            results[vehicleId].calculatedFuelLevel += benzineUsed + naftaUsed;
             const fuelUsed = entry.km_during_refuel / entry.km_per_liter;
             results[vehicleId].calculatedFuelLevel -= fuelUsed;
 
@@ -142,8 +191,11 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
         }
     });
 
-    // Calculate remaining fuel
+    // Calculate total kilometers and remaining fuel
     for (const vehicleId in results) {
+        if (results[vehicleId].initialKilometers !== null && results[vehicleId].lastKilometers !== null) {
+            results[vehicleId].totalKilometers = results[vehicleId].lastKilometers - results[vehicleId].initialKilometers;
+        }
         results[vehicleId].remainingFuel = results[vehicleId].initialFuelLevel + results[vehicleId].calculatedFuelLevel;
     }
 

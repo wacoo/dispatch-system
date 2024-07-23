@@ -12,8 +12,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter
-from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSerializer, VehicleSerializer, DispatchSerializer, GroupSerializer, UserSerializer, RefuelSerializer, DepartmentSerializer, VehicleMakeSerializer, PricePerLiterSerializer
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter, MonthlyPlan
+from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSerializer, VehicleSerializer, DispatchSerializer, GroupSerializer, UserSerializer, RefuelSerializer, DepartmentSerializer, VehicleMakeSerializer, PricePerLiterSerializer, MonthlyPlanSerializer
 
 from rest_framework import viewsets
 from .models import User, Group
@@ -216,6 +216,27 @@ class VehicleMakeViewSet(viewsets.ModelViewSet):
     ''' department api view set '''
     queryset = VehicleMake.objects.all()
     serializer_class = VehicleMakeSerializer
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class MonthlyPlanViewSet(viewsets.ModelViewSet):
+    ''' department api view set '''
+    queryset = MonthlyPlan.objects.all()
+    serializer_class = MonthlyPlanSerializer
+
+    @action(detail=False, methods=['get'], url_path='last-monthly-plan/(?P<vehicle_id>\d+)')
+    def last_monthly_plan(self, request, vehicle_id=None):
+        try:
+            # Assuming 'vehicle_id' is a foreign key in the MonthlyPlan model
+            last_plan = MonthlyPlan.objects.filter(vehicle_id=vehicle_id).order_by('-id').first()
+            if not last_plan:
+                return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = self.get_serializer(last_plan)
+            return Response(serializer.data)
+        except MonthlyPlan.DoesNotExist:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
 
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]

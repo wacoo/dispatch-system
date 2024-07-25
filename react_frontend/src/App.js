@@ -63,6 +63,10 @@ function App() {
         element: <Dashboard active="Refuel" />
       },
       {
+        path: '/plan',
+        element: <Dashboard active="MonthlyPlan" />
+      },
+      {
         path: '/old_dispatch',
         element: <Dashboard active="GenerateDispatchReport" />
       },

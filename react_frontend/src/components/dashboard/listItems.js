@@ -16,6 +16,7 @@ import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import AirlineSeatReclineNormalIcon from '@mui/icons-material/AirlineSeatReclineNormal';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import BusinessIcon from '@mui/icons-material/Business';
+import NextPlanIcon from '@mui/icons-material/NextPlan';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../redux/user/authContext';
 
@@ -30,6 +31,12 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
+      {user?.user?.access_level >= 3 && <ListItemButton onClick={() => navigate('/plan')}>
+        <ListItemIcon>
+          <NextPlanIcon />
+        </ListItemIcon>
+        <ListItemText primary="Monthly plan" />
+      </ListItemButton>}
       {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/drivers')}>
         <ListItemIcon>
           <AirlineSeatReclineNormalIcon />
@@ -84,7 +91,7 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Departments" />
       </ListItemButton>}
-      {user?.user?.access_level >= 2 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
+      {user?.user?.access_level >= 3 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>

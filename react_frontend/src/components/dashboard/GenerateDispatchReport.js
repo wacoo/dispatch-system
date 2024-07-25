@@ -1,4 +1,4 @@
-import { Alert, Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import Chart from "./Chart"
 import Deposits from "./Deposits"
@@ -195,7 +195,7 @@ const GenerateDispatchReport = () => {
     const handleRefuelAllReport = (e) => {
         e.preventDefault();
         console.log(refuels, refuelMData, ppls);
-        const monthly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls[ppls.length - 1].benzine, ppls[ppls.length - 1].nafta);
+        const monthly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls[ppls.length - 1]?.benzine, ppls[ppls.length - 1]?.nafta);
         
         // console.log('M: ', ppls[ppls]);
         generateReportTwo('monthly', monthly);
@@ -233,23 +233,13 @@ const GenerateDispatchReport = () => {
             {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel>
-                    <Select
-                        labelId="req_lbl"
-                        id="dispatch"
-                        label="Dispatch"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setDispatchID(e.target.value)}
-                    >
-                        {dispatches.map((disp) => (
-                            <MenuItem key={disp.id} value={disp.id}>
-                                {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
-                            </MenuItem>
-                        ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                            <MenuItem value={30}>Yonas</MenuItem> */}
-                    </Select>
+                    {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel> */}
+                    <Autocomplete
+                        options={dispatches}
+                        getOptionLabel={(disp) => `(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0])}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.lname}`}
+                        renderInput={(params) => <TextField {...params} label="Dispatch" sx={{ minWidth: '100%' }} />}
+                        onChange={(event, newValue) => setDispatchID(newValue?.id ?? '')}
+                    />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
@@ -268,23 +258,16 @@ const GenerateDispatchReport = () => {
             {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel>
-                    <Select
-                        labelId="req_lbl"
-                        id="dispatch"
-                        label="Dispatch"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setDispatchID(e.target.value)}
-                    >
-                        {dispatches.map((disp) => (
-                            <MenuItem key={disp.id} value={disp.id}>
-                                {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
-                            </MenuItem>
-                        ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                        <MenuItem value={30}>Yonas</MenuItem> */}
-                    </Select>
+                    {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel> */}
+                    <Autocomplete
+                        options={dispatches}
+                        getOptionLabel={(disp) => 
+                            `(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0])}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.lname}`}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Dispatch" variant="outlined" sx={{ minWidth: '100%' }} />
+                        )}
+                        onChange={(event, newValue) => setDispatchID(newValue?.id ?? '')}
+                        />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
@@ -303,22 +286,17 @@ const GenerateDispatchReport = () => {
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
                     <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatch (ስምሪት)</InputLabel>
-                    <Select
-                        labelId="req_lbl"
-                        id="dispatch"
-                        label="Dispatch"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setDispatchID(e.target.value)}
-                    >
-                        {dispatches.map((disp) => (
-                            <MenuItem key={disp.id} value={disp.id}>
-                                {`(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0]) + ''}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.fname}`}
-                            </MenuItem>
-                        ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                        <MenuItem value={30}>Yonas</MenuItem> */}
-                    </Select>
+                    <Autocomplete
+                        options={dispatches}
+                        getOptionLabel={(disp) => 
+                            `(${disp.id}) ${convertToEthiopianDateTime(disp.assigned_date.split('T')[0])}; ${disp.vehicle.license_plate}; ${disp.vehicle.make} ${disp.vehicle.model}; ${disp.driver.fname} ${disp.driver.lname}`}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Dispatch" variant="outlined" sx={{ minWidth: '100%' }} />
+                        )}
+                        onChange={(event, newValue) => setDispatchID(newValue?.id ?? '')}
+                        isOptionEqualToValue={(option, value) => option.id === value}
+                        value={dispatches?.find(disp => disp.id === dispatchId) || null} // Handle the selected value
+                        />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>
@@ -336,23 +314,18 @@ const GenerateDispatchReport = () => {
             {/* First name, Middle name, Last name in a row (3 on large, 2 on medium, 1 on small) */}
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel>
-                    <Select
-                        labelId="req_lbl"
-                        id="vehicle"
-                        label="vehicle"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setVehicleID(e.target.value)}
-                    >
-                        {vehicles.map((vehicle) => (
-                            <MenuItem key={vehicle.id} value={vehicle.id}>
-                                {`(${vehicle.license_plate}) ${vehicle.make}; ${vehicle.model}; ${vehicle.type}`}
-                            </MenuItem>
-                        ))}
-                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
-                        <MenuItem value={30}>Yonas</MenuItem> */}
-                    </Select>
+                    {/* <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel> */}
+                    <Autocomplete
+                        options={vehicles}
+                        getOptionLabel={(vehicle) => 
+                            `(${vehicle.license_plate}) ${vehicle.make}; ${vehicle.model}; ${vehicle.type}`}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Vehicle" variant="outlined" sx={{ minWidth: '100%' }} />
+                        )}
+                        onChange={(event, newValue) => setVehicleID(newValue?.id ?? '')}
+                        isOptionEqualToValue={(option, value) => option.id === value}
+                        value={vehicles?.find(vehicle => vehicle.id === vehicleId) || null} // Handle the selected value
+                        />
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>

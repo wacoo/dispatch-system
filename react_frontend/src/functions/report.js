@@ -170,6 +170,8 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
             const benzineUsed = entry.benzine || 0;
             const naftaUsed = entry.nafta || 0;
 
+            console.log('BU: ', benzinePricePerLiter);
+            console.log('NU: ', naftaPricePerLiter);
             results[vehicleId].totalBenzineCost += benzineUsed * benzinePricePerLiter;
             results[vehicleId].totalNaftaCost += naftaUsed * naftaPricePerLiter;
 

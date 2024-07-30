@@ -8,8 +8,10 @@ const initialState = {
     refuels: [],
     refuelsById: [],
     activePPLs: [],
+    monthlyPlans: [],
     newRefuel: {},
     newPPL: {},
+    newMonthlyPlan: {},
     updatedPPL: {},
     isLoading: false,
     error: undefined
@@ -82,6 +84,29 @@ const updatePPL = createAsyncThunk('refuels/updatePPL', async({id, nafta_active,
     }
 });
 
+
+const createMonthlyPlan = createAsyncThunk('refuels/createMonthlyPlan', async (data) => {
+    // console.log('Data: ',data);
+    const fullURL = `${url}monthly-plans/`;
+    console.log('Data: ',data);
+    try {
+        const res = await axios.post(fullURL, data, { headers: authHeader() });
+        return res.data;
+    } catch (error ) {
+        return error.message;
+    }
+});
+
+
+const fetchMonthlyPlan = createAsyncThunk('refuels/fetchMonthlyPlan', async() => {
+    try {
+        const fullURL = `${url}monthly-plans/`;
+        const res = await axios.get(fullURL, { headers: authHeader() });
+        return res.data;
+    } catch(error) {
+        return error.message;
+    }
+});
 const refuelSlice = createSlice({
     name: 'refuels',
     initialState,
@@ -159,8 +184,34 @@ const refuelSlice = createSlice({
             state.isLoading = false;
             state.error = action.error.message;
         })
+
+        .addCase(createMonthlyPlan.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(createMonthlyPlan.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.newMonthlyPlan = action.payload;
+            console.log(action.payload);
+        })
+        .addCase(createMonthlyPlan.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(fetchMonthlyPlan.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchMonthlyPlan.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.monthlyPlans = action.payload;
+            console.log(action.payload);
+        })
+        .addCase(fetchMonthlyPlan.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
     }
 })
 
-export {createRefuel, fetchRefuels, fetchRefuelsById, createPPL, fetchActivePPL, updatePPL};
+export {createRefuel, fetchRefuels, fetchRefuelsById, createPPL, fetchActivePPL, updatePPL, createMonthlyPlan, fetchMonthlyPlan};
 export default refuelSlice.reducer;

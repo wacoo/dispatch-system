@@ -129,7 +129,7 @@ class VehicleLimitedSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Vehicle meta '''
         model= Vehicle
-        fields = ('id', 'make', 'model', 'year', 'type', 'license_plate')
+        fields = ('id', 'make', 'model', 'year', 'type', 'license_plate', 'km_per_liter')
 
 class VehicleSerializer(serializers.ModelSerializer):
     ''' Vehicle serializer '''

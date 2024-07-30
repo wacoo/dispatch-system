@@ -17,7 +17,7 @@ import { fetchUsers } from "../../redux/user/userSlice";
 import jsreport from 'jsreport-browser-client-dist';
 import { convertTo24HourFormat, convertToEthiopianDateTime, formatDateToYYYYMMDD, times } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
-import { fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
+import { fetchActivePPL, fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
 import { calculateRefuelData, generateReport, generateReportTwo } from "../../functions/report";
@@ -188,7 +188,8 @@ const GenerateDispatchReport = () => {
     useEffect(() => {
         dispatch(fetchDispatches());
         dispatch(fetchUsers());
-        dispatch(fetchRefuels());
+        dispatch(fetchRefuels());        
+        dispatch(fetchActivePPL());
     }, []);
 
 
@@ -360,6 +361,11 @@ const GenerateDispatchReport = () => {
                         }}
                         value={from}
                     />
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label="Planned KM (የታቀደዉ ኪ/ሜ)" type="number" name="mname" id="mname" onChange={(e) => setDriverData((prev) => ({...prev, mname: e.target.value}))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>

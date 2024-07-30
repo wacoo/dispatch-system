@@ -9,6 +9,7 @@ import VehiclesTable from "./VehiclesTable";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMake, createVehicle, fetchMakes, fetchVehicles, updateVehicle } from "../../redux/vehicle/vehicleSlice";
+import { fetchActivePPL } from "../../redux/refuel/refuelSlice";
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const VehicleContent = () => {
@@ -16,9 +17,12 @@ const VehicleContent = () => {
     const [error, setError] = useState('');
     const [successUpdate, setSuccessUpdate] = useState(false);
     const [errorUpdate, setErrorUpdate] = useState('');
+    const [successUpdateKMPL, setSuccessUpdateKMPL] = useState(false);
+    const [errorUpdateKMPL, setErrorUpdateKMPL] = useState('');
     const [successMake, setSuccessMake] = useState(false);
     const [errorMake, setErrorMake] = useState('');
     const [update, setUpdate] = useState(false);
+    const [updateKMPL, setUpdateKMPL] = useState(false);
     const [addMake, setAddMake] = useState(false);
     const [vehicleId, setVehicleId] = useState(null);
     const dispatch = useDispatch();
@@ -37,22 +41,17 @@ const VehicleContent = () => {
         vehicle_status: 'AVAILABLE',
     })
 
+    const [vehicleUpdateKMPL, setVehicleUpdateKMPL] = useState({
+        km_per_liter: 0,
+    })
+
     const [makeData, setMakeData] = useState({
         make: 'Toyota',
     })
 
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const makes = useSelector((state) => state.vehicles.makes.results) ?? [];
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log(vehicleData);
-    //     dispatch(createVehicle(vehicleData));
-    // }
-
-    // useEffect(() => {
-    //     console.log(makes);
-    // }, [makes]);
-
+    
     const handleUpdate = (e) => {
         e.preventDefault();
         dispatch(updateVehicle({id: vehicleId, data: vehicleUpdateData})).then((res) => {
@@ -66,6 +65,23 @@ const VehicleContent = () => {
         }).catch((error) => {
             // Handle any errors from the first then block
             setErrorUpdate(error);
+            console.log(error);
+        });
+    }
+
+    const handleUpdateKMPL = (e) => {
+        e.preventDefault();
+        dispatch(updateVehicle({id: vehicleId, data: vehicleUpdateKMPL})).then((res) => {
+            if (res.payload?.id) {
+                setSuccessUpdateKMPL(true);
+                dispatch(fetchVehicles());
+            } else {
+                setErrorUpdate(res.payload);
+                console.log(res.payload);
+            }
+        }).catch((error) => {
+            // Handle any errors from the first then block
+            setErrorUpdateKMPL(error);
             console.log(error);
         });
     }
@@ -96,13 +112,15 @@ const VehicleContent = () => {
           setSuccess(false);
           setErrorUpdate('');
           setSuccessUpdate(false);
+          setErrorUpdateKMPL('');
+          setSuccessUpdateKMPL(false);
           setErrorMake('');
           setSuccessMake(false);
         }, 5000);
     
         // Remember to clean up the timer when the component unmounts
         return () => clearTimeout(timer);
-    }, [error, errorUpdate, success, successUpdate, successMake, errorMake]);
+    }, [error, errorUpdate, success, successUpdate, successMake, errorMake, errorUpdateKMPL, successUpdateKMPL]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -215,6 +233,9 @@ const VehicleContent = () => {
             <Grid item xs={12} marginTop={2}>
                 <FormControlLabel control={<Switch />} label="Add vehicle make" onClick={() => setAddMake(!addMake)}/>
             </Grid>
+            <Grid item xs={12} marginTop={2}>
+                <FormControlLabel control={<Switch />} label="Change KM per liter" onClick={() => setUpdateKMPL(!updateKMPL)}/>
+            </Grid>
         </Grid>
 
         { addMake && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
@@ -301,6 +322,55 @@ const VehicleContent = () => {
                     </Alert>
                 }
                 { errorUpdate && <Alert severity="error">{errorUpdate}</Alert>} 
+                {/* <Alert severity="info">This is an info Alert.</Alert>
+                <Alert severity="warning">This is a warning Alert.</Alert> */}
+            </Grid>
+         </Grid>}
+
+         { updateKMPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
+            <Typography variant="h4">Update Vehicle Status (የመኪና ሁኔታ ቀይር)</Typography>
+        </Grid> }
+        { updateKMPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
+        <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel>
+                    <Select
+                        labelId="req_lbl"
+                        id="user"
+                        label="Vehicle"
+                        sx={{ minWidth: '100%' }}
+                        // Handle value, label, onChange
+                        onChange={(e) => setVehicleId(e.target.value)}
+                    >
+                        {vehicles.map((vehicle) => (
+                            <MenuItem key={vehicle.id} value={vehicle.id}>
+                                {`(${vehicle.license_plate}) ${vehicle.make}, ${vehicle.model}, ${vehicle.type}`}
+                            </MenuItem>
+                        ))}
+                        {/* <MenuItem value={20}>Ashenafi</MenuItem>
+                        <MenuItem value={30}>Yonas</MenuItem> */}
+                    </Select>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label="KM per liter ()" type="number" name="km_per_liter" id="km_per_liter" onChange={(e) => setVehicleUpdateKMPL((prev) => ({...prev, km_per_liter: e.target.value}))}/>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} marginTop={2}>
+                <form onSubmit={(e)=> handleUpdateKMPL(e)}>
+                    <FormControl fullWidth>
+                        <Button variant="outlined" type="submit">Update (ቀይር)</Button>
+                    </FormControl>
+                </form>
+            </Grid>
+            <Grid item xs={12} marginTop={2}>
+                {
+                    successUpdateKMPL && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+                            Vehicle updated successfully!
+                    </Alert>
+                }
+                { errorUpdateKMPL && <Alert severity="error">{errorUpdate}</Alert>} 
                 {/* <Alert severity="info">This is an info Alert.</Alert>
                 <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>

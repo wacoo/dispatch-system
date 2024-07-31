@@ -363,11 +363,6 @@ const GenerateDispatchReport = () => {
                     />
                 </FormControl>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-                <FormControl fullWidth>
-                    <TextField label="Planned KM (የታቀደዉ ኪ/ሜ)" type="number" name="mname" id="mname" onChange={(e) => setDriverData((prev) => ({...prev, mname: e.target.value}))}/>
-                </FormControl>
-            </Grid>
             <Grid item xs={12} marginTop={2}>
                 <form onSubmit={(e) => handleRefuelAllReport(e)}>
                     <FormControl fullWidth>

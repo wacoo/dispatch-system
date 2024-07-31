@@ -156,7 +156,11 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
                     totalBenzineUsed: 0,
                     totalNaftaUsed: 0,
                     initialFuelLevel: 0,
-                    calculatedFuelLevel: 0
+                    calculatedFuelLevel: 0,
+                    kmShouldHaveTraveled: 0,
+                    differenceKM: 0,
+                    usedLiters: 0,
+                    differenceLts: 0
                 };
             }
 
@@ -170,14 +174,22 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
             const benzineUsed = entry.benzine || 0;
             const naftaUsed = entry.nafta || 0;
 
-            console.log('BU: ', benzinePricePerLiter);
-            console.log('NU: ', naftaPricePerLiter);
             results[vehicleId].totalBenzineCost += benzineUsed * benzinePricePerLiter;
             results[vehicleId].totalNaftaCost += naftaUsed * naftaPricePerLiter;
 
             results[vehicleId].totalBenzineUsed += benzineUsed;
             results[vehicleId].totalNaftaUsed += naftaUsed;
-
+           
+            if(results[vehicleId].totalBenzineUsed > 0) {
+                results[vehicleId].kmShouldHaveTraveled = benzinePricePerLiter * results[vehicleId].totalBenzineUsed;
+            } else if (results[vehicleId].totalNaftaUsed > 0) {
+                results[vehicleId].kmShouldHaveTraveled = naftaPricePerLiter * results[vehicleId].totalNaftaUsed;
+            } else {
+                results[vehicleId].kmShouldHaveTraveled = 0;
+            }
+            console.log('KMST: ', results[vehicleId].kmShouldHaveTraveled);
+            console.log('TO: ', results[vehicleId].totalKilometers);
+            results[vehicleId].differenceKM = results[vehicleId].kmShouldHaveTraveled - results[vehicleId].totalKilometers;
             if (refuelDate.getTime() === start.getTime()) {
                 results[vehicleId].initialFuelLevel = entry.current_fuel_level;
             }
@@ -185,7 +197,7 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
             results[vehicleId].calculatedFuelLevel += benzineUsed + naftaUsed;
             const fuelUsed = entry.km_during_refuel / entry.km_per_liter;
             results[vehicleId].calculatedFuelLevel -= fuelUsed;
-
+            
             // Ensure fuel level is not negative
             if (results[vehicleId].calculatedFuelLevel < 0) {
                 results[vehicleId].calculatedFuelLevel = 0;
@@ -197,10 +209,24 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
     for (const vehicleId in results) {
         if (results[vehicleId].initialKilometers !== null && results[vehicleId].lastKilometers !== null) {
             results[vehicleId].totalKilometers = results[vehicleId].lastKilometers - results[vehicleId].initialKilometers;
+            
         }
+        
         results[vehicleId].remainingFuel = results[vehicleId].initialFuelLevel + results[vehicleId].calculatedFuelLevel;
-    }
+        if (results[vehicleId].totalBenzineUsed > 0) {
+            results[vehicleId].usedLiters = (results[vehicleId].totalKilometers / results[vehicleId].totalBenzineUsed).toFixed(3);
+        } else if (results[vehicleId].totalNaftaUsed > 0) {
+            results[vehicleId].usedLiters = (results[vehicleId].totalKilometers / results[vehicleId].totalNaftaUsed).toFixed(3);
+        } else {
+            results[vehicleId].usedLiters = 0;
+        }
 
+        console.log('KMPL: ', results[vehicleId].vehicle.km_per_liter);
+        console.log('UL: ', results[vehicleId].usedLiters);
+        results[vehicleId].differenceKM = results[vehicleId].kmShouldHaveTraveled - results[vehicleId].totalKilometers;
+        results[vehicleId].differenceLts = results[vehicleId].vehicle.km_per_liter - results[vehicleId].usedLiters;
+    }
+    
     return results;
 }
 

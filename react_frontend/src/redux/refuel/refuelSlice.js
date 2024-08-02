@@ -23,11 +23,29 @@ const initialState = {
 // };
 
 const full_url = `${url}refuels/`;
-const fetchRefuels = createAsyncThunk('refuels/fetchRefuels', async() => {
+// const fetchRefuels = createAsyncThunk('refuels/fetchRefuels', async() => {
+//     try {
+//         const res = await axios.get(full_url, { headers: authHeader() });
+//         return res.data;
+//     } catch(error) {
+//         return error.message;
+//     }
+// });
+
+const fetchRefuels = createAsyncThunk('refuels/fetchRefuels', async () => {
     try {
-        const res = await axios.get(full_url, { headers: authHeader() });
-        return res.data;
-    } catch(error) {
+        let allRefuels = [];
+        let nextUrl = `${url}refuels/`;
+        
+        // Loop until nextUrl is null (no more pages)
+        while (nextUrl) {
+            const res = await axios.get(nextUrl, { headers: authHeader() });
+            allRefuels = [...allRefuels, ...res.data.results]; // Assuming 'results' contains your data
+            nextUrl = res.data.next; // 'next' will be null if no more pages
+        }
+        console.log(allRefuels);
+        return allRefuels;
+    } catch (error) {
         return error.message;
     }
 });

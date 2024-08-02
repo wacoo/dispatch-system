@@ -140,6 +140,13 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
 
     const results = {};
 
+    const summary = {
+        nafta: 0,
+        benzine: 0,
+        naftaPrice: 0,
+        benzinePrice: 0,
+    };
+
     parsedRefuelData.forEach(entry => {
         const refuelDate = new Date(entry.refuel_date);
 
@@ -179,7 +186,11 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
 
             results[vehicleId].totalBenzineUsed += benzineUsed;
             results[vehicleId].totalNaftaUsed += naftaUsed;
-           
+            console.log(naftaUsed, benzineUsed);
+            summary.benzine += benzineUsed;
+            summary.nafta += naftaUsed;
+            summary.benzinePrice += benzineUsed * benzinePricePerLiter;
+            summary.naftaPrice += naftaUsed * naftaPricePerLiter;
             if(results[vehicleId].totalBenzineUsed > 0) {
                 results[vehicleId].kmShouldHaveTraveled = benzinePricePerLiter * results[vehicleId].totalBenzineUsed;
             } else if (results[vehicleId].totalNaftaUsed > 0) {
@@ -187,8 +198,7 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
             } else {
                 results[vehicleId].kmShouldHaveTraveled = 0;
             }
-            console.log('KMST: ', results[vehicleId].kmShouldHaveTraveled);
-            console.log('TO: ', results[vehicleId].totalKilometers);
+            
             results[vehicleId].differenceKM = results[vehicleId].kmShouldHaveTraveled - results[vehicleId].totalKilometers;
             if (refuelDate.getTime() === start.getTime()) {
                 results[vehicleId].initialFuelLevel = entry.current_fuel_level;
@@ -203,6 +213,7 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
                 results[vehicleId].calculatedFuelLevel = 0;
             }
         }
+        console.log("summary:", summary);
     });
 
     // Calculate total kilometers and remaining fuel
@@ -221,12 +232,10 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
             results[vehicleId].usedLiters = 0;
         }
 
-        console.log('KMPL: ', results[vehicleId].vehicle.km_per_liter);
-        console.log('UL: ', results[vehicleId].usedLiters);
         results[vehicleId].differenceKM = results[vehicleId].kmShouldHaveTraveled - results[vehicleId].totalKilometers;
         results[vehicleId].differenceLts = results[vehicleId].vehicle.km_per_liter - results[vehicleId].usedLiters;
     }
-    
+    results.summary =  summary;
     return results;
 }
 

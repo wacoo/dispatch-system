@@ -31,7 +31,7 @@ const GenerateDispatchReport = () => {
     const [rtime, setRtime] = useState('12: 00 AM');
     const dispatch = useDispatch();
     const dispatches = useSelector((state) => state.dispatches.dispatches.results) ?? [];
-    const refuels = useSelector((state) => state.refuels.refuels.results) ?? [];
+    const refuels = useSelector((state) => state.refuels.refuels) ?? [];
     // const supervisors = useSelector((state) => state.users.users.results) ?? [];
     const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];

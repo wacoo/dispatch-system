@@ -188,7 +188,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
                 <td>ሊትር</td>
                 <td>ብር</td>
                  <td>ሊትር</td>
@@ -197,21 +196,22 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
             </tr>
-            {{#each cdispatch.vehicle_requests}}
             <tr>
-                <td>{{../cdispatch.assigned_date_t}}</td>
-                <td>{{../cdispatch.departure_milage}}</td>
-                <td>{{../cdispatch.departure_time_t}}</td>
-                <td>{{../cdispatch.return_milage}}</td>
-                <td>{{../cdispatch.return_time_act_t}}</td>
                 <td></td>
-                <td>{{../cdispatch.difference}}</td>
-                <td>{{../cdispatch.refuel_liters}}</td>
-                <td>{{../cdispatch.dispatcher.fname}} {{../cdispatch.dispatcher.mname}}</td>
+                <td></td>
+                <td></td>
+                <td>{{cmonthly.summary.benzine}}</td>
+                <td>{{cmonthly.summary.benzinePrice}}</td>
+                <td>{{cmonthly.summary.nafta}}</td>
+                <td>{{cmonthly.summary.naftaPrice}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
             </tr>
-            {{/each}}
             <tr></tr>
             <tr></tr>
         </table>

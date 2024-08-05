@@ -57,6 +57,52 @@ const createMake = createAsyncThunk('vehicles/createMake', async (data) => {
     }
 });
 
+//Oil Use
+const createOilUse = createAsyncThunk('vehicles/createOilUse', async (data) => {
+    const full_url2 = `${url}oil_use/`;
+    try {
+        const res = await axios.post(full_url2, data, { headers: authHeader() });
+        return res.data;
+    } catch (error ) {
+        return error.message;
+    }
+});
+
+const fetchOilUse = createAsyncThunk('vehicles/fetchOilUse', async() => {
+    try {
+        const full_url2 = `${url}oil_use/`;
+        const res = await axios.get(full_url2, { headers: authHeader() });
+        console.log(res.data.results[0].make);
+        return res.data;
+    } catch(error) {
+        return error.message;
+    }
+});
+
+
+//Maintenance
+
+const createMaintenance = createAsyncThunk('vehicles/Maintenance', async (data) => {
+    const full_url2 = `${url}maintenance/`;
+    try {
+        const res = await axios.post(full_url2, data, { headers: authHeader() });
+        return res.data;
+    } catch (error ) {
+        return error.message;
+    }
+});
+
+const fetchMaintenance = createAsyncThunk('vehicles/fetchMaintenance', async() => {
+    try {
+        const full_url2 = `${url}maintenance/`;
+        const res = await axios.get(full_url2, { headers: authHeader() });
+        console.log(res.data.results[0].make);
+        return res.data;
+    } catch(error) {
+        return error.message;
+    }
+});
+
 const fetchMakes = createAsyncThunk('vehicles/fetchMakes', async() => {
     try {
         const full_url2 = `${url}make/`;

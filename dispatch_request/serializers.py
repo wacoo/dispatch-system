@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from .models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter, MonthlyPlan
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter, MonthlyPlan, Oil, Maintenance
 
 class UserLimitedSerializer(serializers.ModelSerializer):
     ''' only for Eager fetch '''
@@ -273,3 +273,17 @@ class VehicleMakeSerializer(serializers.ModelSerializer):
 #         ''' Dispatch report serializer meta'''
 #         model = DispatchReport
 #         fields = '__all__'
+
+class OilSerializer(serializers.ModelSerializer):
+    ''' Oil serializer '''
+    class Meta:
+        ''' Oil meta '''
+        model= Oil
+        fields = '__all__'
+
+class MaintenanceSerializer(serializers.ModelSerializer):
+    ''' Oil serializer '''
+    class Meta:
+        ''' Oil meta '''
+        model= Maintenance
+        fields = '__all__'

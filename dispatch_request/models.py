@@ -239,6 +239,16 @@ class MonthlyPlan(models.Model):
   km = models.CharField(max_length=100, default='')
   liters = models.FloatField(blank=True, default=0)
 
+class Oil(models.Model):
+  ''' oil daily usage'''
+  liters = models.FloatField(blank=True, default=0)
+  cost = models.FloatField(blank=True, default=0)
+
+class Maintenance(models.Model):
+  ''' maintenance daily'''
+  count = models.IntegerField(blank=True, default=0)
+  cost = models.FloatField(blank=True, default=0)
+
 class VehicleMake(models.Model):
   ''' Vehicle make class'''
   make = models.CharField(max_length=100, unique=True)

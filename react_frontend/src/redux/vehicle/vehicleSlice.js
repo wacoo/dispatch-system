@@ -10,6 +10,10 @@ const initialState = {
     updateVehicle: {},
     makes: [],
     newMake: {},
+    oilUses: [],
+    newOilUse: {},
+    maintenaces: [],
+    newMaintenance: {},
     isLoading: false,
     error: undefined
 }
@@ -68,7 +72,7 @@ const createOilUse = createAsyncThunk('vehicles/createOilUse', async (data) => {
     }
 });
 
-const fetchOilUse = createAsyncThunk('vehicles/fetchOilUse', async() => {
+const fetchOilUses = createAsyncThunk('vehicles/fetchOilUses', async() => {
     try {
         const full_url2 = `${url}oil_use/`;
         const res = await axios.get(full_url2, { headers: authHeader() });
@@ -82,7 +86,7 @@ const fetchOilUse = createAsyncThunk('vehicles/fetchOilUse', async() => {
 
 //Maintenance
 
-const createMaintenance = createAsyncThunk('vehicles/Maintenance', async (data) => {
+const createMaintenance = createAsyncThunk('vehicles/createMaintenance', async (data) => {
     const full_url2 = `${url}maintenance/`;
     try {
         const res = await axios.post(full_url2, data, { headers: authHeader() });
@@ -102,6 +106,7 @@ const fetchMaintenance = createAsyncThunk('vehicles/fetchMaintenance', async() =
         return error.message;
     }
 });
+
 
 const fetchMakes = createAsyncThunk('vehicles/fetchMakes', async() => {
     try {
@@ -181,8 +186,56 @@ const vehicleSlice = createSlice({
             state.isLoading = false;
             state.error = action.error.message;
         })
+        .addCase(fetchOilUses.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchOilUses.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.oilUses = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(fetchOilUses.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+        .addCase(createOilUse.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(createOilUse.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.newOilUse = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(createOilUse.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+        .addCase(fetchMaintenance.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchMaintenance.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.maintenaces = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(fetchMaintenance.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+        .addCase(createMaintenance.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(createMaintenance.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.newMaintenance = action.payload;
+            // console.log(action.payload);
+        })
+        .addCase(createMaintenance.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
     }
 })
 
-export {createVehicle, fetchVehicles, updateVehicle, fetchMakes, createMake };
+export {createVehicle, fetchVehicles, updateVehicle, fetchMakes, createMake, fetchOilUses, createOilUse, fetchMaintenance, createMaintenance };
 export default vehicleSlice.reducer;

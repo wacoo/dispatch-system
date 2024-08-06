@@ -282,7 +282,7 @@ class OilViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 class MaintenaceViewSet(viewsets.ModelViewSet):
-    ''' PricePerLiter api view set '''
-    serializer_class = PricePerLiterSerializer
+    ''' Maintenace api view set '''
+    serializer_class = MaintenanceSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]

@@ -31,12 +31,7 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-      {user?.user?.access_level >= 3 && <ListItemButton onClick={() => navigate('/plan')}>
-        <ListItemIcon>
-          <NextPlanIcon />
-        </ListItemIcon>
-        <ListItemText primary="Monthly plan" />
-      </ListItemButton>}
+      
       {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/drivers')}>
         <ListItemIcon>
           <AirlineSeatReclineNormalIcon />
@@ -85,13 +80,19 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItemButton>}
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/plan')}>
+        <ListItemIcon>
+          <NextPlanIcon />
+        </ListItemIcon>
+        <ListItemText primary="Oil use & others " />
+      </ListItemButton>}
       {user?.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/departments')}>
         <ListItemIcon>
           <BusinessIcon />
         </ListItemIcon>
         <ListItemText primary="Departments" />
       </ListItemButton>}
-      {user?.user?.access_level >= 3 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
+      {user?.user?.access_level >= 2 && <ListItemButton  onClick={() => navigate('/old_dispatch')}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>

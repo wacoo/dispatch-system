@@ -132,14 +132,18 @@ function parseNumbers(obj) {
     return parsedObj;
 }
 
-export function calculateRefuelData(refuelData, startDate, endDate, benzinePricePerLiter, naftaPricePerLiter) {
-    const parsedRefuelData = refuelData.map(entry => parseNumbers(entry));
+export function calculateRefuelData(refuelData, startDate, endDate, benzinePricePerLiter, naftaPricePerLiter, plan, oilUses, maintenaces) {
+    const parsedRefuelData = refuelData?.map(parseNumbers);
 
     const start = new Date(startDate);
     const end = new Date(endDate);
-
+    const oilTire = {
+        totalOilLts: 0,
+        totalOilCost: 0,
+        totalTireMaintCount: 0,
+        totalTireMaintCost: 0
+    }
     const results = {};
-
     const summary = {
         nafta: 0,
         benzine: 0,
@@ -147,17 +151,29 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
         benzinePrice: 0,
     };
 
+    oilUses.forEach(item => {
+        oilTire.totalOilLts += item.liters;
+        oilTire.totalOilCost += item.cost;
+    });
+
+    maintenaces.forEach(item => {
+        oilTire.totalTireMaintCount += item.count;
+        oilTire.totalTireMaintCost += item.cost;
+    });
+
     parsedRefuelData.forEach(entry => {
         const refuelDate = new Date(entry.refuel_date);
 
         if (refuelDate >= start && refuelDate <= end) {
-            const vehicleId = entry.vehicle.id;
+            const { id: vehicleId } = entry.vehicle;
+            const benzineUsed = entry.benzine || 0;
+            const naftaUsed = entry.nafta || 0;
 
             if (!results[vehicleId]) {
                 results[vehicleId] = {
                     vehicle: entry.vehicle,
-                    initialKilometers: null,
-                    lastKilometers: null,
+                    initialKilometers: entry.km_during_previous_refuel ?? null,
+                    lastKilometers: entry.km_during_refuel,
                     totalBenzineCost: 0,
                     totalNaftaCost: 0,
                     totalBenzineUsed: 0,
@@ -171,74 +187,81 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
                 };
             }
 
-            // Record the initial kilometers using km_during_previous_refuel for the first entry within the date range
-            if (results[vehicleId].initialKilometers === null) {
-                results[vehicleId].initialKilometers = entry.km_during_previous_refuel;
-            }
+            const vehicle = results[vehicleId];
 
-            results[vehicleId].lastKilometers = entry.km_during_refuel;
+            vehicle.lastKilometers = entry.km_during_refuel;
+            vehicle.totalBenzineCost += benzineUsed * benzinePricePerLiter;
+            vehicle.totalNaftaCost += naftaUsed * naftaPricePerLiter;
+            vehicle.totalBenzineUsed += benzineUsed;
+            vehicle.totalNaftaUsed += naftaUsed;
 
-            const benzineUsed = entry.benzine || 0;
-            const naftaUsed = entry.nafta || 0;
-
-            results[vehicleId].totalBenzineCost += benzineUsed * benzinePricePerLiter;
-            results[vehicleId].totalNaftaCost += naftaUsed * naftaPricePerLiter;
-
-            results[vehicleId].totalBenzineUsed += benzineUsed;
-            results[vehicleId].totalNaftaUsed += naftaUsed;
-            console.log(naftaUsed, benzineUsed);
             summary.benzine += benzineUsed;
             summary.nafta += naftaUsed;
             summary.benzinePrice += benzineUsed * benzinePricePerLiter;
             summary.naftaPrice += naftaUsed * naftaPricePerLiter;
-            if(results[vehicleId].totalBenzineUsed > 0) {
-                results[vehicleId].kmShouldHaveTraveled = benzinePricePerLiter * results[vehicleId].totalBenzineUsed;
-            } else if (results[vehicleId].totalNaftaUsed > 0) {
-                results[vehicleId].kmShouldHaveTraveled = naftaPricePerLiter * results[vehicleId].totalNaftaUsed;
-            } else {
-                results[vehicleId].kmShouldHaveTraveled = 0;
-            }
-            
-            results[vehicleId].differenceKM = results[vehicleId].kmShouldHaveTraveled - results[vehicleId].totalKilometers;
+
+            vehicle.kmShouldHaveTraveled = vehicle.totalBenzineUsed > 0 
+                ? benzinePricePerLiter * vehicle.totalBenzineUsed
+                : vehicle.totalNaftaUsed > 0 
+                    ? naftaPricePerLiter * vehicle.totalNaftaUsed
+                    : 0;
+
+            vehicle.differenceKM = vehicle.kmShouldHaveTraveled - (vehicle.lastKilometers - vehicle.initialKilometers ?? 0);
+
             if (refuelDate.getTime() === start.getTime()) {
-                results[vehicleId].initialFuelLevel = entry.current_fuel_level;
+                vehicle.initialFuelLevel = entry.current_fuel_level;
             }
 
-            results[vehicleId].calculatedFuelLevel += benzineUsed + naftaUsed;
+            vehicle.calculatedFuelLevel += benzineUsed + naftaUsed;
             const fuelUsed = entry.km_during_refuel / entry.km_per_liter;
-            results[vehicleId].calculatedFuelLevel -= fuelUsed;
-            
-            // Ensure fuel level is not negative
-            if (results[vehicleId].calculatedFuelLevel < 0) {
-                results[vehicleId].calculatedFuelLevel = 0;
-            }
+            vehicle.calculatedFuelLevel -= fuelUsed;
+            vehicle.calculatedFuelLevel = Math.max(vehicle.calculatedFuelLevel, 0);
         }
-        console.log("summary:", summary);
     });
 
     // Calculate total kilometers and remaining fuel
     for (const vehicleId in results) {
-        if (results[vehicleId].initialKilometers !== null && results[vehicleId].lastKilometers !== null) {
-            results[vehicleId].totalKilometers = results[vehicleId].lastKilometers - results[vehicleId].initialKilometers;
-            
-        }
-        
-        results[vehicleId].remainingFuel = results[vehicleId].initialFuelLevel + results[vehicleId].calculatedFuelLevel;
-        if (results[vehicleId].totalBenzineUsed > 0) {
-            results[vehicleId].usedLiters = (results[vehicleId].totalKilometers / results[vehicleId].totalBenzineUsed).toFixed(3);
-        } else if (results[vehicleId].totalNaftaUsed > 0) {
-            results[vehicleId].usedLiters = (results[vehicleId].totalKilometers / results[vehicleId].totalNaftaUsed).toFixed(3);
+        const vehicle = results[vehicleId];
+
+        if (vehicle.initialKilometers !== null && vehicle.lastKilometers !== null) {
+            vehicle.totalKilometers = vehicle.lastKilometers - vehicle.initialKilometers;
         } else {
-            results[vehicleId].usedLiters = 0;
+            vehicle.totalKilometers = 0;
         }
 
-        results[vehicleId].differenceKM = results[vehicleId].kmShouldHaveTraveled - results[vehicleId].totalKilometers;
-        results[vehicleId].differenceLts = results[vehicleId].vehicle.km_per_liter - results[vehicleId].usedLiters;
+        vehicle.remainingFuel = vehicle.initialFuelLevel + vehicle.calculatedFuelLevel;
+
+        vehicle.usedLiters = vehicle.totalBenzineUsed > 0
+            ? (vehicle.totalKilometers / vehicle.totalBenzineUsed).toFixed(3)
+            : vehicle.totalNaftaUsed > 0
+                ? (vehicle.totalKilometers / vehicle.totalNaftaUsed).toFixed(3)
+                : 0;
+
+        vehicle.differenceKM = vehicle.kmShouldHaveTraveled - vehicle.totalKilometers;
+        vehicle.differenceLts = vehicle.vehicle.km_per_liter - vehicle.usedLiters;
     }
-    results.summary =  summary;
+
+    results.summary = summary;
+    const full_plan = {...plan};
+    full_plan.nafta_diff_lts = results.summary.nafta - plan.nafta;
+    full_plan.nafta_diff_cost = results.summary.naftaPrice - plan.nafta_cost;
+    full_plan.benzine_diff_lts = results.summary.benzine - plan.benzine;
+    full_plan.benzine_diff_cost = results.summary.benzinePrice - plan.benzine_cost;
+    full_plan.nafta_perc_lts = ((results.summary.nafta / plan.nafta) * 100).toFixed(3);
+    full_plan.nafta_perc_cost = ((results.summary.naftaPrice / plan.nafta_cost) * 100).toFixed(3);
+    full_plan.benzine_perc_lts = ((results.summary.benzine / plan.benzine) * 100).toFixed(3);
+    full_plan.benzine_perc_cost = ((results.summary.benzinePrice / plan.nafta_cost) * 100).toFixed(3);
+    results.mlplan = full_plan;
+    results.oil_tire = oilTire;
+    console.log('rs: ', results);
     return results;
 }
 
+// const planNafta = Number(plan.nafta);
+// const summaryNafta = Number(results.summary.nafta);
+
+// // Calculate the percentage
+// const percentage = (summaryNafta / planNafta) * 100;
 // const benzinePricePerLiter = 1.2; // Example price per liter for benzine
 // const naftaPricePerLiter = 1.0; // Example price per liter for nafta
 // const result = calculateRefuelData(refuelData, '2024-07-01', '2024-07-31', benzinePricePerLiter, naftaPricePerLiter);

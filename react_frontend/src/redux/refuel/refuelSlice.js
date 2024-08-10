@@ -117,11 +117,27 @@ const createMonthlyPlan = createAsyncThunk('refuels/createMonthlyPlan', async (d
 
 
 const fetchMonthlyPlan = createAsyncThunk('refuels/fetchMonthlyPlan', async() => {
+    // try {
+    //     const fullURL = `${url}monthly-plans/`;
+    //     const res = await axios.get(fullURL, { headers: authHeader() });
+    //     return res.data;
+    // } catch(error) {
+    //     return error.message;
+    // }
+
     try {
-        const fullURL = `${url}monthly-plans/`;
-        const res = await axios.get(fullURL, { headers: authHeader() });
-        return res.data;
-    } catch(error) {
+        let allMonthlyPlans = [];
+        let nextUrl = `${url}monthly-plans/`;
+        
+        // Loop until nextUrl is null (no more pages)
+        while (nextUrl) {
+            const res = await axios.get(nextUrl, { headers: authHeader() });
+            allMonthlyPlans = [...allMonthlyPlans, ...res.data.results]; // Assuming 'results' contains your data
+            nextUrl = res.data.next; // 'next' will be null if no more pages
+        }
+        console.log(allMonthlyPlans);
+        return allMonthlyPlans;
+    } catch (error) {
         return error.message;
     }
 });

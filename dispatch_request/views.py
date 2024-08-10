@@ -277,12 +277,14 @@ class VehicleRequestDispatchUpdateAPIView(APIView):
 
 class OilViewSet(viewsets.ModelViewSet):
     ''' Oil api view set '''
+    queryset = Oil.objects.all()
     serializer_class = OilSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
 class MaintenaceViewSet(viewsets.ModelViewSet):
     ''' Maintenace api view set '''
+    queryset = Maintenance.objects.all()
     serializer_class = MaintenanceSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]

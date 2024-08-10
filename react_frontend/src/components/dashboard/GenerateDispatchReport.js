@@ -17,8 +17,8 @@ import { fetchUsers } from "../../redux/user/userSlice";
 import jsreport from 'jsreport-browser-client-dist';
 import { convertTo24HourFormat, convertToEthiopianDateTime, formatDateToYYYYMMDD, times } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
-import { fetchActivePPL, fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
-import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
+import { fetchActivePPL, fetchMonthlyPlan, fetchRefuels, fetchRefuelsById } from "../../redux/refuel/refuelSlice";
+import { fetchMaintenance, fetchOilUses, fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
 import { calculateRefuelData, generateReport, generateReportTwo } from "../../functions/report";
 
@@ -35,6 +35,9 @@ const GenerateDispatchReport = () => {
     // const supervisors = useSelector((state) => state.users.users.results) ?? [];
     const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const monthlyFuelPlan = useSelector((state) => state.refuels.monthlyPlans) ?? [];
+    const oilUses = useSelector((state) => state.vehicles.oilUses) ?? [];
+    const maintenances = useSelector((state) => state.vehicles.maintenances) ?? [];
     const [dispatchId, setDispatchID] = useState('');
     const [vehicleId, setVehicleID] = useState('');
     const [from, setFrom] = useState(null);
@@ -74,29 +77,6 @@ const GenerateDispatchReport = () => {
         }
       }, [dispatches]);
 
-
-    // const generateReport = async (name, data) => {
-    //     try {
-    //         console.log(data);
-    //         jsreport.serverUrl = 'http://localhost:4444';
-    //         const response = await jsreport.render({
-    //             template: {
-    //                 name: name,
-    //                 // content: 'Hello from {{message}}',
-    //                 // engine: 'handlebars',
-    //                 // recipe: 'chrome-pdf'
-    //             },
-    //             data: {
-    //                 cdispatch: data
-    //             }
-    //         });
-    //         response.download('myreport.pdf');
-    //         response.openInWindow({ title: 'My Report' });
-    //         // setReportData(response.data.toString('utf8'));
-    //     } catch (error) {
-    //         console.error('Error generating report:', error);
-    //     }
-    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -140,6 +120,7 @@ const GenerateDispatchReport = () => {
         dispatch(fetchDispatches());
         dispatch(fetchUsers());
         dispatch(fetchVehicles());
+        dispatch(fetchMonthlyPlan());
     }, []);
 
 
@@ -190,31 +171,18 @@ const GenerateDispatchReport = () => {
         dispatch(fetchUsers());
         dispatch(fetchRefuels());        
         dispatch(fetchActivePPL());
+        dispatch(fetchOilUses());
+        dispatch(fetchMaintenance());
     }, []);
 
 
     const handleRefuelAllReport = (e) => {
         e.preventDefault();
-        console.log(refuels, refuelMData, ppls);
-        const monthly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls[ppls.length - 1]?.benzine, ppls[ppls.length - 1]?.nafta);
+        console.log('LM', oilUses, maintenances);
+        const monthly = calculateRefuelData(refuels, refuelMData.from, refuelMData.to, ppls[ppls.length - 1]?.benzine, ppls[ppls.length - 1]?.nafta, monthlyFuelPlan[monthlyFuelPlan.length - 1], oilUses, maintenances);
         
         // console.log('M: ', ppls[ppls]);
         generateReportTwo('monthly', monthly);
-        // dispatch(fetchRefuels({ vehicleId: vehicleId })).then((res) => {
-        //     if (res.payload[0]?.id) {
-        //         let data = [...res.payload];
-        //         if (Array.isArray(data)) {
-        //             data = data.map((ref, idx) => ({
-        //                 ...ref,
-        //                 no: idx + 1
-        //             }));
-        //         } else {
-        //             console.error("data is not an array");
-        //         }
-        //         console.log(res.payload);
-        //         generateReport('refuel', data);
-        //     }
-        // });
     }
 
     useEffect(() => {

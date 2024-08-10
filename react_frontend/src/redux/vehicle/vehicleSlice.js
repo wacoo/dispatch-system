@@ -73,12 +73,28 @@ const createOilUse = createAsyncThunk('vehicles/createOilUse', async (data) => {
 });
 
 const fetchOilUses = createAsyncThunk('vehicles/fetchOilUses', async() => {
+    // try {
+    //     const full_url2 = `${url}oil_use/`;
+    //     const res = await axios.get(full_url2, { headers: authHeader() });
+    //     console.log(res.data.results[0].make);
+    //     return res.data;
+    // } catch(error) {
+    //     return error.message;
+    // }
+
     try {
-        const full_url2 = `${url}oil_use/`;
-        const res = await axios.get(full_url2, { headers: authHeader() });
-        console.log(res.data.results[0].make);
-        return res.data;
-    } catch(error) {
+        let allOilUse = [];
+        let nextUrl = `${url}oil_use/`;
+        
+        // Loop until nextUrl is null (no more pages)
+        while (nextUrl) {
+            const res = await axios.get(nextUrl, { headers: authHeader() });
+            allOilUse = [...allOilUse, ...res.data.results]; // Assuming 'results' contains your data
+            nextUrl = res.data.next; // 'next' will be null if no more pages
+        }
+        console.log(allOilUse);
+        return allOilUse;
+    } catch (error) {
         return error.message;
     }
 });
@@ -94,15 +110,32 @@ const createMaintenance = createAsyncThunk('vehicles/createMaintenance', async (
     } catch (error ) {
         return error.message;
     }
+    
 });
 
 const fetchMaintenance = createAsyncThunk('vehicles/fetchMaintenance', async() => {
+    // try {
+    //     const full_url2 = `${url}maintenance/`;
+    //     const res = await axios.get(full_url2, { headers: authHeader() });
+    //     console.log(res.data.results[0].make);
+    //     return res.data;
+    // } catch(error) {
+    //     return error.message;
+    // }
+
     try {
-        const full_url2 = `${url}maintenance/`;
-        const res = await axios.get(full_url2, { headers: authHeader() });
-        console.log(res.data.results[0].make);
-        return res.data;
-    } catch(error) {
+        let allMaint = [];
+        let nextUrl = `${url}maintenance/`;
+        
+        // Loop until nextUrl is null (no more pages)
+        while (nextUrl) {
+            const res = await axios.get(nextUrl, { headers: authHeader() });
+            allMaint = [...allMaint, ...res.data.results]; // Assuming 'results' contains your data
+            nextUrl = res.data.next; // 'next' will be null if no more pages
+        }
+        console.log(allMaint);
+        return allMaint;
+    } catch (error) {
         return error.message;
     }
 });
@@ -216,7 +249,7 @@ const vehicleSlice = createSlice({
         .addCase(fetchMaintenance.fulfilled, (state, action) => {
             state.isLoading = false;
             state.maintenaces = action.payload;
-            // console.log(action.payload);
+            console.log(action.payload);
         })
         .addCase(fetchMaintenance.rejected, (state, action) => {
             state.isLoading = false;

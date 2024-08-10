@@ -236,7 +236,8 @@ export default function Dashboard({ active }) {
                 {active === 'Dispatches' && (user.user?.access_level >= 2 ? <DispatchContent /> : <Error403 />)}
                 {active === 'DispatchReport' && (user.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
                 {active === 'Users' && (user.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
-                {active === 'MonthlyPlan' && (user.user?.access_level >= 2 ? <OilAndMaintenace /> : <Error403 />)}
+                {active === 'MonthlyPlan' && (user.user?.access_level >= 2 ? <MonthlyPlan /> : <Error403 />)}
+                {active === 'OilTire' && (user.user?.access_level >= 2 ? <OilAndMaintenace /> : <Error403 />)}
                 {active === 'Departments' && (user.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
                 {active === 'GenerateDispatchReport' && (user.user?.access_level >= 2 ? <GenerateDispatchReport /> : <Error403 />)}
                 

@@ -121,7 +121,7 @@ const OilAndMaintenace = () => {
         </Grid>
 
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Maintenance (ጥገና)</Typography>
+            <Typography variant="h4">Tire maintenance (ጎማ ጥገና)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
             <Grid item xs={12} md={6} lg={4}>

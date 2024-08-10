@@ -67,6 +67,10 @@ function App() {
         element: <Dashboard active="MonthlyPlan" />
       },
       {
+        path: '/oil_tire',
+        element: <Dashboard active="OilTire" />
+      },
+      {
         path: '/old_dispatch',
         element: <Dashboard active="GenerateDispatchReport" />
       },

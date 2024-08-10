@@ -84,7 +84,13 @@ const MainListItems = ({active}) => {
         <ListItemIcon>
           <NextPlanIcon />
         </ListItemIcon>
-        <ListItemText primary="Oil use & others " />
+        <ListItemText primary="Monthly plan" />
+      </ListItemButton>}
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/oil_tire')}>
+        <ListItemIcon>
+          <NextPlanIcon />
+        </ListItemIcon>
+        <ListItemText primary="Oil & Tire " />
       </ListItemButton>}
       {user?.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/departments')}>
         <ListItemIcon>

@@ -328,7 +328,7 @@ const VehicleContent = () => {
          </Grid>}
 
          { updateKMPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Update Vehicle Status (የመኪና ሁኔታ ቀይር)</Typography>
+            <Typography variant="h4">KM per liter (በአንድ ሊትር ነዳጅ የሚጓዘዉ)</Typography>
         </Grid> }
         { updateKMPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
         <Grid item xs={12} md={6} lg={4}>
@@ -354,7 +354,7 @@ const VehicleContent = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="KM per liter ()" type="number" name="km_per_liter" id="km_per_liter" onChange={(e) => setVehicleUpdateKMPL((prev) => ({...prev, km_per_liter: e.target.value}))}/>
+                    <TextField label="KM per liter (በ1 ሊትር ነዳጅ)" type="number" name="km_per_liter" id="km_per_liter" onChange={(e) => setVehicleUpdateKMPL((prev) => ({...prev, km_per_liter: e.target.value}))}/>
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>

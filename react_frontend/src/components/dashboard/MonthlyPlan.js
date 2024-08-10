@@ -13,7 +13,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import RefuelsTable from "./RefuelsTable";
-import { createRefuel, fetchRefuels } from "../../redux/refuel/refuelSlice";
+import { createMonthlyPlan, createRefuel, fetchActivePPL, fetchMonthlyPlan, fetchRefuels } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
 import { createDepartment, fetchDepartments } from "../../redux/department/departmentSlice";
 import DepartmentsTable from "./DepartmentsTable";
@@ -27,16 +27,20 @@ const MonthlyPlan = () => {
     const [rdate, setRdate] = useState(dayjs('2022-04-17'));
     const [vehicleId, setVehicleId] = useState(null);
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const [monthlyPlanData, setMonthlyPlanData] = useState({
         vehicle: '',
         month: '',
-        km: '', 
-        liters: ''
+        benzine: 0, 
+        nafta: 0,
+        benzine_cost: 0,
+        nafta_cost: 0
     });
 
     const months = ['መስከረም (September)', 'ጥቅምት (October)', 'ህዳር (November)', 'ታህሳስ (December)', 'ጥር (January)', 'የካቲት (February)', 'መጋቢት (March)', 'ሚያዚያ (April)', 'ግንቦት (May)', 'ሰኔ (June)', 'ህምሌ (July)', 'ነሃሴ (August)'];
     useEffect(() => {
         dispatch(fetchVehicles());
+        dispatch(fetchActivePPL());
     }, []);
 
     useEffect(() => {
@@ -47,23 +51,37 @@ const MonthlyPlan = () => {
 
         return () => clearTimeout(timer);
     }, [error, success]);
+
+    useEffect(() => {
+        setMonthlyPlanData(prevData => {
+            const lastPpl = ppls.length > 0 ? ppls[ppls.length - 1] : 0;
+            return {
+                ...prevData,
+                nafta_cost: (prevData.nafta * lastPpl.nafta),
+                benzine_cost: (prevData.benzine * lastPpl.benzine)
+            };
+        });
+    }, [monthlyPlanData]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // dispatch(createMonthlyPlan(monthlyPlanData)).then((res) => {
-        //     if (res.payload?.id) {
-        //         setSuccess(true);
-        //         dispatch(fetchMonthlyPlans());
-        //     } else {
-        //         setError(res.payload);
-        //         console.log(res.payload);
-        //     }
-        // }
-    //)
+        console.log('X', monthlyPlanData, ppls);
+        console.log('X', monthlyPlanData, ppls);
+        dispatch(createMonthlyPlan(monthlyPlanData)).then((res) => {
+            if (res.payload?.id) {
+                setSuccess(true);
+                dispatch(fetchMonthlyPlan());
+            } else {
+                setError(res.payload);
+                console.log(res.payload);
+            }
+        }
+    )
 }
 
     return <>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Plan (ክፍል)</Typography>
+            <Typography variant="h4">Monthly plan (ወርሃዊ እቅድ)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
         <Grid item xs={12} md={6} lg={4}>
@@ -76,7 +94,7 @@ const MonthlyPlan = () => {
                         renderInput={(params) => (
                             <TextField {...params} label="Vehicle" variant="outlined" sx={{ minWidth: '100%' }} />
                         )}
-                        onChange={(event, newValue) => setMonthlyPlanData((prev) => ({ ...prev, vehicle: newValue }))}
+                        onChange={(event, newValue) => setMonthlyPlanData((prev) => ({ ...prev, vehicle: newValue.id }))}
                         isOptionEqualToValue={(option, value) => option.id === value}
 
                         />
@@ -97,16 +115,16 @@ const MonthlyPlan = () => {
                 </FormControl>
             </Grid>
 
-        {/* <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Extension (ኤክስቴንሽን)" type="text" name="extension" id="extension" onChange={(e) => setDepartmentData((prev) => ({ ...prev, extension: e.target.value }))} />
+                <TextField label="Benzine (ቤንዚን)" type="number" name="benzine" id="benzine" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, benzine: e.target.value }))} />
             </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Phone no. (ስልክ)" type="text" name="pnumber" id="pnumber" onChange={(e) => setDepartmentData((prev) => ({ ...prev, phone_number: e.target.value }))} />
+                <TextField label="Nafta (ናፍታ)" type="number" name="nafta" id="nafta" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, nafta: e.target.value }))} />
             </FormControl>
-        </Grid> */}
+        </Grid>
         
         <Grid item xs={12} marginTop={2}>
             <form onSubmit={(e)=> handleSubmit(e)}>
@@ -119,7 +137,7 @@ const MonthlyPlan = () => {
         <Grid item xs={12} marginTop={2}>
             {
                 success && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-                        Department created successfully!
+                        Plan created successfully!
                 </Alert>
             }
             { error && <Alert severity="error">{error}</Alert>} 

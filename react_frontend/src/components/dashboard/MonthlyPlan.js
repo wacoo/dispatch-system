@@ -34,7 +34,11 @@ const MonthlyPlan = () => {
         benzine: 0, 
         nafta: 0,
         benzine_cost: 0,
-        nafta_cost: 0
+        nafta_cost: 0,
+        oil_lts: 0,
+        oil_cost: 0,
+        tire_maint_cnt: 0,
+        tire_maint_cost: 0
     });
 
     const months = ['መስከረም (September)', 'ጥቅምት (October)', 'ህዳር (November)', 'ታህሳስ (December)', 'ጥር (January)', 'የካቲት (February)', 'መጋቢት (March)', 'ሚያዚያ (April)', 'ግንቦት (May)', 'ሰኔ (June)', 'ህምሌ (July)', 'ነሃሴ (August)'];
@@ -123,6 +127,27 @@ const MonthlyPlan = () => {
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
                 <TextField label="Nafta (ናፍታ)" type="number" name="nafta" id="nafta" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, nafta: e.target.value }))} />
+            </FormControl>
+        </Grid>
+
+        <Grid item xs={12} md={6} lg={4}>
+            <FormControl fullWidth>
+                <TextField label="Oil in lts ()" type="number" name="oil" id="oil" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, oil_lts: e.target.value }))} />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+            <FormControl fullWidth>
+                <TextField label="Oil total cost ()" type="number" name="oil_cost" id="oil_cost" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, oil_cost: e.target.value }))} />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+            <FormControl fullWidth>
+                <TextField label="Tire maint. ()" type="number" name="tire_maint" id="tire_maint" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, tire_maint_cnt: e.target.value }))} />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+            <FormControl fullWidth>
+                <TextField label="Tire maint. cost ()" type="number" name="tire_maint_cost" id="tire_maint_cost" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, tire_maint_cost: e.target.value }))} />
             </FormControl>
         </Grid>
         

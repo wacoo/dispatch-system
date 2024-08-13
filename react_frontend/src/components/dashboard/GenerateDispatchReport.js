@@ -37,7 +37,7 @@ const GenerateDispatchReport = () => {
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const monthlyFuelPlan = useSelector((state) => state.refuels.monthlyPlans) ?? [];
     const oilUses = useSelector((state) => state.vehicles.oilUses) ?? [];
-    const maintenances = useSelector((state) => state.vehicles.maintenances) ?? [];
+    const maintenances = useSelector((state) => state.vehicles.maints) ?? [];
     const [dispatchId, setDispatchID] = useState('');
     const [vehicleId, setVehicleID] = useState('');
     const [from, setFrom] = useState(null);
@@ -78,6 +78,9 @@ const GenerateDispatchReport = () => {
       }, [dispatches]);
 
 
+      useEffect(() => {
+        console.log(maintenances);
+      }, [maintenances]);
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(fetchDispatchById({ dispatchId: dispatchId })).then((res) => {

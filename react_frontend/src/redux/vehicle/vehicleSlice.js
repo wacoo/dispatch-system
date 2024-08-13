@@ -12,7 +12,7 @@ const initialState = {
     newMake: {},
     oilUses: [],
     newOilUse: {},
-    maintenaces: [],
+    maints: [],
     newMaintenance: {},
     isLoading: false,
     error: undefined
@@ -117,7 +117,7 @@ const fetchMaintenance = createAsyncThunk('vehicles/fetchMaintenance', async() =
     // try {
     //     const full_url2 = `${url}maintenance/`;
     //     const res = await axios.get(full_url2, { headers: authHeader() });
-    //     console.log(res.data.results[0].make);
+    //     console.log(res.data.results[0]);
     //     return res.data;
     // } catch(error) {
     //     return error.message;
@@ -248,8 +248,8 @@ const vehicleSlice = createSlice({
         })
         .addCase(fetchMaintenance.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.maintenaces = action.payload;
-            console.log(action.payload);
+            state.maints = action.payload;
+            console.log(state.maints);
         })
         .addCase(fetchMaintenance.rejected, (state, action) => {
             state.isLoading = false;

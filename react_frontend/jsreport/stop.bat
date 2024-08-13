@@ -2,7 +2,7 @@
 setlocal
 
 :: Find the PID (Process ID) using netstat and findstr
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr :4444') do (
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8000') do (
     set "PID=%%a"
 )
 

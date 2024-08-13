@@ -253,7 +253,14 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
     full_plan.benzine_perc_cost = ((results.summary.benzinePrice / plan.nafta_cost) * 100).toFixed(3);
     results.mlplan = full_plan;
     results.oil_tire = oilTire;
-    console.log('rs: ', results);
+    full_plan.oil_lts_diff = full_plan.oil_lts - oilTire.totalOilLts;
+    full_plan.oil_cost_diff = full_plan.oil_cost - oilTire.totalOilCost;
+    full_plan.tire_cnt_diff = full_plan.tire_maint_cnt - oilTire.totalTireMaintCount;
+    full_plan.tire_cost_diff = full_plan.tire_maint_cost - oilTire.totalTireMaintCost;
+    full_plan.oil_lts_perc = ((oilTire.totalOilLts/ full_plan.oil_lts) * 100).toFixed(3);
+    full_plan.oil_cost_perc = ((oilTire.totalOilCost / full_plan.oil_cost) * 100).toFixed(3);
+    full_plan.tire_cnt_perc = ((oilTire.totalTireMaintCount / full_plan.tire_maint_cnt) * 100).toFixed(3);
+    full_plan.tire_cost_perc= ((full_plan.tire_maint_cost / oilTire.totalTireMaintCost) * 100).toFixed(3);
     return results;
 }
 

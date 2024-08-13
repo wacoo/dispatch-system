@@ -247,6 +247,10 @@ class MonthlyPlan(models.Model):
   benzine = models.FloatField(blank=True, default=0)
   nafta_cost = models.FloatField(blank=True, default=0)
   benzine_cost = models.FloatField(blank=True, default=0)
+  oil_lts = models.FloatField(blank=True, default=0)
+  oil_cost = models.FloatField(blank=True, default=0)
+  tire_maint_cnt = models.IntegerField(blank=True, default=0)
+  tire_maint_cost = models.FloatField(blank=True, default=0)
 
 class Oil(models.Model):
   ''' oil daily usage'''

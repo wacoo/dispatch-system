@@ -98,8 +98,6 @@
                 <td></td>
             </tr>
             {{/each}}
-            <tr></tr>
-            <tr></tr>
         </table>
         <br>
         <table>
@@ -225,33 +223,34 @@
                 <td>{{cmonthly.mlplan.nafta_perc_lts}}</td>
                 <td>{{cmonthly.mlplan.nafta_perc_cost}}</td>
                 <td></td>
+                <td></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Oil</td>
                 <td>Liters</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
+                <td>{{cmonthly.mlplan.oil_lts}}</td>
+                <td>{{cmonthly.mlplan.oil_cost}}</td>
                 <td>{{cmonthly.oil_tire.totalOilLts}}</td>
                 <td>{{cmonthly.oil_tire.totalOilCost}}</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
+                <td>{{cmonthly.mlplan.oil_lts_diff}}</td>
+                <td>{{cmonthly.mlplan.oil_cost_diff}}</td>
+                <td>{{cmonthly.mlplan.oil_lts_perc}}</td>
+                <td>{{cmonthly.mlplan.oil_cost_perc}}</td>
                 <td></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Tire main.</td>
                 <td>Count</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
+                <td>{{cmonthly.mlplan.tire_maint_cnt}}</td>
+                <td>{{cmonthly.mlplan.tire_maint_cost}}</td>
                 <td>{{cmonthly.oil_tire.totalTireMaintCount}}</td>
-                <td>{{cmonthly.summary.totalTireMaintCost}}</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
-                <td>{{0}}</td>
+                <td>{{cmonthly.oil_tire.totalTireMaintCost}}</td>
+                <td>{{cmonthly.mlplan.tire_cnt_diff}}</td>
+                <td>{{cmonthly.mlplan.tire_cost_diff}}</td>
+                <td>{{cmonthly.mlplan.tire_cnt_perc}}</td>
+                <td>{{cmonthly.mlplan.tire_cost_perc}}</td>
                 <td></td>
             </tr>
             <tr></tr>

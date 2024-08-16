@@ -39,7 +39,6 @@ const RefuelContent = () => {
         benzine_price_ppl: 0,
         km_during_refuel: '',
         km_during_previous_refuel: '',
-        km_per_liter: '',
         current_fuel_level: '',
         remark: '',
     });
@@ -182,7 +181,7 @@ const RefuelContent = () => {
             <Grid item xs={12} md={6} lg={4} sx={{ mt: '1px' }}>
             <FormControl fullWidth>
                 <EtDatePicker
-                        label="Refuel date (የተሞላበት ቀን)"
+                        label="Refuel request date (የተጠየቀበት ቀን)"
                         onChange={(selectedDate) => {
                             setRRdate(selectedDate);
                         }}
@@ -227,12 +226,6 @@ const RefuelContent = () => {
             </FormControl>
         </Grid>
 
-
-        <Grid item xs={12} md={6} lg={4}>
-            <FormControl fullWidth>
-                <TextField label="KM per liter (በሊትር ኪ/ሜ)" type="number" name="fname" id="fname" onChange={(e) => setRefuelData((prev) => ({ ...prev, km_per_liter: e.target.value }))} />
-            </FormControl>
-        </Grid>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
                 <TextField label="Current fuel level (አሁን ያለዉ የነዳጅ መጠን)" type="number" name="fname" id="fname" onChange={(e) => setRefuelData((prev) => ({ ...prev, current_fuel_level: e.target.value }))} />

@@ -17,6 +17,7 @@ import AirlineSeatReclineNormalIcon from '@mui/icons-material/AirlineSeatRecline
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import BusinessIcon from '@mui/icons-material/Business';
 import NextPlanIcon from '@mui/icons-material/NextPlan';
+import TireRepairIcon from '@mui/icons-material/TireRepair';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../redux/user/authContext';
 
@@ -88,7 +89,7 @@ const MainListItems = ({active}) => {
       </ListItemButton>}
       {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/oil_tire')}>
         <ListItemIcon>
-          <NextPlanIcon />
+          <TireRepairIcon />
         </ListItemIcon>
         <ListItemText primary="Oil & Tire " />
       </ListItemButton>}

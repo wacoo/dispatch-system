@@ -132,22 +132,22 @@ const MonthlyPlan = () => {
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Oil in lts ()" type="number" name="oil" id="oil" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, oil_lts: e.target.value }))} />
+                <TextField label="Oil in lts (ዘይት በሊትር)" type="number" name="oil" id="oil" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, oil_lts: e.target.value }))} />
             </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Oil total cost ()" type="number" name="oil_cost" id="oil_cost" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, oil_cost: e.target.value }))} />
+                <TextField label="Oil total cost (አጠቃላይ ዋጋ)" type="number" name="oil_cost" id="oil_cost" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, oil_cost: e.target.value }))} />
             </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Tire maint. ()" type="number" name="tire_maint" id="tire_maint" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, tire_maint_cnt: e.target.value }))} />
+                <TextField label="Tire maint. (የጎማ ጥገና ቁጥር)" type="number" name="tire_maint" id="tire_maint" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, tire_maint_cnt: e.target.value }))} />
             </FormControl>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <TextField label="Tire maint. cost ()" type="number" name="tire_maint_cost" id="tire_maint_cost" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, tire_maint_cost: e.target.value }))} />
+                <TextField label="Tire maint. cost (አጠቃላይ ዋጋ)" type="number" name="tire_maint_cost" id="tire_maint_cost" onChange={(e) => setMonthlyPlanData((prev) => ({ ...prev, tire_maint_cost: e.target.value }))} />
             </FormControl>
         </Grid>
         
@@ -169,13 +169,6 @@ const MonthlyPlan = () => {
             {/* <Alert severity="info">This is an info Alert.</Alert>
             <Alert severity="warning">This is a warning Alert.</Alert> */}
         </Grid>
-        </Grid>
-
-        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Departments</Typography>
-        </Grid>
-        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <DepartmentsTable />
         </Grid>
     </>
 

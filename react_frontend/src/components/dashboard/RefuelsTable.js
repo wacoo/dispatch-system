@@ -21,7 +21,7 @@ function preventDefault(event) {
 }
 
 export default function RefuelsTable({title}) {
-  const refuels = useSelector((state) => state.refuels.refuels.results) ?? [];
+  const refuels = useSelector((state) => state.refuels.refuels) ?? [];
   const dispatch = useDispatch();
     React.useEffect(() => {
         console.log(refuels);
@@ -45,13 +45,12 @@ export default function RefuelsTable({title}) {
             <TableCell>Nafta</TableCell>
             <TableCell>KM/B/Refuel</TableCell>
             <TableCell>KM/D/P/Refuel</TableCell>
-            <TableCell>KM/Lts</TableCell>
             <TableCell>Fuel level</TableCell>
             <TableCell>Remark</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {refuels.map((refuel) => (
+          {refuels.slice(0, 10).map((refuel) => (
             <TableRow key={refuel.id}>
               <TableCell>{refuel.id}</TableCell>
               <TableCell>{`(${refuel.vehicle.license_plate}) ${refuel.vehicle.make} ${refuel.vehicle.model} ${refuel.vehicle.year}; ${refuel.vehicle.type}`}</TableCell>
@@ -61,7 +60,6 @@ export default function RefuelsTable({title}) {
               <TableCell>{refuel.nafta}</TableCell>
               <TableCell>{refuel.km_during_refuel}</TableCell>
               <TableCell>{refuel.km_during_previous_refuel}</TableCell>
-              <TableCell>{refuel.km_per_liter}</TableCell>
               <TableCell>{refuel.current_fuel_level}</TableCell>
               <TableCell>{refuel.remark}</TableCell>
             </TableRow>

@@ -213,7 +213,6 @@ class Refuel(models.Model):
   benzine_price_ppl = models.FloatField(blank=True, default=0)
   km_during_refuel = models.IntegerField()
   km_during_previous_refuel = models.IntegerField()
-  km_per_liter = models.FloatField()
   current_fuel_level = models.FloatField()
   remark = models.CharField(max_length=500, default='')
 

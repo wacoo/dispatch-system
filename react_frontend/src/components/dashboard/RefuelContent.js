@@ -39,7 +39,7 @@ const RefuelContent = () => {
         benzine_price_ppl: 0,
         km_during_refuel: '',
         km_during_previous_refuel: '',
-        current_fuel_level: '',
+        // current_fuel_level: '',
         remark: '',
     });
 
@@ -226,11 +226,11 @@ const RefuelContent = () => {
             </FormControl>
         </Grid>
 
-        <Grid item xs={12} md={6} lg={4}>
+        {/* <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
                 <TextField label="Current fuel level (አሁን ያለዉ የነዳጅ መጠን)" type="number" name="fname" id="fname" onChange={(e) => setRefuelData((prev) => ({ ...prev, current_fuel_level: e.target.value }))} />
             </FormControl>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
             <FormControl fullWidth>
                 <TextField label="Remark (ማስታወሻ)" type="text" name="fname" id="fname" multiline onChange={(e) => setRefuelData((prev) => ({ ...prev, remark: e.target.value }))} />

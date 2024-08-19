@@ -200,7 +200,7 @@ class DispatchSerializer(serializers.ModelSerializer):
 class RefuelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Refuel
-        fields=('id', 'vehicle', 'refuel_request_date', 'refuel_date', 'nafta', 'benzine', 'nafta_price_ppl', 'benzine_price_ppl', 'km_during_refuel', 'km_during_previous_refuel', 'current_fuel_level', 'remark')
+        fields=('id', 'vehicle', 'refuel_request_date', 'refuel_date', 'nafta', 'benzine', 'nafta_price_ppl', 'benzine_price_ppl', 'km_during_refuel', 'km_during_previous_refuel', 'remark')
         #fields = '__all__'
     def to_representation(self, instance):
         representation = super().to_representation(instance)

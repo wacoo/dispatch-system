@@ -45,7 +45,7 @@ export default function RefuelsTable({title}) {
             <TableCell>Nafta</TableCell>
             <TableCell>KM/B/Refuel</TableCell>
             <TableCell>KM/D/P/Refuel</TableCell>
-            <TableCell>Fuel level</TableCell>
+            {/* <TableCell>Fuel level</TableCell> */}
             <TableCell>Remark</TableCell>
           </TableRow>
         </TableHead>
@@ -60,7 +60,7 @@ export default function RefuelsTable({title}) {
               <TableCell>{refuel.nafta}</TableCell>
               <TableCell>{refuel.km_during_refuel}</TableCell>
               <TableCell>{refuel.km_during_previous_refuel}</TableCell>
-              <TableCell>{refuel.current_fuel_level}</TableCell>
+              {/* <TableCell>{refuel.current_fuel_level}</TableCell> */}
               <TableCell>{refuel.remark}</TableCell>
             </TableRow>
           ))}

@@ -29,7 +29,7 @@ const MonthlyPlan = () => {
     const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
     const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const [monthlyPlanData, setMonthlyPlanData] = useState({
-        vehicle: '',
+        // vehicle: '',
         month: '',
         benzine: 0, 
         nafta: 0,
@@ -88,9 +88,9 @@ const MonthlyPlan = () => {
             <Typography variant="h4">Monthly plan (ወርሃዊ እቅድ)</Typography>
         </Grid>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
-        <Grid item xs={12} md={6} lg={4}>
+        {/* <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    {/* <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel> */}
+                    {/* <InputLabel id="vehicle" sx={{ marginBottom: '8px' }}>Vehicle (ተሽከርካሪ)</InputLabel>}
                     <Autocomplete
                         options={vehicles}
                         getOptionLabel={(vehicle) => 
@@ -103,7 +103,7 @@ const MonthlyPlan = () => {
 
                         />
                 </FormControl>
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>

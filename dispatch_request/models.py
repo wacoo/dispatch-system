@@ -213,7 +213,7 @@ class Refuel(models.Model):
   benzine_price_ppl = models.FloatField(blank=True, default=0)
   km_during_refuel = models.IntegerField()
   km_during_previous_refuel = models.IntegerField()
-  current_fuel_level = models.FloatField()
+  # current_fuel_level = models.FloatField()
   remark = models.CharField(max_length=500, default='')
 
 class Department(models.Model):
@@ -240,7 +240,7 @@ class PricePerLiter(models.Model):
 
 class MonthlyPlan(models.Model):
   ''' refuel monthly plan'''  
-  vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+  # vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
   month = models.CharField(max_length=100, default='')
   nafta = models.FloatField(blank=True, default=0)
   benzine = models.FloatField(blank=True, default=0)

@@ -326,7 +326,7 @@ const GenerateDispatchReport = () => {
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
                     <EtDatePicker
-                        label="To ()"
+                        label="To (እስከ)"
                         onChange={(selectedDate) => {
                             setTo(selectedDate);
                         }}

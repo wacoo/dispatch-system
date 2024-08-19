@@ -260,7 +260,7 @@ export function calculateRefuelData(refuelData, startDate, endDate, benzinePrice
     full_plan.oil_lts_perc = ((oilTire.totalOilLts / full_plan.oil_lts) * 100).toFixed(3);
     full_plan.oil_cost_perc = ((oilTire.totalOilCost / full_plan.oil_cost) * 100).toFixed(3);
     full_plan.tire_cnt_perc = ((oilTire.totalTireMaintCount / full_plan.tire_maint_cnt) * 100).toFixed(3);
-    full_plan.tire_cost_perc= ((full_plan.tire_maint_cost / oilTire.totalTireMaintCost) * 100).toFixed(3);
+    full_plan.tire_cost_perc= ((oilTire.totalTireMaintCost / full_plan.tire_maint_cost) * 100).toFixed(3);
     console.log(results);
     return results;
 }

@@ -21,10 +21,26 @@ const initialState = {
 
 const full_url = `${url}vehicles/`;
 const fetchVehicles = createAsyncThunk('vehicles/fetchVehicles', async() => {
+    // try {
+    //     const res = await axios.get(full_url, { headers: authHeader() });
+    //     return res.data;
+    // } catch(error) {
+    //     return error.message;
+    // }
+
     try {
-        const res = await axios.get(full_url, { headers: authHeader() });
-        return res.data;
-    } catch(error) {
+        let allVehicles = [];
+        let nextUrl = `${url}vehicles/`;
+        
+        // Loop until nextUrl is null (no more pages)
+        while (nextUrl) {
+            const res = await axios.get(nextUrl, { headers: authHeader() });
+            allVehicles = [...allVehicles, ...res.data.results]; // Assuming 'results' contains your data
+            nextUrl = res.data.next; // 'next' will be null if no more pages
+        }
+        console.log(allVehicles);
+        return allVehicles;
+    } catch (error) {
         return error.message;
     }
 });

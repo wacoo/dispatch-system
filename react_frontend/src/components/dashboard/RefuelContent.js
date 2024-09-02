@@ -27,7 +27,7 @@ const RefuelContent = () => {
     const [rrdate, setRRdate] = useState(null);
     const [rdate, setRdate] = useState(null);
     const [addPPL, setAddPPL] = useState(false);
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const [refuelData, setRefuelData] = useState({
         vehicle: '1',

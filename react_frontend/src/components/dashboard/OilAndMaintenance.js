@@ -29,7 +29,7 @@ const OilAndMaintenace = () => {
     const [errorOil, setErrorOil] = useState('');
     const [successMaint, setSuccessMaint] = useState(false);
     const [errorMaint, setErrorMaint] = useState('');
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const [oilData, setOilData] = useState({
         liters: '',
         cost: ''
@@ -154,10 +154,6 @@ const OilAndMaintenace = () => {
                 {/* <Alert severity="info">This is an info Alert.</Alert>
             <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>
-        </Grid>
-
-        <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
-            <Typography variant="h4">Departments</Typography>
         </Grid>
     </>
 

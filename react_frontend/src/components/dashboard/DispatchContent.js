@@ -58,7 +58,7 @@ const DispatchContent = () => {
     const dispatch = useDispatch();
     const approved_requests = useSelector((state) => state.requests.approved_requests.results) ?? [];
     const drivers = useSelector((state) => state.driver.drivers.results) ?? [];
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const dispatchers = useSelector((state) => state.users.dispatchers) ?? [];
     const isLoadingRequests = useSelector((state) => state.requests.isLoading);
     const isLoadingDrivers = useSelector((state) => state.driver.isLoading);
@@ -258,7 +258,7 @@ const DispatchContent = () => {
                         onChange={(e) => setDispatchData((prev) => ({...prev, assigned_vehicle: e.target.value}))}
                     >
                         {
-                            vehicles.map((vehicle) => (
+                            vehicles?.map((vehicle) => (
                                 <MenuItem value={vehicle.id}>{`(${vehicle.id}) ${vehicle.license_plate}; ${vehicle.make} ${vehicle.model}; ${vehicle.type}`}</MenuItem>
                             ))
                         

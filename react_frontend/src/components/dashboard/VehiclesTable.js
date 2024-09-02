@@ -20,7 +20,7 @@ function preventDefault(event) {
 
 export default function VehiclesTable({title}) {
 
-  const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+  const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
   const dispatch = useDispatch();
     // React.useEffect(() => {
     //     console.log(vehicles);
@@ -44,7 +44,7 @@ export default function VehiclesTable({title}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {vehicles.map((vehicle) => (
+          {vehicles.slice(0, 10).map((vehicle) => (
             <TableRow key={vehicle.id}>
               <TableCell>{vehicle.id}</TableCell>
               <TableCell>{vehicle.make}</TableCell>

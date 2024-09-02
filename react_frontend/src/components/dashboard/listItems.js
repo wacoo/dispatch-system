@@ -105,12 +105,12 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Dispatch report" />
       </ListItemButton>}
-      <ListItemButton>
+      {/* <ListItemButton>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Reports" />
-      </ListItemButton>
+      </ListItemButton> */}
     </React.Fragment>
     );
 }

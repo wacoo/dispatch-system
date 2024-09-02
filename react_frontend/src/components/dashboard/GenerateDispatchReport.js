@@ -34,7 +34,7 @@ const GenerateDispatchReport = () => {
     const refuels = useSelector((state) => state.refuels.refuels) ?? [];
     // const supervisors = useSelector((state) => state.users.users.results) ?? [];
     const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const monthlyFuelPlan = useSelector((state) => state.refuels.monthlyPlans) ?? [];
     const oilUses = useSelector((state) => state.vehicles.oilUses) ?? [];
     const maintenances = useSelector((state) => state.vehicles.maints) ?? [];

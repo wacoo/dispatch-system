@@ -74,8 +74,8 @@ export default function DriversTable({title}) {
             <TableCell>ID</TableCell>            
             <TableCell>ID number</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Phone</TableCell>
-            <TableCell align="right">Position</TableCell>
+            <TableCell>Position</TableCell>
+            <TableCell  align="right">Phone</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -84,8 +84,8 @@ export default function DriversTable({title}) {
               <TableCell>{driver.id}</TableCell>              
               <TableCell>{driver.id_no}</TableCell>
               <TableCell>{`${driver.fname} ${driver.mname}`}</TableCell>
-              <TableCell>{driver.phone_number}</TableCell>
-              <TableCell align="right">{driver.position}</TableCell>
+              <TableCell>{driver.position}</TableCell>
+              <TableCell  align="right">{driver.phone_number}</TableCell>
             </TableRow>
           ))}
         </TableBody>

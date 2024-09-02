@@ -205,8 +205,8 @@ export default function Dashboard({ active }) {
           <Divider />
           <List component="nav">
             <MainListItems />
-            <Divider sx={{ my: 1 }} />
-            <SecondaryListItems />
+            {/* <Divider sx={{ my: 1 }} /> */}
+            {/* <SecondaryListItems /> */}
           </List>
         </Drawer>
         <Box

@@ -49,7 +49,7 @@ const VehicleContent = () => {
         make: 'Toyota',
     })
 
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const makes = useSelector((state) => state.vehicles.makes.results) ?? [];
     
     const handleUpdate = (e) => {

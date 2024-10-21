@@ -18,7 +18,7 @@ import jsreport from 'jsreport-browser-client-dist';
 import { convertTo24HourFormat, convertToEthiopianDateTime, times } from "../../functions/date";
 import DispatchTable from "./DispatchTable";
 // import { createDispatchReport } from "../../redux/dispatch_report/dispatchReportSlice";
-
+import { generateReport } from "../../functions/report";
 
 const DispatchReport = () => {
     const [success, setSuccess] = useState(false);
@@ -58,29 +58,29 @@ const DispatchReport = () => {
         return () => clearTimeout(timer);
       }, [error, success]);
 
-      const generateReport = async (name, data) => {
-        try {
-            console.log(data);
-        jsreport.serverUrl = 'http://localhost:4444';
-        const response = await jsreport.render({
-            template: {
-            name: name,
-            },
-            data: {
-                cdispatch: data
-            }
-        });
-        response.download('myreport.pdf');
-        response.openInWindow({title: 'My Report'});
-        } catch (error) {
-            console.error('Error generating report:', error);
-        }
-    };
+    //   const generateReport = async (name, data) => {
+    //     try {
+    //         console.log(data);
+    //     jsreport.serverUrl = 'http://localhost:4444';
+    //     const response = await jsreport.render({
+    //         template: {
+    //         name: name,
+    //         },
+    //         data: {
+    //             cdispatch: data
+    //         }
+    //     });
+    //     response.download('myreport.pdf');
+    //     response.openInWindow({title: 'My Report'});
+    //     } catch (error) {
+    //         console.error('Error generating report:', error);
+    //     }
+    // };
 
-    function isLeapYear(year) {
-        // Leap year in Ethiopian calendar occurs every 4 years without exception
-        return (year % 4) === 3;
-    }
+    // function isLeapYear(year) {
+    //     // Leap year in Ethiopian calendar occurs every 4 years without exception
+    //     return (year % 4) === 3;
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -89,7 +89,6 @@ const DispatchReport = () => {
                 setSuccess(true);           
                 let data = { ...res.payload };
                 console.log(res.payload);
-    
                 // Step 2: Create a deep copy of vehicle_requests
                 data.vehicle_requests = res.payload.vehicle_requests.map(req => ({ ...req }));
     
@@ -97,14 +96,22 @@ const DispatchReport = () => {
                 data.request = data.vehicle_requests[0];
                 data.difference = data.return_milage - data.departure_milage;
                 data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
-                data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_act);
-                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, data.return_time_est);
-                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, data.return_time_act);
-                console.log(data.assigned_date);
+				data.assigned_date_t = data.assigned_date;
+                data.departure_date = convertToEthiopianDateTime(data.departure_date, null);
+				data.departure_time_est = convertToEthiopianDateTime(null, data.departure_time_est);
+				data.departure_time_act = convertToEthiopianDateTime(null, data.departure_time_act);
+                data.return_date_est = convertToEthiopianDateTime(data.return_date_est, null);
+				data.return_time_est = convertToEthiopianDateTime(null, data.return_time_est);
+                data.return_date_act = convertToEthiopianDateTime(data.return_date_act, null);
+				data.return_time_act = convertToEthiopianDateTime(null, data.return_time_act);
+				data.departure_date_t = data.departure_date;
+				data.departure_time_t = data.departure_time_act;
+                data.return_time_act_t = data.return_time_act;
                 // Step 4: Modify the deep copied vehicle_requests array
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {
                         req.no = idx + 1;
+                        req.user = req.requester;
                     });
                 } else {
                     console.error("data.vehicle_requests is not an array");

@@ -42,7 +42,7 @@ const RequestContent = () => {
     const [error, setError] = useState('');
 
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users.users.results) ?? [];
+    const users = useSelector((state) => state.users.users) ?? [];
     const isLoading = useSelector((state) => state.users.isLoading);
 
     useEffect(() => {
@@ -95,7 +95,7 @@ const RequestContent = () => {
                 <FormControl fullWidth>
                     <Autocomplete
                             options={users}
-                            getOptionLabel={(option) => `${option.fname} ${option.mname}`}
+                            getOptionLabel={(option) => `(${option.username}) ${option.fname} ${option.mname}`}
                             onChange={(event, value) => setRequestData((prev) => ({ ...prev, user: value ? value.id : '' }))}
                             renderInput={(params) => (
                                 <TextField

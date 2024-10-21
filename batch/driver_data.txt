@@ -1,0 +1,26 @@
+1996	Afwork	Debebe	H/Meskel	Heavey Vehicle Driver I
+1988	Alemayehu	Ewenetu	Abera	Heavey Vehicle Driver I
+1347	Chuchu	Fantaye	Desta	Heavey Vehicle Driver II
+1891	Debebe	Demisse	Aregu	Midum Vehicle Driver
+2136	Demelash	Kebede	Erenso	Midum Vehicle Driver
+2163	Demisse	Setotaw	Haile	Light and medium vehicle driver
+1972	Dereje	Tsera	Deda	Heavey Vehicle Driver I
+1203	Dinberu	Yemam	Negatu	Heavey Vehicle Driver II
+1343	Eredawe	Tefera	Tesema	Heavey Vehicle Driver II
+2269	Feleke	Yemaneh	Demsse	Midum Vehicle Driver
+2484	Gerawork	Betre	Yilma	Midum Vehicle Driver
+1997	Girma	Kebede	Senasa	Heavey Vehicle Driver I
+1882	Haile	G/mariam	Tewabe	Heavey Vehicle Driver I
+1986	Kebebush	Shiferaw	Bekele	Heavey Vehicle Driver II
+1735	Molalegne	Mengesha	Yebo	Heavey Vehicle Driver II
+2647	NEBABU	ENGEDA	GBREMARIAME	Heavey Vehicle Driver II
+2677	SAMSON	WORKU	WODAJENEH	Heavey Vehicle Driver I
+1489	Sinetayhu	Wolde	Ayele	Heavy Truck Driver
+2270	Solomon	T/selassie	Gedle	Heavey Vehicle Driver I
+1998	Talefe	Eregete	w/Yes	Heavey Vehicle Driver I
+1981	Tekle	W/Abe	Bayu	Heavey Vehicle Driver I
+2676	TEMESGEN	ASSFA	ABEBE	Heavey Vehicle Driver I
+2207	Tewoderos	Misiker	H/Mariam	Midum Vehicle Driver
+2213	Wondwesen	Tebeje	Mekonen	Midum Vehicle Driver
+2675	ZELALEM	TAYE	AMENU	Heavey Vehicle Driver I
+2674	ZENEBE	MESHESHA	LEMMA	Heavey Vehicle Driver I

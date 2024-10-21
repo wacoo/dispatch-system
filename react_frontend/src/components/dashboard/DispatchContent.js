@@ -20,11 +20,12 @@ import jsreport from 'jsreport-browser-client-dist'
 import { DatePicker } from "@mui/x-date-pickers";
 import {fetchDrivers } from "../../redux/driver/driverSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
-import { fetchUsers } from "../../redux/user/userSlice";
+import { fetchDispatchers, fetchUsers } from "../../redux/user/userSlice";
 // import { Viewer } from '@grapecity/activereports-react';
 import { addRequest } from '../../redux/request/requestSlice';
 import EtDatePicker from "mui-ethiopian-datepicker";
 import { times, convertTo24HourFormat, convertToEthiopianDateTime } from "../../functions/date";
+import { generateReport } from "../../functions/report";
 // import DispatchReport from "../reports/DispatchReport";
 
 
@@ -57,8 +58,8 @@ const DispatchContent = () => {
     const dispatch = useDispatch();
     const approved_requests = useSelector((state) => state.requests.approved_requests.results) ?? [];
     const drivers = useSelector((state) => state.driver.drivers.results) ?? [];
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
-    const dispatchers = useSelector((state) => state.users.users.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
+    const dispatchers = useSelector((state) => state.users.dispatchers) ?? [];
     const isLoadingRequests = useSelector((state) => state.requests.isLoading);
     const isLoadingDrivers = useSelector((state) => state.driver.isLoading);
     const isLoadingVehicles = useSelector((state) => state.vehicles.isLoading);
@@ -68,7 +69,7 @@ const DispatchContent = () => {
         dispatch(fetchApprovedRequests());
         dispatch(fetchDrivers());
         dispatch(fetchVehicles());
-        dispatch(fetchUsers());
+        dispatch(fetchDispatchers());
     }, []);
 
     useEffect(() => {
@@ -99,28 +100,28 @@ const DispatchContent = () => {
     }
     
 
-    const generateReport = async (name, data) => {
-        try {
-            console.log(data);
-        jsreport.serverUrl = 'http://localhost:4444';
-        const response = await jsreport.render({
-            template: {
-            name: name,
-            // content: 'Hello from {{message}}',
-            // engine: 'handlebars',
-            // recipe: 'chrome-pdf'
-            },
-            data: {
-                cdispatch: data
-            }
-        });
-        response.download('myreport.pdf');
-        response.openInWindow({title: 'My Report'});
-        // setReportData(response.data.toString('utf8'));
-        } catch (error) {
-            console.error('Error generating report:', error);
-        }
-    };
+    // const generateReport = async (name, data) => {
+    //     try {
+    //         console.log(data);
+    //     jsreport.serverUrl = 'http://localhost:4444';
+    //     const response = await jsreport.render({
+    //         template: {
+    //         name: name,
+    //         // content: 'Hello from {{message}}',
+    //         // engine: 'handlebars',
+    //         // recipe: 'chrome-pdf'
+    //         },
+    //         data: {
+    //             cdispatch: data
+    //         }
+    //     });
+    //     response.download('myreport.pdf');
+    //     response.openInWindow({title: 'My Report'});
+    //     // setReportData(response.data.toString('utf8'));
+    //     } catch (error) {
+    //         console.error('Error generating report:', error);
+    //     }
+    // };
 
       
     const handleSubmit = async (e) => {
@@ -135,7 +136,7 @@ const DispatchContent = () => {
                 setSuccess(true);
                 
                 let data = {...res.payload};
-    
+                console.log(fetchRequests);
                 data.vehicle_requests = fetchRequests?.map(req => ({ ...req }));
     
                 if (data && data.vehicle_requests){                        
@@ -146,15 +147,21 @@ const DispatchContent = () => {
     
                 data.request = data.vehicle_requests[0];
                 data.assigned_date = convertToEthiopianDateTime(data.assigned_date.split('T')[0]);
+				data.assigned_date_t = '';
                 data.departure_date = convertToEthiopianDateTime(data.departure_date, data.departure_time_est);
+				data.departure_date_t = '';
+				data.departure_time_t = '';
                 data.return_date_est = '';
                 data.return_date_act = '';
+                data.return_time_est_t = '';
                 data.departure_milage = '';
+				data.departure_milage = '';
                 data.return_milage = '';
-    
+				data.refuel_liters = '';
                 if (Array.isArray(data.vehicle_requests)) {
                     data.vehicle_requests.forEach((req, idx) => {
                         req.no = idx + 1;
+                        req.requester = req.user;
                     });
                 } else {
                     console.error("data.vehicle_requests is not an array");
@@ -190,21 +197,19 @@ const DispatchContent = () => {
         <Typography variant="h5">Add requests (የተሽከርካሪ ጥያቄዎችን)</Typography>
         <Grid item xs={12}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>
-                    <Select
-                        labelId="dept_lbl"
-                        id="demo-simple-select"
-                        label="Select Request"
-                        sx={{ minWidth: '100%' }}
-                        // Handle value, label, onChange
-                        onChange={(e) => setVehicleRequest(e.target.value)}
-                    >
-                        {
-                            approved_requests.map((request) => (
-                                <MenuItem value={request}>{`(${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.user.department}; ${request.destination}`}</MenuItem>
-                            ))
-                        }
-                    </Select>
+                    <Autocomplete
+                            options={approved_requests}
+                            getOptionLabel={(request) => ` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
+                            onChange={(event, value) => setVehicleRequest(value)}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Request (የመኪና ጥያቄ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        />
                 </FormControl>
             </Grid>
 
@@ -253,7 +258,7 @@ const DispatchContent = () => {
                         onChange={(e) => setDispatchData((prev) => ({...prev, assigned_vehicle: e.target.value}))}
                     >
                         {
-                            vehicles.map((vehicle) => (
+                            vehicles?.map((vehicle) => (
                                 <MenuItem value={vehicle.id}>{`(${vehicle.id}) ${vehicle.license_plate}; ${vehicle.make} ${vehicle.model}; ${vehicle.type}`}</MenuItem>
                             ))
                         
@@ -274,7 +279,7 @@ const DispatchContent = () => {
                     >
                         {
                             drivers.map((driver) => (
-                                <MenuItem value={driver.id}>{`(${driver.license_number}) ${driver.fname} ${driver.mname}`}</MenuItem>
+                                <MenuItem value={driver.id}>{`(${driver.id_no}) ${driver.fname} ${driver.mname}; ${driver.position}`}</MenuItem>
                             ))
                         
                         }
@@ -353,7 +358,7 @@ const DispatchContent = () => {
             
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatcher (ያሰማራዉ)</InputLabel>
+                    {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Dispatcher (ያሰማራዉ)</InputLabel>
                     <Select
                         labelId="dept_lbl"
                         id="user"
@@ -367,7 +372,20 @@ const DispatchContent = () => {
                                 {`${user.fname} ${user.mname}`}
                             </MenuItem>
                         ))}
-                    </Select>
+                    </Select> */}
+                    <Autocomplete
+                            options={dispatchers}
+                            getOptionLabel={(user) => `(${user.username}) ${user.fname} ${user.mname}`}
+                            onChange={(event, value) => setDispatchData((prev) => ({ ...prev, dispatcher: value ? value.id : '' }))}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Dispatcher (ያሰማራዉ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        /> 
                 </FormControl>
             </Grid>
             <Grid item xs={12} marginTop={2}>

@@ -21,7 +21,8 @@ const DriverContent = () => {
         mname: '',
         lname: '',
         phone_number: '',
-        license_number: '',
+        id_no: '',
+        position: '',
     });
 
     useEffect(() => {
@@ -77,7 +78,12 @@ const DriverContent = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="License number (መ/ፈቃድ)" type="text" name="lnumber" id="lnumber" onChange={(e) => setDriverData((prev) => ({...prev, license_number: e.target.value}))}/>
+                    <TextField label="ID Number (ካ/ቁጥር)" type="text" name="id" id="id" onChange={(e) => setDriverData((prev) => ({...prev, id_no: e.target.value}))}/>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label="Position (የሹፍርና ደረጃ)" type="text" name="position" id="position" onChange={(e) => setDriverData((prev) => ({...prev, position: e.target.value}))}/>
                 </FormControl>
             </Grid>
 

@@ -37,13 +37,15 @@ import { logout } from '../../redux/user/userSlice';
 import Error403 from './Error403';
 import GenerateDispatchReport from './GenerateDispatchReport';
 import { AuthContext } from '../../redux/user/authContext';
+import MonthlyPlan from './MonthlyPlan';
+import OilAndMaintenace from './OilAndMaintenance';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://ethbspe.org/">
+        Website
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -101,7 +103,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard({ active }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -111,7 +113,7 @@ export default function Dashboard({ active }) {
   const { user, setUser } = React.useContext(AuthContext);
 
   React.useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = sessionStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {
@@ -203,8 +205,8 @@ export default function Dashboard({ active }) {
           <Divider />
           <List component="nav">
             <MainListItems />
-            <Divider sx={{ my: 1 }} />
-            <SecondaryListItems />
+            {/* <Divider sx={{ my: 1 }} /> */}
+            {/* <SecondaryListItems /> */}
           </List>
         </Drawer>
         <Box
@@ -234,8 +236,10 @@ export default function Dashboard({ active }) {
                 {active === 'Dispatches' && (user.user?.access_level >= 2 ? <DispatchContent /> : <Error403 />)}
                 {active === 'DispatchReport' && (user.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
                 {active === 'Users' && (user.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
+                {active === 'MonthlyPlan' && (user.user?.access_level >= 2 ? <MonthlyPlan /> : <Error403 />)}
+                {active === 'OilTire' && (user.user?.access_level >= 2 ? <OilAndMaintenace /> : <Error403 />)}
                 {active === 'Departments' && (user.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
-                {active === 'GenerateDispatchReport' && (user.user?.access_level >= 3 ? <GenerateDispatchReport /> : <Error403 />)}
+                {active === 'GenerateDispatchReport' && (user.user?.access_level >= 2 ? <GenerateDispatchReport /> : <Error403 />)}
                 
               </>
             )

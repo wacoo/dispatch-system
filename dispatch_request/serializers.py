@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from .models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter, MonthlyPlan, Oil, Maintenance
 
 class UserLimitedSerializer(serializers.ModelSerializer):
     ''' only for Eager fetch '''
@@ -40,6 +40,13 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         ''' group serizlizer meta '''
         model = Group
+        fields = '__all__'
+
+class MonthlyPlanSerializer(serializers.ModelSerializer):
+    ''' monthly plan serielizer class '''
+    class Meta:
+        ''' group serizlizer meta '''
+        model = MonthlyPlan
         fields = '__all__'
 
 class VehicleRequestLimitedSerializer(serializers.ModelSerializer):
@@ -86,7 +93,8 @@ class VehicleRequestSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Request meta '''
         model = VehicleRequest
-        fields = ('id', 'user', 'request_date', 'description', 'destination', 'requested_vehicle_type', 'destination_type', 'duration_from', 'duration_time_from', 'duration_to', 'duration_time_to', 'status', 'dispatch', 'created_at', 'updated_at')
+        fields = '__all__'
+        # fields = ('id', 'user', 'request_date', 'description', 'destination', 'requested_vehicle_type', 'destination_type', 'duration_from', 'duration_time_from', 'duration_to', 'duration_time_to', 'status', 'dispatch', 'created_at', 'updated_at')
         # read_only_fields = ('id', 'user', 'request_date', 'description', 'destination', 'requested_vehicle_type', 'destination_type', 'estimated_duration_hrs', 'dispatch', 'created_at', 'updated_at')
     # def update(self, instance, validated_data):
     #     ''' update user custom with password hashing '''
@@ -108,7 +116,7 @@ class DriverLimitedSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Driver meta '''
         model= Driver
-        fields = ('id', 'fname', 'mname', 'lname', 'license_number')
+        fields = ('id', 'fname', 'mname', 'lname', 'id_no', 'position')
 class DriverSerializer(serializers.ModelSerializer):
     ''' Drivers serializer '''
     class Meta:
@@ -121,7 +129,7 @@ class VehicleLimitedSerializer(serializers.ModelSerializer):
     class Meta:
         ''' Vehicle meta '''
         model= Vehicle
-        fields = ('id', 'make', 'model', 'year', 'type', 'license_plate')
+        fields = ('id', 'make', 'model', 'year', 'type', 'license_plate', 'km_per_liter')
 
 class VehicleSerializer(serializers.ModelSerializer):
     ''' Vehicle serializer '''
@@ -192,7 +200,7 @@ class DispatchSerializer(serializers.ModelSerializer):
 class RefuelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Refuel
-        fields=('id', 'vehicle', 'refuel_request_date', 'refuel_date', 'fuel_type', 'km_during_refuel', 'km_during_previous_refuel', 'km_per_liter', 'current_fuel_level', 'remark')
+        fields=('id', 'vehicle', 'refuel_request_date', 'refuel_date', 'nafta', 'benzine', 'nafta_price_ppl', 'benzine_price_ppl', 'km_during_refuel', 'km_during_previous_refuel', 'remark')
         #fields = '__all__'
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -203,12 +211,59 @@ class RefuelSerializer(serializers.ModelSerializer):
         # except VehicleRequest.DoesNotExist:
         #     representation['request'] = None
         return representation
+
+class PricePerLiterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PricePerLiter
+        fields = '__all__'
+
+# class RefuelALLSerializer(serializers.ModelSerializer):
+#     total_benzine_liters = serializers.SerializerMethodField()
+#     total_benzine_price = serializers.SerializerMethodField()
+#     total_nafta_liters = serializers.SerializerMethodField()
+#     total_nafta_price = serializers.SerializerMethodField()
+
+#     class Meta:
+#         model = Refuel
+#         fields = ('id', 'vehicle', 'total_benzine_liters', 'total_benzine_price',
+#                   'total_nafta_liters', 'total_nafta_price')
+
+#     def to_representation(self, instance):
+#         representation = super().to_representation(instance)
+#         try:
+#             representation['vehicle'] = VehicleLimitedSerializer(instance.vehicle).data
+#         except Vehicle.DoesNotExist:
+#             representation['vehicle'] = None
+#         return representation
+
+#     def get_total_benzine_liters(self, obj):
+#         total_liters = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_benzine_liters'))['actual_benzine_liters__sum']
+#         return total_liters if total_liters is not None else 0
+
+#     def get_total_benzine_price(self, obj):
+#         total_price = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_benzine_price'))['actual_benzine_price__sum']
+#         return total_price if total_price is not None else 0
+
+#     def get_total_nafta_liters(self, obj):
+#         total_liters = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_nafta_liters'))['actual_nafta_liters__sum']
+#         return total_liters if total_liters is not None else 0
+
+#     def get_total_nafta_price(self, obj):
+#         total_price = Refuel.objects.filter(vehicle=obj.vehicle).aggregate(Sum('actual_nafta_price'))['actual_nafta_price__sum']
+#         return total_price if total_price is not None else 0
     
 class DepartmentSerializer(serializers.ModelSerializer):
     ''' Department serializer '''
     class Meta:
         ''' Department serializer meta'''
         model = Department
+        fields = '__all__'
+
+class VehicleMakeSerializer(serializers.ModelSerializer):
+    ''' Vehicle make serializer '''
+    class Meta:
+        ''' Vehicle make serializer meta'''
+        model = VehicleMake
         fields = '__all__'
 
 # class DispatchReportSerializer(serializers.ModelSerializer):
@@ -218,3 +273,17 @@ class DepartmentSerializer(serializers.ModelSerializer):
 #         ''' Dispatch report serializer meta'''
 #         model = DispatchReport
 #         fields = '__all__'
+
+class OilSerializer(serializers.ModelSerializer):
+    ''' Oil serializer '''
+    class Meta:
+        ''' Oil meta '''
+        model= Oil
+        fields = '__all__'
+
+class MaintenanceSerializer(serializers.ModelSerializer):
+    ''' Oil serializer '''
+    class Meta:
+        ''' Oil meta '''
+        model= Maintenance
+        fields = '__all__'

@@ -1,0 +1,19 @@
+{
+    "name": "refuel",
+    "engine": "handlebars",
+    "recipe": "chrome-pdf",
+    "data": null,
+    "chrome": {
+        "printBackground": true,
+        "landscape": true
+    },
+    "creationDate": {
+        "$$date": 1718620549981
+    },
+    "modificationDate": {
+        "$$date": 1718624202153
+    },
+    "shortid": "y3rlHX3",
+    "_id": "2FEYlPQYJOI9ORdR",
+    "$entitySet": "templates"
+}

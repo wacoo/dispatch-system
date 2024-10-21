@@ -1,0 +1,866 @@
+2397	Abayensh	Mulugeta	Yegazw	Purchase & Property Management directorate	0911440597
+2524	Abayneh	Asfaw	Bocho	Security Printing directorate	0913620541
+2616	Abayneh	Atenaf	Amara	Human Resource Management & General Service directorate	0912056202
+2267	Abdi	Mehamed	Ali	Printing directorate	932857915
+2457	Abeba	Belay	Kebede	Human Resource Management & General Service directorate	921420685
+2143	Abeba	Edo	Ashemi	Security Printing directorate	0974092927
+2169	Abeba	Getachew	Tesisa	Printing directorate	0963069368
+1243	Abebachen	Demisie	H/Mariam	Internal Audit	0911882580
+1741	Abebaye	Mered	Yemam	Human Resource Management & General Service directorate	911884067
+2538	Abebe	Andarge	Walte	Printing directorate	0911986888
+1747	Abebe	Atelaw	Wube	Human Resource Management & General Service directorate	0911431821
+1900	Abebe	Girma	Wodajo	Technique directorate	0911385532
+2197	Abebe	Regasa	Aredo	Printing directorate	0911931539
+2075	Abebe	Sahile	Yegeletu	Security Printing directorate	0939676091
+1617	Abebe	Tesema	Engeda	Purchase & Property Management directorate	0929037832
+2218	Abebe	Teshome	Kifle	Printing directorate	0927346349
+1249	Abebech	Mekonen	Wordofa	Security Printing directorate	0910536024
+2602	Abebu	Demelash	Brhene	Human Resource Management & General Service directorate	0955400979
+2606	Abebu	Engida	Desta	Human Resource Management & General Service directorate	0995493183
+1863	Abedela	Aboye	Gurmu	Chief Excutive Office	09111429679
+2080	Abele	Sheberu	Getachew	Printing directorate	0910789230
+2255	Abenezer	Aklilu	G/mariam	Digital Transformation directorate	0912744084
+1825	Abera	Andarege	Anberbir	Printing directorate	0911822439
+2419	Abera	Goa	Wetango	Human Resource Management & General Service directorate	0916783156
+1625	Abera	Tome	Tolba	Printing directorate	0913079384
+1834	Aberash	Agena	Affe	Printing directorate	913079384
+2050	Aberash	Getenet	Yetbarek	Printing directorate	0919409036
+1865	Abereha	G/Hywot	Kahsay	Printing directorate	0930903970
+2395	Abeta	Asenie	saneqa	Security Printing directorate	913860886
+2680	Abinet	Fikadu	G/Yes	Human Resource Management & General Service directorate	903975807
+1813	Abiy	Mulugeta	W/kirkos	Purchase & Property Management directorate	941588741
+2627	ABIY	ZERFU	G/HIWOT	Human Resource Management & General Service directorate	0920332026
+1695	Abozenech	Astateke	Gobeze	Printing directorate	091063886
+2459	Abrashe	Menamo		Printing directorate	0980140928
+2350	Abriham	Ayalew	Berihun	Technique directorate	978666924
+1299	Addis	Alemayehu	Basazenew	Security Printing directorate	0913472364
+1841	Addis	Degife	Dejene	Printing directorate	0916885933
+1063	Addis	Eshete	Sendeku	Security Printing directorate	0920191732
+2097	Addisu	G/mikael	Chale	Security Printing directorate	0911002194
+2347	Addisu	Ketema	Sime	Technique directorate	0910551694
+2285	Ademasu	Mengesha		Human Resource Management & General Service directorate	O933381276
+2266	Adissu	Denawo	Jago	Printing directorate	916315464
+2612	Afwork	Ayeli	kara	Human Resource Management & General Service directorate	0983014014
+1996	Afwork	Debebe	H/Meskel	Human Resource Management & General Service directorate	0913112768
+2396	AGEGNEW	TESHOME	NIGATIE	Technique directorate	0931161252
+2240	Ageza	Negane	Leyetu	Printing directorate	0911987014
+1847	Ahemed	Ali	Mohamed	Purchase & Property Management directorate	
+1956	Alayu	Degife	Dejene	Printing directorate	0912847947
+1971	Alayu	Tadesse	Gebreye	Printing directorate	
+2411	Alelign	Ayele	Zewdu	Human Resource Management & General Service directorate	0912373604
+2040	Alem	G/hiwot	Habtamu	Printing directorate	0910000901
+2327	Alemayehu	Addise	Letikie	College Dean	0911084453
+1988	Alemayehu	Ewenetu	Abera	Human Resource Management & General Service directorate	0911676665
+1850	Alemayehu	Kasa	Yemer	Human Resource Management & General Service directorate	0922597971
+1746	Alemayehu	Kodo	Konde	Security Printing directorate	0911944622
+1119	Alemayehu	Tesisa	Gelgel	Printing directorate	0911175064
+1144	Alemayhu	Nesga	Bedasa	Printing directorate	0911157156
+0832	Alemaz	kebede	Sahile	Marketing directorate	0911347359
+1244	Aleme	Zewede	W/Tsadik	Marketing directorate	0911608895
+1354	Alemeneh	Yemer	Aragaw	Purchase & Property Management directorate	0912168321
+2609	Alemeshet	Abebe	Workineh	Technique directorate	0913050127
+2073	Alemneh	Ferdawoke	G/hywot	Printing directorate	
+1838	Alemnesh	Aserese	Alemu	Security Printing directorate	0913075652
+2102	Alemnesh	Gamini	Nega	Security Printing directorate	0910599167
+2576	Alemnesh	Misba	Kedir	Security Printing directorate	0955401832
+2246	Alemseged	Awlom	Melke	Security Printing directorate	0912430532
+2476	Alemtsehay	Befikadu		Security Printing directorate	
+1796	Alemtsehaye	Kore	Gebere	Internal Audit	0911707196
+2386	Alemu	Nigatu	Mandero	Purchase & Property Management directorate	0985419806
+2392	Alemu	Abebe	Getahun	Deputy Chief Excutive Office Operation Sector	0911949134
+1852	Alemu	Tebeje	Terefe	Printing directorate	0932181163
+2103	Almaz	ketema	Tadesse	Printing directorate	0913583887
+1166	Almaze	G/Meskel	W/giorgis	Security Printing directorate	0919408516
+2446	Alme	Tezera	Kassa	Security Printing directorate	0923709347
+2278	Altaye	Endalafir	Worku	Publication & Communication Directorate	0912410059
+2509	Alula	Yohannse	Afeworr	Human Resource Management & General Service directorate	0940507528
+2521	Amanuel	Asefa	Agersa	Purchase & Property Management directorate	0919366178
+2178	Amanuel	Beserate	Yeheyes	Security Printing directorate	0913498995
+2496	Amanuel	Segno	Kana	Human Resource Management & General Service directorate	0975325591
+2108	Amarech	Awlachew	Ygezu	Human Resource Management & General Service directorate	
+2361	Amarech	LELESA		Printing directorate	0913279793
+1933	Ameha	Degefu	Muleta	Printing directorate	0910809165
+2186	Ameha	Feseha	Asega	Printing directorate	0947524366
+2516	Amir	Mohammed	Sirage	Printing directorate	
+1856	Angafe	Temesegen	Anteneh	Printing directorate	0911722416
+1897	Aniteneh	Getachew	Melka	Printing directorate	0913422226
+2180	Anwar	Seifu	Ageza	Security Printing directorate	0940206948
+1075	Aragaw	Hassen	Abegaz	Printing directorate	0913016606
+1016	Aragaw	Molla	Demeke	Technique directorate	0911160547
+1309	Aragew	Sisaye	Getahun	Printing directorate	
+2407	Aragie	Nigussie	Mekonnen	Human Resource Management & General Service directorate	0963-135667
+2421	Aragie	Tsegaye	Ayalew	Human Resource Management & General Service directorate	0920663747
+2199	Aregahegne	Ademasu	Tafese	Security Printing directorate	0911162749
+2447	Aregash	Segon	Abebe	Human Resource Management & General Service directorate	0936992710
+1570	Aschalew	Fita	Tura	Security Printing directorate	0911791773
+0915	Asefaw	Tessema	Biru	Printing directorate	0922597470
+0842	Asegdech	Kidane	Tekele	College Dean	0911694514
+1734	Aseged	Girma	Dubale	Human Resource Management & General Service directorate	0922824000
+2455	Asegedech	Arba	Albe	Security Printing directorate	0929017563
+2317	Asegid	Zerihun	Argaw	Security Printing directorate	0947139293
+2639	ASEKALE	AREGAY	DESTA	Human Resource Management & General Service directorate	0925912678
+2048	Asenakech	Azazhe	Sharew	Marketing directorate	0913368830
+1687	Aserat	TenaGashaw	g/wolde	Printing directorate	0912152477
+1950	Aserese	Kasahun	Mengesha	Printing directorate	0913768850
+2534	Ashager	Tsegaye	Asnake	Printing directorate	0942221217
+2289	Ashanafe	Sisaye	Tsagaye	Printing directorate	0913618857
+1742	Ashenafi	Tebebu	Mulate	Technique directorate	0961009952
+2543	Ashenafi	Teklehaimanot	Ligaba	Human Resource Management & General Service directorate	0904079458
+2183	Ashenafi	Zewedu	Ketsela	Security Printing directorate	0922997208
+1966	Asinake	Azimeraw	Adeneh	Security Printing directorate	0912902409
+1058	Askale	W/hanna	G/Mariam	Printing directorate	0913944297
+2451	Asnakech	Ayile	Haile	Printing directorate	0940802759
+2579	Asnakech	Girma	Cherinet	Human Resource Management & General Service directorate	0911967325
+2239	Asnakech	Kebede	W/Mariam	Printing directorate	0913039994
+1984	Asrat	Abrham	Asefa	Human Resource Management & General Service directorate	0925525919
+2359	Asrat	Malie	Irebo	Printing directorate	
+2607	Asresie	Alemu	Biru	Printing directorate	0963270519
+2526	Assefa	Tsegaye	tilahun	Security Printing directorate	0911983977
+2233	Aster	Chernet	Asgde	Security Printing directorate	0911912987
+1755	Aster	Nanesa	Mamo	Printing directorate	0911371232
+0846	Aster	Tilahun	Tegne	Institutional Development &Quality Management directorate	0912029477
+2503	Atnafu	Teferi	Gido	Human Resource Management & General Service directorate	0913835345
+1973	Awelachew	Belachew	Demisse	Security Printing directorate	0911977602
+1156	Awelachew	Fekadu	Lemma	Technique directorate	0941268468
+2425	Ayanow	Washe	Anigulo	Human Resource Management & General Service directorate	0911396849
+2045	Ayeda	T/Mikeal	Asefa	Digital Transformation directorate	0911100774
+2548	Ayele	Alemu	Gebrekidan	Security Printing directorate	0900011256
+2135	Ayele	Tegegne	Worku	Printing directorate	0920230184
+2054	Ayelech	Emana	Dabesa	Security Printing directorate	0910982287
+1187	Ayenalem	Bogale	Dengereso	Printing directorate	0911146602
+1520	Ayenalem	Mekonen	Mula	Marketing directorate	0913584782
+0980	Aynalem	Zenebe	W/Giorgis	Security Printing directorate	0913224749
+1977	Azeb	Teshome	Mengestu	Printing directorate	0921016517
+1628	Babi	Hadego	G/Yes	Printing directorate	0911655273
+1395	Bahiru	Derebew	Belaye	Printing directorate	0911562249
+1822	Banciamlak	Chane	Zemene	Printing directorate	0904185440
+2198	Bedelu	Negash	Gebre	College Dean	0913417354
+2345	Bedlu	Sebros	Spina	Institutional Development &Quality Management directorate	
+2326	Befekadu	Abebe	Gede	Technique directorate	0913036731
+2217	Behailu	Tilahun	Tesema	Technique directorate	0912376427
+2401	Behailu	Tsegaye	Lidetu	Security Printing directorate	0920-534523
+2565	Behaylu	Asefaw	Hassen	Human Resource Management & General Service directorate	0922821715
+1828	Behon	Desalegne	Wolde	Human Resource Management & General Service directorate	0923462748
+2006	Behonegne	Negusse	Balcha	Printing directorate	0911346784
+2260	Bekalu	Mesfin	Zenebework	Technique directorate	
+1839	Bekelech	Mulatu	Sera	Finance directorate	
+2529	Bekure	Bete	Tekletsiyon	Printing directorate	0961032686
+2387	Belay	Ayalew	Bekele	Technique directorate	0921144871
+1253	Belaye	Asefaw	Farsemo	Printing directorate	0913107442
+1686	Belaye	Ayalew	Hibestu	Printing directorate	0910441550
+1817	Belaye	Mulu	Endale	Security Printing directorate	0913965850
+2654	BELAYINESH	GEZAHEGN	ALEMU	Printing directorate	0913-60-43-96
+2196	Belete	H/Mariam	Dula	Printing directorate	0920230304
+2047	Belete	Kebede	Mekonen	Technique directorate	0911659092
+2578	Beletu	Melaku	Tegegn	Human Resource Management & General Service directorate	0984652733
+0988	Beletu	Mulugeta	Delnesahu	Printing directorate	0913363105
+2302	Beliyu	Seyum	Bateru	Printing directorate	0911867047
+2188	Beniam	Bekele	Tesfaye	Printing directorate	0912995246
+1944	Benyiam	Berehanu	Demisse	Printing directorate	0924425849
+1790	Berehane	Alene	Legesse	Publication & Communication Directorate	0912125513
+2155	Berehane	Wude	Zeleke	Security Printing directorate	0921457121
+1216	Berehanhiowt	Getachew	Mamo	College Dean	0913073214
+1540	Berehanu	Abaye	Mekonen	College Dean	0911899000
+1794	Berehanu	G/Hana	Seleshi	Security Printing directorate	0913594172
+2122	Berehanu	G/Mariam	Mengesha	Printing directorate	
+2026	Berehanu	Girma	Demise	Technique directorate	0911045380
+1657	Berehanu	Seboka	Adenew	Security Printing directorate	0912146260
+1781	Berehanu	Terefe	Abebe	Printing directorate	0912164928
+2478	Bereket	Bekele	Tekle	Finance directorate	
+1923	Bereket	Mola	H/gebreal	Security Printing directorate	0913230355
+1551	Berhanu	Bacha	Gudeta	Technique directorate	0936992191
+1377	Berhanu	Mekuria	Worku	Marketing directorate	
+1259	Bersisa	Abdi	Wodajo	Printing directorate	09111463463
+2029	Beruk	Eregete	Dejene	Printing directorate	0910805208
+1270	Beruk	Wondimu	H/Mariam	Printing directorate	0911344253
+1772	Betegelu	Demisse	Chekol	Institutional Development &Quality Management directorate	0910556293
+2249	Betel	Girma	Kebede	Marketing directorate	0913948956
+1806	Betelehem	Zerihun	Berehe	College Dean	0912123940
+1769	Beyene	G/Medhin		Printing directorate	0910556321
+1613	Beyene	Jembere	Getahun	Security Printing directorate	0911648501
+1713	Beyenech	Belaye	T/Haymanot	Printing directorate	0913106137
+2436	Bezawite	Reta	Melesse	Printing directorate	0913679407
+2369	Bezuahn	Belayeneh	Shelemae	Human Resource Management & General Service directorate	0938049300
+1898	Bezuneh	H/Meskel	G/Medhin	Deputy Chief Excutive Office Human Resource Management Sector	
+2174	Biniam	Yohanes	Mekonen	Security Printing directorate	0911699969
+1941	Biniyam	Getachew	Abebe	Purchase & Property Management directorate	
+2224	Biniyam	Getachew	Bekegnetewalu	Printing directorate	0913006324
+2545	BIRHAANUU	MAABIRAATUU		Human Resource Management & General Service directorate	0967315266
+1960	Birhanu	Bekele	Kebede	Security Printing directorate	0920711519
+2424	Birkye	Kormaw	Addissie	Human Resource Management & General Service directorate	0922865672
+2648	BIRTUKAN	FOSHA	MOLLA	Printing directorate	0908-77-29-30
+2656	BISRAT	SHAREW	GEBRETSADIK	Human Resource Management & General Service directorate	0943-20-46-92
+2649	BIZUAYEHU	GETNET	TADESSE	Printing directorate	0910-10-63-79
+1322	Bizunesh	Tesgaye	Abebe	Security Printing directorate	0913651244
+2568	Bizuwerk	Hailemariam	Tadesse	Security Printing directorate	0939093857
+2366	Bizuwork	Tefera	Gebeyehu	Security Printing directorate	0913421399
+2284	Bogal	Getanehe	Giza	Security Printing directorate	0912662923
+1490	Bogale	Kassa	Kebede	Human Resource Management & General Service directorate	0911714959
+1427	Bogale	Mengesha	Jale	Purchase & Property Management directorate	0911621315
+2310	Bogale	Tarekegne	Kasew	Deputy Chief Excutive Office Operation Sector	0919176284
+1035	Brehanu	Bekele	Dilgasa	Printing directorate	0911574523
+2081	Buzayehu	Megersa	Alena	Printing directorate	0933179239
+2099	Buznesh	Beyene	Worku	Security Printing directorate	0911032333
+2210	Chalachew	Adenew	Gedu	Printing directorate	0913532180
+2399	Chefike	Charbo	Sonko	Human Resource Management & General Service directorate	0910004406
+1248	Cherenet	Berhanu	Workneh	Purchase & Property Management directorate	0911872188
+1347	Chuchu	Fantaye	Desta	Human Resource Management & General Service directorate	0911474096
+1704	Dagemawi	Abate	Yemer	Publication & Communication Directorate	0911548099
+2542	Dagim	Endale	Getachew	Printing directorate	0989990706
+2531	Dagmawi	Teketel	Shewangizaw	Printing directorate	0928258885
+2389	Dagmawi	Yohannes	Bekele	Technique directorate	0917512301
+2452	Dagmawt	Adnew	Gbera	Human Resource Management & General Service directorate	0938062359
+2168	Dagnachew	G/Wold	Kidane	Deputy Chief Excutive Office Operation Sector	0911696782
+1927	Dagnachew	Tolye	Adicho	Security Printing directorate	0910462439
+2288	Dagncho	Bashada	Asefw	Printing directorate	0911547380
+2303	Daneal	Aberham	Duresa	Human Resource Management & General Service directorate	0911698432
+1783	Daneal	Tadesse	Megersa	Printing directorate	0910356521
+2502	Daniel	Desta	Mekonnen	Human Resource Management & General Service directorate	0991733626
+2281	Daniel	Haile	woldu	Deputy Chief Excutive Office Operation Sector	
+2546	Dawit	Alemayhu	Mitsa	Human Resource Management & General Service directorate	0941887889
+2353	Dawit	Bayu	Ejigu	Finance directorate	
+2138	Dawit	Teklu	Astateke	Finance directorate	0911485411
+2518	Dawit	Terefe	Bekele	Printing directorate	0920719270
+2324	Dawit	Teshome	Asayehegn	Technique directorate	0932087667
+2477	Dawit	Zewdie	Tsegaye	Finance directorate	
+2469	Debalka	Gebru	Wubeneh	Human Resource Management & General Service directorate	0920497179
+1891	Debebe	Demisse	Aregu	Human Resource Management & General Service directorate	0913297970
+1062	Debebe	Kebede	Dagne	Printing directorate	0913210588
+1776	Debebe	W/Senbet	Mesganaw	Deputy Chief Excutive Office Human Resource Management Sector	
+1254	Debrework	Zewedu	Kebede	Publication & Communication Directorate	0911185477
+1128	Degine	Mekonene	Demisse	Institutional Development &Quality Management directorate	0910554324
+2043	Dejene	Alemu	Wake	Technique directorate	0911910063
+2092	Dejene	Dibaba	Deseta	Security Printing directorate	0913065402
+2402	Dejene	Getaye	Moges	Human Resource Management & General Service directorate	0910-546356
+2157	Dejeyetenu	Deneke	Demisse	Printing directorate	0913789885
+2002	Delnesaw	Amesalu	Mengistu	Publication & Communication Directorate	0912482274
+2412	Demelash	Amare	Wondimagegn	Human Resource Management & General Service directorate	0913497621
+2136	Demelash	Kebede	Erenso	Human Resource Management & General Service directorate	0913479015
+2527	Demeslase	amberebere	Toll	Printing directorate	0921603920
+1909	Demiss	Dendir	Sebaga	Technique directorate	0912160191
+1753	Demisse	Habete	Tesema	Publication & Communication Directorate	
+2163	Demisse	Setotaw	Haile	Human Resource Management & General Service directorate	0910800379
+1122	Denkneshe	Derebe	Ayalkebet	Printing directorate	0911020948
+2505	Derbb	Mamuye	naka	Human Resource Management & General Service directorate	0942585653
+2013	Derebe	Demisse	Chekole	Printing directorate	0911460806
+1697	Derege	Debele	Adere	Security Printing directorate	0913649009
+1549	Dereje	Bizen	Menalu	Human Resource Management & General Service directorate	
+1972	Dereje	Tsera	Deda	Human Resource Management & General Service directorate	0911973906
+2290	Dereje	Wanke	Washa	Printing directorate	0913334385
+2413	Derese	Legesse	Tesema	Printing directorate	0919801929
+1554	Desalegn	Asefa	Yemane	Technique directorate	0911958228
+2590	Desta	Eshete	Gebrewled	Human Resource Management & General Service directorate	
+1782	Desta	Feseha	Zelalem	Printing directorate	0910088792
+2012	Desta	Keta	Tura	Printing directorate	0920713090
+2533	Desyalew	Mosye	Dires	Printing directorate	0928563863
+1203	Dinberu	Yemam	Negatu	Human Resource Management & General Service directorate	0911184375
+2203	Ebba	Gelassa	Wakjira	Deputy Chief Excutive Office Operation Sector	
+2614	Eferam	Eliyas	Tale	Human Resource Management & General Service directorate	0931152327
+0856	Ejigayehu	Aberra	W/Mikeal	Printing directorate	0913584256
+2653	EJIGAYEHU	BEFIKADU	WELDEHAWARYAT	Printing directorate	0913-58-08-63
+2663	ELENI	ABERU	BEKELE	Human Resource Management & General Service directorate	0910156315
+2179	Eleyas	Agergezat	Bezawork	Human Resource Management & General Service directorate	0923862271
+1266	Elisabet	Getachew	Shenkute	Marketing directorate	0911874536
+2338	Elizabeth	Andargie	Allene	Deputy Chief Excutive Office Operation Sector	0911625924
+2431	Elsabat	Galata	Bogi	Human Resource Management & General Service directorate	0913724953
+2405	Elsabeth	Bogale	Asfaw	Human Resource Management & General Service directorate	0111246357
+2657	EMBET	ABEBE	ADISU	Human Resource Management & General Service directorate	0975-17-75-32
+2089	Embet	Asfaw	Alemu	Security Printing directorate	0911559012
+2659	EMEBAT	SHIMLIS	ZELEKE	Human Resource Management & General Service directorate	0912380050
+2423	Emebet	Getahun	Melese	Printing directorate	0938948560
+1836	Emebet	Yalew	Endalew	Security Printing directorate	0913612674
+2222	Emeru	Yasin	Husen	Printing directorate	0910374053
+1685	Endale	Asefa	Abedi	Printing directorate	0911081395
+2304	Endalekachw	W/amanuael	Mamo	Printing directorate	0911436538
+2475	Endalie	Getacho	Abebe	Human Resource Management & General Service directorate	0923202182
+2129	Endalkachew	Teklu	Enkade	Printing directorate	0913063529
+2514	Endalkachew	Zenebe	Tsegaw	Printing directorate	0922583123
+2467	Endawok	Marewu	Belete	Printing directorate	0932857415
+2645	ENDAWOKE	WORKIE	CHEKOL	Human Resource Management & General Service directorate	0929-47-98-54
+1890	Eneyew	Asefa	Worku	Printing directorate	0911860825
+1139	Eneyew	Tegegne	Reta	Printing directorate	0911754337
+2242	Enyew	Lebeza	Alemu	Strategic Management directorate	
+2085	Ephrem	Ergetu	Asefa	Printing directorate	0913951781
+2384	Ephrem	Teshome	Mekonnen	Marketing directorate	0911081379
+2619	EPHREM	ZELEKE	DAMITE	Human Resource Management & General Service directorate	09
+1343	Eredawe	Tefera	Tesema	Human Resource Management & General Service directorate	0911017340
+2173	Eremias	Alemayehu	Jimma	Security Printing directorate	0911170086
+2624	ERMIAS	TAKELE	AYELE	Marketing directorate	0991136408
+2554	Ermiyas	Fikadu	Gdey	Human Resource Management & General Service directorate	0969880567
+2016	Erteban	Wodaje	Gebeyaw	Printing directorate	0931231790
+2605	Eseat	Walelgne	Dessie	Human Resource Management & General Service directorate	0945963749
+2595	Eseyta	Fantahun	Dessie	Human Resource Management & General Service directorate	0973049676
+2020	Eshetu	Kassa	Geletu	Ethics & Anti Corruption Daireactorate	0911964062
+2093	Eshetu	Tola	kewesa	Printing directorate	0913006254
+2220	Esknder	Yehalashet	Kebede	Printing directorate	0913627363
+2493	Esuyawkal	Yayeh	Tazeze	Human Resource Management & General Service directorate	0936935536
+2433	Etabezahu	Tadesse	Biru	Security Printing directorate	
+2666	ETAFERAHU	DESALEGN		Human Resource Management & General Service directorate	0943323032
+2448	Etaferahu	Girma	Melesse	Deputy Chief Excutive Office Operation Sector	0910553751
+1642	Etaferahu	Wolde	Abera	Security Printing directorate	0913062820
+1763	Etagegne	Abeta	hayelu	Security Printing directorate	0910438713
+1168	Etagegne	Teka	Bedane	Human Resource Management & General Service directorate	0913016149
+1979	Etagegnehu	Meresha	Abaye	Printing directorate	0926628089
+1612	Etenat	Meresha	Berihun	Printing directorate	0920628104
+1711	Etenesh	W/Amanuel	Biru	Printing directorate	0913649281
+1437	Eteneshe	Teklu	Gebere	Chief Excutive Office	
+1183	Etettu	Wakene	G/Mariam	Deputy Chief Excutive Office Operation Sector	0911147946
+2368	Ethiopia	Mulugeta	shegena	Ethics & Anti Corruption Daireactorate	0911128059
+2617	ETSEGENETE	GIRMA	TUFFA	Strategic Management directorate	0911127306
+1930	Eyelachew	Getaneh	Alemu	Security Printing directorate	0920714484
+2106	Eyerusalem	Daneal	Solomon	Purchase & Property Management directorate	
+1953	Fanaye	Engidawork	Z/giorgis	Printing directorate	0922346994
+2541	Fantahun	tesfaye	wary	Printing directorate	0922485596
+2132	Fantahunegne	Aregaw	Tefera	Purchase & Property Management directorate	0911123066
+1824	Fantaye	Shone	Belaye	Printing directorate	0928664729
+2400	Fantayensh	Semagn	Zegye	Printing directorate	0946346896
+1132	Fasika	Sereke	Asahil	Deputy Chief Excutive Office Operation Sector	0911053485
+1699	Fasil	Zewedu	Desta	Printing directorate	0913725517
+1477	Fatuma	Mussa	Demo	Printing directorate	0911891860
+1396	Fekadu	Asefaw	Sebehatu	Printing directorate	0913086746
+2563	Fekadu	Kebede	Demissie	Human Resource Management & General Service directorate	0913594267
+2082	Fekadu	Tebege	Slase	Printing directorate	
+1767	Fekereselase	Mamo	Gebere	Printing directorate	0911017276
+2069	Fekerete	Geberu	Kebade	Printing directorate	0911789248
+2051	Feleke	Nega	Alemneh	Printing directorate	0912164171
+2269	Feleke	Yemaneh	Demsse	Human Resource Management & General Service directorate	0910807522
+2127	Fentanesh	Maeregu	Sisay	Technique directorate	0920220051
+2443	Feraheywte	Grema	Gida	Human Resource Management & General Service directorate	0903189970
+1310	Feriew	H/Wold	Aserat	Printing directorate	0911373905
+0994	Fetlwork	Eregtekal	W/tsadik	Printing directorate	0933527205
+1317	Fikadu	Haile	Moga	Printing directorate	
+2497	Fikadu	mitiku	Worku	Human Resource Management & General Service directorate	0949582174
+1000	Fikerete	Fantaye	Yeshaw	Printing directorate	
+2363	Firehiwot	Ambaw		Deputy Chief Excutive Office Operation Sector	0920664929
+2232	Firehiwot	Asefa	Tegeg	Printing directorate	0912903623
+2339	Fisum	Werede	H/geyorgis	Marketing directorate	0988241757
+2470	Fitsum	Abrham	Asfaw	College Dean	0911642451
+2262	Fitsum	Gezahegn	G/slase	Printing directorate	
+1517	Flekeche	Debele	Senbeta	Strategic Management directorate	
+2444	Frehiwot	Simegn	Roba	Deputy Chief Excutive Office Operation Sector	0921599152
+1940	Frehiwot	Tesfaye	Mamo	Security Printing directorate	0910547156
+2223	Ftsum	Mesfin	Mengstu	Printing directorate	0920555575
+2083	Fuade	Abdulkader	Ahemed	Printing directorate	0910871444
+1750	G/Mariam	Betamo	Eromo	Marketing directorate	
+1901	G/Mariam	Tsedale	Tesfaye	Technique directorate	0933225015
+2415	G/meskel	Shimels	Degu	Human Resource Management & General Service directorate	0915959902
+2116	Gebeyehu	Erro	Jimma	Finance directorate	0910187523
+2669	GEBREHIWOT	KIROS	REDA	Human Resource Management & General Service directorate	0967-13-92-63
+1177	Geletaw	Kelile	Dubale	Printing directorate	0913555839
+2644	GEMEDA	YOHANES	TEREFE	Human Resource Management & General Service directorate	0912-18-77-66
+0986	Genet	Alemayehu	W/Tsadik	Security Printing directorate	0932085038
+2679	GENET	ASMARE	MENGSTU	Purchase & Property Management directorate	0913-11-76-05
+1992	Genet	Chane	Mentesnot	Printing directorate	
+2228	Genet	Debebe	G/mariam	Deputy Chief Excutive Office Operation Sector	0911168786
+1294	Genet	Mengistu	G/hiywot	Finance directorate	0913041881
+1758	Genet	mogose	Kidane	Security Printing directorate	0911862483
+2434	Genet	Tariku	Limenih	Printing directorate	0934456505
+2151	Genet	Tewolde	Teferi	Security Printing directorate	0912850157
+2142	Genet	Wolde	Lemma	Human Resource Management & General Service directorate	0941284823
+2484	Gerawork	Betre	Yilma	Human Resource Management & General Service directorate	0910013472
+1720	Getachew	Temtem	Desta	Printing directorate	0913648948
+2283	Getahun	Negash		Deputy Chief Excutive Office Operation Sector	
+2190	Getaw	Aserat	Agonafer	Security Printing directorate	0931153532
+2277	Getaw	Yirga	W/Michael	Institutional Development &Quality Management directorate	0922279591
+2372	GETE	GEZAHGN		Human Resource Management & General Service directorate	0923107410
+2662	GETENESH	TEGEGN	ABATE	Human Resource Management & General Service directorate	0983286671
+1876	Getu	Belaye	Tesema	Security Printing directorate	0910859413
+2337	Getu	Mela	Merehaba	Purchase & Property Management directorate	0929377936
+1749	Gezachew	Mamo	G/Mariam	Purchase & Property Management directorate	0911964195
+1855	Gezachew	Yelema	Deboch	Printing directorate	0911412042
+2044	Gezahegne	Arega	Bedada	Human Resource Management & General Service directorate	0912708210
+1948	Gezahegne	Drese	Dele	Security Printing directorate	0913651919
+2488	Girma	Agiz	W/Georgis	Technique directorate	0913210903
+1219	Girma	Debele	Abera	Security Printing directorate	0911743950
+1371	Girma	Demisse	Aramede	Printing directorate	0912057744
+1980	Girma	Haile	G/hiwot	Human Resource Management & General Service directorate	09111930454
+1997	Girma	Kebede	Senasa	Human Resource Management & General Service directorate	0922580509
+1789	Girma	Lemma	Hordofa	Purchase & Property Management directorate	0913143114
+2226	Girma	Melaku	Gebeyehu	Legal Service	
+0903	Girma	Melku	W/Aregay	Printing directorate	0912846845
+1173	Girma	Mulushewa	Legese	Technique directorate	0912184129
+1915	Girma	T/Aregaye	T/haymanot	Security Printing directorate	0911612509
+2426	Girma	Tekle	Koyira	Printing directorate	
+2216	Girum	Abebe	Garedew	Printing directorate	
+2010	Girum	Kebede	Gebere	Printing directorate	0913315482
+2432	Girum	Shinee	Belda	Human Resource Management & General Service directorate	0913951385
+2417	Gizaw	Temesgen	Ambaye	Human Resource Management & General Service directorate	0920106399
+1939	Gizework	wudma	Fersha	Printing directorate	0912328977
+2271	Gosaye	Worku	Duresa	Printing directorate	011980300
+2021	Goshu	Girma	Debebe	Security Printing directorate	0913727095
+1511	Gudayenesh	Hunde	Dadi	Finance directorate	0960267960
+2551	Gzachew	Melaku	Telesa	Human Resource Management & General Service directorate	0900010050
+2113	H/gebreal	Yeferu	G/tsadik	Printing directorate	0920848844
+1949	Habetu	Atsebeha	Reda	Security Printing directorate	0984004996
+2166	Habtamu	Beyene	Bewenetu	Technique directorate	0910100221
+2613	Habtamu	Gebra	Tassew	Human Resource Management & General Service directorate	0913185917
+2490	Habtamu	Lema	Lenda	Human Resource Management & General Service directorate	
+1999	Habtamu	Mekonen	Seleshi	Printing directorate	0920720603
+0675	Habtamu	Mohamed	Ahemed	Human Resource Management & General Service directorate	0911434719
+2560	Habtamu	Tolessa	Sembeta	Human Resource Management & General Service directorate	0921900570
+2472	Habtie	Agegn	Adugna	Human Resource Management & General Service directorate	0931165847
+2376	Hager	ketsela	Bitewu	Printing directorate	0911018310
+2182	Haider	Elyas	Ahemed	Security Printing directorate	0910836953
+1882	Haile	G/mariam	Tewabe	Human Resource Management & General Service directorate	0913166795
+1671	Haile	Mekete	Ayele	Printing directorate	0913714144
+1970	Hailu	Haizo	Gera	Printing directorate	0920660017
+2622	HAILU	MELKA	ABETE	Human Resource Management & General Service directorate	0953906791
+1552	Hailu	Zewede	Antenyesemu	Security Printing directorate	0947416146
+1759	Hambisa	Mekonen	Bekele	Publication & Communication Directorate	0913767263
+1765	Hana	Kidane	Degefu	Publication & Communication Directorate	0913724909
+2101	Hana	Mekonen	T/Haymanot	Security Printing directorate	0912370929
+0984	Haregewoin	Mengistu	Fetene	Finance directorate	
+2580	Haregua	Gonfa	Debele	Human Resource Management & General Service directorate	0913720887
+2603	Helen	Atsebeha	Woldu	Human Resource Management & General Service directorate	0925493152
+2358	Helen	Gizaw	Maru	Deputy Chief Excutive Office Operation Sector	
+1668	Helen	T/Haymanot	G/Aneniya	Chief Excutive Office	0913167481
+2429	Helina	Minale	Woldeyes	Security Printing directorate	0910590434
+2336	Hena	Demise	Sawre	Marketing directorate	0912646645
+2569	Henok	Eyasu	Yilma	Human Resource Management & General Service directorate	0984808070
+1808	Henok	Getachew	Demisse	Printing directorate	0910318559
+1896	Henok	melaku	Hailu	Marketing directorate	0911165278
+2489	Henoke	Shewatatek	Hailegirogis	Technique directorate	0912370808
+2661	HERMELA	YIHUNE	ENDEG	Human Resource Management & General Service directorate	0911555619
+2632	HEWET	GEBREMADHIN	BARAKI	Security Printing directorate	0953455215
+2388	Hirut	Korme	Gudetta	Finance directorate	0913442560
+2445	Hirut	Mammo	Dikua	Human Resource Management & General Service directorate	0910907526
+2555	Hiskel	Dargh	Dalka	Human Resource Management & General Service directorate	0942124153
+2370	Hiwot	Retta	Tale	Human Resource Management & General Service directorate	0913166797
+1954	Hulageresh	Mekonen	Wodajo	Security Printing directorate	
+2506	Hussen	endris	yimer	Human Resource Management & General Service directorate	0933177237
+1757	Iserael	Akalu	Dubale	Purchase & Property Management directorate	0911424921
+2015	Jegnaw	legesseTolera		Human Resource Management & General Service directorate	0912231006
+2265	Kebebush	Kuma	Churko	Printing directorate	
+1986	Kebebush	Shiferaw	Bekele	Human Resource Management & General Service directorate	0913019216
+1910	Kebede	Hailu	Eshete	Human Resource Management & General Service directorate	0911800418
+2036	Kedane	Mogose	G/Mariam	Technique directorate	0932100478
+2185	Kedir	Meka	Sultan	Printing directorate	0920718313
+1787	Kefeelegne	Tadele	kasa	Purchase & Property Management directorate	0913584337
+2592	Kelemie	Tekle	Girma	Human Resource Management & General Service directorate	0942585884
+1059	Kelemua	Tadesse	Wudeye	Security Printing directorate	0910802630
+1707	Kesela	T/Haymanot	Semunegus	Purchase & Property Management directorate	0911116234
+2042	Kibrawit	Ejeresa	Dadi	Human Resource Management & General Service directorate	0912200612
+2215	Kidanu	Negash	G/egziabher	Institutional Development &Quality Management directorate	
+2071	Kidanwold	Debebe	Kidane	Printing directorate	0931745894
+2098	kidist	Andargy	T/tsadik	Printing directorate	0913714382
+2588	Kidst	Tibebu	Mersha	Human Resource Management & General Service directorate	0910556150
+1391	Kidu	G/mariam	Medehanye	Printing directorate	0911868333
+1740	Kifle	Shibru	Delelegn	Technique directorate	0911888514
+2556	Kifleyohannes	Yetbark	Gebremeskel	Human Resource Management & General Service directorate	0920560411
+2508	Kirubel	Tilhun	Aimu	Human Resource Management & General Service directorate	0902511709
+1057	Kokebe	Tigeneh	Sahile	Security Printing directorate	0924406190
+1744	Kumma	Wondimu	Orgesa	Technique directorate	0913032840
+2167	Kumsa	Kerorsa	Hulani	Technique directorate	0911649239
+1895	Lake	Bewuketu	Gebeyehu	Printing directorate	
+1078	Lemelem	Derebew	Lemesa	College Dean	0911176253
+2134	Lengarew	Geta	Bayu	Human Resource Management & General Service directorate	0913139686
+2235	Leul	Tesema	letybelu	Security Printing directorate	0912149193
+1991	Leyekun	Mesfin	Sisay	Institutional Development &Quality Management directorate	0919157173
+2250	Liyuwork	Getachew	Gebere	Publication & Communication Directorate	0910162630
+1809	Lule	G/Kirose	Tesfaye	Printing directorate	0115153016
+2294	Lulit	Getachew	Niguse	Human Resource Management & General Service directorate	
+1383	Lulu	Abate	Desta	Finance directorate	
+2300	Maheder	Zelalem	Mekonen	Institutional Development &Quality Management directorate	0911303635
+2462	Mahlit	Menamo	Uye	Printing directorate	0926200073
+2498	Manaye	gizachew	girma	Human Resource Management & General Service directorate	
+2393	Manehalo	Wande	damete	Human Resource Management & General Service directorate	0926849821
+2537	MARKOS	MERCHO	KARA	Human Resource Management & General Service directorate	0940548278
+2380	Marta	Hailu	Lema	Deputy Chief Excutive Office Operation Sector	0911087854
+2635	MARTA	TIRUNEH	SEGAO	Security Printing directorate	0911555060
+2655	MARTHA	HAILEMICHAEL	MENGESHA	Publication & Communication Directorate	0911689083
+2428	Massresha	Asmie	Nigussa	Security Printing directorate	0953985429
+2165	Meaza	Demisse	Abera	Security Printing directorate	0920659777
+1355	Meaza	Gizaw	Endale	Marketing directorate	
+2293	Meaza	Niguse	W/senbet	Security Printing directorate	0923242749
+2126	Meberate	Eneyew	Chekol	Deputy Chief Excutive Office Operation Sector	0941902272
+2589	Mekdes	Shewtatek	Desta	Human Resource Management & General Service directorate	0967297387
+2618	MEKDES	KIBROM	GEBREMESKEL	Institutional Development &Quality Management directorate	0921332110
+2105	Mekdes	Worku	H/mariam	Finance directorate	0911095351
+2120	Mekedes	Bekele	Tadesse	Security Printing directorate	
+2316	Meki	Hayredin	Faris	Security Printing directorate	0912711028
+0914	Mekoenen	Tesfaye	Demisse	Printing directorate	0913663213
+1766	Mekonen	Asefa	Gangul	Marketing directorate	
+1700	Mekonen	G/Meskel	Adiyo	Printing directorate	0913224788
+1245	Mekonnen	Aberra	Asefaw	Chief Excutive Office	
+1969	Mekuria	Beshah	Tewolde	Security Printing directorate	0913447741
+1812	Melese	Bekele	Yadesa	Chief Excutive Office	0912845145
+2307	Melese	Hailu	Denkw	Security Printing directorate	
+1664	Melese	Simeneh	Tiruneh	Deputy Chief Excutive Office Human Resource Management Sector	0911843552
+1983	Melese	Yalew	Keberet	Security Printing directorate	0913533723
+1762	Menbere	Male	Erbona	Security Printing directorate	
+1708	Menen	Alemayehu	Dema	Printing directorate	0920711547
+1272	Mengist	Alemagegn	Zegeye	Security Printing directorate	0911302750
+1768	Mengistu	Kasahun	Berele	Printing directorate	0910132420
+2014	Mengistu	Mena	Mekuria	Printing directorate	0920713868
+2200	Menyahel	Yohnes	Legesse	Finance directorate	0916101011
+2175	Merkuze	Marew	Fantaye	Printing directorate	0913210915
+2626	MERON	TILAHUN	KEBEDE	Purchase & Property Management directorate	0911706486
+2383	Mesay	Tadesse	Mengistu	Publication & Communication Directorate	0912158206
+1546	Meselu	Mekuria	Endeshaw	Chief Excutive Office	
+2583	Meseret	Ataklit	Naynu	Human Resource Management & General Service directorate	0923165458
+2381	Meseret	Belete	Gudeta	Ethics & Anti Corruption Daireactorate	0911310759
+1920	Meseret	Kassu	Yimenu	Security Printing directorate	0913727058
+2259	Meseret	Mamo	G/meskel	Printing directorate	
+2463	Meseret	Sherif	Beshir	Security Printing directorate	0988470434
+2471	Meseret	Yimam	side	Printing directorate	0919831209
+2438	Mesert	Anteneh	Arega	Security Printing directorate	0901083781
+2591	Mesert	Girma	Azage	Human Resource Management & General Service directorate	0912403068
+2038	Mesfin	Alemayehu	Tesema	Technique directorate	0911313269
+2515	Mesfin	Altaya	Hussen	Printing directorate	0929131351
+2562	Mesfin	Eshetu	Demesse	Human Resource Management & General Service directorate	0911613195
+1820	Mesfin	H/selase	W/yes	Printing directorate	
+2487	Mesfin	Haile	Bereta	Technique directorate	0912286806
+1550	Mesfin	Kasahun	Ejegu	Publication & Communication Directorate	0911170716
+2335	Mesfin	Kassa	G/Michale	Chief Excutive Office	
+2596	Meskerem	Gebre	Berhanu	Human Resource Management & General Service directorate	0937450679
+2100	Meskerem	Hailu	Tulu	Security Printing directorate	0910151979
+2435	Meskerem	Macha	jima	Human Resource Management & General Service directorate	0911033670
+1739	Mestawet	Asefa	Senbeta	Finance directorate	
+1519	Mestawet	Mamo	W/Mariam	Purchase & Property Management directorate	0913209969
+2341	Mideksa	Legesse	Zeleke	Printing directorate	0913909181
+2507	Mikiyas	Alemayehu	Kefle	Human Resource Management & General Service directorate	0973050096
+2547	Mikiyas	baba	baykeda	Human Resource Management & General Service directorate	0910176171
+2557	Mikiyas	Denbel	Tadesse	Human Resource Management & General Service directorate	0924716551
+2553	Mikiyas	Likie	Lenda	Human Resource Management & General Service directorate	0942382704
+2549	Mikiyas	Moges	Endaylalu	Human Resource Management & General Service directorate	0924787276
+1964	Milisha	Meldeye	Gido	Printing directorate	0910555684
+2076	Million	Abate	Ayele	Printing directorate	0913435199
+1774	Million	Gemechu	balcha	Human Resource Management & General Service directorate	
+2483	Million	Mitiku	Seyoum	Human Resource Management & General Service directorate	0913858202
+1388	Mineya	G/Hiwet	Kahesay	Marketing directorate	0934478925
+2354	Mintesinot	Getachun	Wube	Finance directorate	
+1329	Miserak	Tsegaye	Endale	Technique directorate	
+2600	Mitike	Amde	Biru	Printing directorate	0911460220
+2333	Mitiku	Afeworik	Gizaw	Deputy Chief Excutive Office Operation Sector	0911602350
+1963	Mitiku	Mikael	Addisu	Printing directorate	0913759505
+2352	Mohammed	Abdella	Yesuf	Strategic Management directorate	
+2504	Mohammed	Kemal	mohammed	Human Resource Management & General Service directorate	0941280562
+1735	Molalegne	Mengesha	Yebo	Human Resource Management & General Service directorate	0913902822
+2329	Molla	Worsa	Kelele	Technique directorate	09113623
+1352	Mulatu	Ayele	Dertibo	Security Printing directorate	0911061682
+1256	Mulu	Yadetie	Bedane	Printing directorate	
+2017	Mulugeta	Ademasu	Abebaw	Security Printing directorate	0911931478
+2110	Mulugeta	G/kidan	Orgato	Printing directorate	0913041671
+1884	Mulugeta	Lulseged	Asfaw	Finance directorate	0967316508
+2325	Muluken	Habte	G/mariam	Technique directorate	0913572413
+1703	Muluken	Tesfaye	G/Wolde	Security Printing directorate	0911172561
+2378	Muluneh	Ambelu	Belete	Human Resource Management & General Service directorate	0912847309
+2074	Muluneh	Shiferaw	G/Medhin	Printing directorate	0912370427
+2437	Muluwork	Deyaso	Debro	Printing directorate	0912850400
+2629	MUNIRA	SHELEMO	MUKTAR	Security Printing directorate	0929133647
+2258	Munta	Musse	Hanka	Printing directorate	
+2219	Muridu	Fedlu	Sherif	Printing directorate	+0910908446
+2558	Nahom	Getachew	Seyoum	Human Resource Management & General Service directorate	0919366167
+2030	NaodTeshome	kasaye		Security Printing directorate	0912405305
+2495	Natan	Shimales	Habetwold	Human Resource Management & General Service directorate	0910550628
+2513	Natenael	Mendaye	Melike	Printing directorate	0930603273
+1775	Natenael	Addisu	Yedenek	Printing directorate	0943313037
+2550	Natenal	Wonde	Kabada	Human Resource Management & General Service directorate	0913582908
+2510	Natnael	Girma	Befakade	Security Printing directorate	0973052244
+2647	NEBABU	ENGEDA	GBREMARIAME	Human Resource Management & General Service directorate	0911-12-99-78
+2209	Nebiyu	Chane	Endereyas	Printing directorate	0934145876
+0802	Negashe	W/mariam	Desta	Technique directorate	0911691737
+1303	Negatua	Tessema	Hirpo	Printing directorate	0939512929
+1887	Negese	Tilaye	Adafere	Human Resource Management & General Service directorate	0911600890
+0551	Negusse	Abeye	Gosa	Purchase & Property Management directorate	0913859095
+1482	Negusse	G/hanna	Kidane	Technique directorate	09376506
+2114	Nesredin	Mohamed	Ahemed	Printing directorate	0913463772
+2430	Netsanet	Mengstu	Menna	Human Resource Management & General Service directorate	0945962922
+1913	Netsanet	Negatu	Deneke	Purchase & Property Management directorate	0913582832
+2660	NETSANET	TADESSE	ROBA	Human Resource Management & General Service directorate	0940121661
+2561	Nigatu	Tamru	Kibret	Purchase & Property Management directorate	0924147625
+2458	Nigist	Kebede	Bante	Printing directorate	0910807362
+2225	Nikodimos	Asefa	Lemma	Printing directorate	0913100107
+2409	Nuguse	Faye	Arado	Human Resource Management & General Service directorate	0920072105
+2643	RAHEL	ALEMAYEHU	TADESE	Printing directorate	0913027055
+1674	Rahel	Hadego	Kasa	Institutional Development &Quality Management directorate	0911103579
+2112	Rahel	Kebede	Getu	Purchase & Property Management directorate	0911363199
+1514	Rahel	Teka	Kidane	Chief Excutive Office	
+2362	Rebka	Eshetu		Marketing directorate	0932092409
+2000	Rediet	G/giorgis	Belaye	Human Resource Management & General Service directorate	0947995600
+1792	Robel	worku	Bekele	Printing directorate	
+2636	RUTE	MELAKU	AWEKE	Security Printing directorate	0940117833
+2160	Saba	Tekeste	Semereabe	Security Printing directorate	0913993445
+1197	Samia	Yimam	Yasin	Deputy Chief Excutive Office Operation Sector	0932598614
+2146	Samrawit	Kefyalew	Akalu	Publication & Communication Directorate	0912923840
+2630	SAMRAWIT	MOGES	GEBRETSADIK	Security Printing directorate	0912776784
+1558	Samson	Bekele	G/Medhin	Technique directorate	
+2677	SAMSON	WORKU	WODAJENEH	Human Resource Management & General Service directorate	0911-62-62-08
+1958	Samuel	Asefa	Meheretu	Security Printing directorate	0-913248651
+1845	Samuel	h/Mariam	Masresha	Strategic Management directorate	
+2610	Samuel	Melkamu	Abate	Technique directorate	0921997452
+2312	Samuel	Moges	Gzaw	Security Printing directorate	0921333892
+1784	Samuel	Tadesse	Walelegne	Printing directorate	0913138763
+1760	Sara	Mamo	H/Mariam	Printing directorate	0925354889
+2598	Seble	Ayele	Asfaw	Human Resource Management & General Service directorate	0922346366
+2525	SeIfe	woldetensaye	haile	Printing directorate	0934472249
+2442	Selam	Tekeba	Asfaw	Human Resource Management & General Service directorate	0901958984
+2597	Selamawit	Belihu	Hailu	Human Resource Management & General Service directorate	0931249054
+2461	Selamawit	Birhanu	Kebede	Human Resource Management & General Service directorate	
+2581	Selamawit	Molla	Bezabih	Human Resource Management & General Service directorate	0988478948
+2570	Selamawit	Tefera	Syfu	Human Resource Management & General Service directorate	0910535969
+2559	Selemon	Geto	Geze	Human Resource Management & General Service directorate	0903101587
+2379	Semegn	Nedie	Befitu	Printing directorate	
+2286	Semegn	Mamo	Berhanu	Finance directorate	0911573267
+1773	Semeneh	Gebyehu	Debele	Printing directorate	0910669639
+2144	Semira	Ommer	Mohamed	Security Printing directorate	0919490589
+2575	Sena	Esayas	Abdissa	Human Resource Management & General Service directorate	0977792620
+2594	Senayet	Terefe	Frdawok	Human Resource Management & General Service directorate	0934479583
+2440	Senayit	Teshome	Mengstu	Security Printing directorate	095540489
+2360	Senayit	Seyoum	Mengistu	Purchase & Property Management directorate	
+2668	SENAYIT	TEMTEM	ATHMY	Human Resource Management & General Service directorate	0911-99-65-62
+2061	Senedu	Aregye	Kasa	Printing directorate	0910334739
+1689	Sentayehu	Berehanu	Kebede	Purchase & Property Management directorate	0913064787
+1978	Sentayehu	Genzebu	Abera	Printing directorate	0910556061
+2631	SENTAYEHU	KEBEDE	YADATE	Security Printing directorate	0965289790
+1298	Setechegn	Biru	Fentabil	Security Printing directorate	0913838089
+1867	Settual	Mekuriaw	Ayele	Printing directorate	0910356300
+2416	Sharew	Gebrestadik	Aychelet	Human Resource Management & General Service directorate	
+2665	SHETAWA	NEGUSE	ADGO	Human Resource Management & General Service directorate	0940559520
+2601	Shetaye	Hailu	Getachew	Human Resource Management & General Service directorate	0973411014
+1557	Shewangizaw	Gutema	Bifetu	Printing directorate	0913599499
+2456	Shewit	Desalgn	Moges	Printing directorate	0910803023
+2608	Shifer	Habtemariam	Hayile	Printing directorate	0967296971
+1619	Shiferaw	Danel	Tezera	Human Resource Management & General Service directorate	0928315787
+1692	Shitahun	Wale	Nure	Chief Excutive Office	
+2241	Shitaye	Gelane	Gobena	Printing directorate	0913857810
+2638	SHITAYE	GOSAYE	YIRDAW	Security Printing directorate	092398814
+1679	Shitaye	Haile	Kitata	Publication & Communication Directorate	
+1363	Shitaye	Yemer	Yalew	Security Printing directorate	0911479714
+2577	Shwaferahu	Eshtu	Abebe	Human Resource Management & General Service directorate	0911979402
+2652	SILAMAWIT	H/GEORGESE	MULUNEH	Printing directorate	0932-24-88-37
+2309	Silene	Addisu	Biru	Technique directorate	0927485809
+1696	Sindayo	Halifom	Abaye	Security Printing directorate	0910439507
+1489	Sinetayhu	Wolde	Ayele	Human Resource Management & General Service directorate	0911688859
+2587	Sintayehu	Afine	Tachibele	Human Resource Management & General Service directorate	0910057764
+2523	Sintayehu	Getu	Elcho	Printing directorate	0922820154
+0737	Sintayehu	Tessema	Dadi	Security Printing directorate	0912024724
+2499	Siraj	Munir	Seyid	Human Resource Management & General Service directorate	0912018115
+2640	SIRGUT	DEJENE	LEMA	Human Resource Management & General Service directorate	0923252957
+2256	Sisay	Gezachew	Sidelel	Digital Transformation directorate	0947415093
+1394	Sisay	Tilahun	H/Wolde	Security Printing directorate	0913091726
+1622	Sisaye	Begi	Debela	Printing directorate	0911489718
+1926	Sisaye	Mola	Biru	Printing directorate	0910809487
+2243	Sitti	Mohamed	Berehan	Strategic Management directorate	
+2084	Smachew	Mheret	T/mariam	Security Printing directorate	0934982914
+2567	Sofiya	Ibrahim	Ahimed	Human Resource Management & General Service directorate	0921602442
+2473	Solomn	Tesfa	Asamenew	Technique directorate	0921603961
+1854	Solomon	Abera	Adalferahu	Publication & Communication Directorate	0911608404
+2311	Solomon	Azezew	shibeshi	Deputy Chief Excutive Office Operation Sector	0909602171
+2623	Solomon	Dagnew	Kokebie	Deputy Chief Excutive Office Operation Sector	0918068889
+1659	Solomon	Desalegne	Aweke	Printing directorate	0913076406
+1275	Solomon	Girma	Eshete	Deputy Chief Excutive Office Human Resource Management Sector	
+1553	Solomon	Girma	Woreta	Purchase & Property Management directorate	
+2408	Solomon	Kasa	Tilahun	Human Resource Management & General Service directorate	
+1937	Solomon	Mengistu	Mengesha	Printing directorate	0913966833
+2088	Solomon	T/Hawariat	W/mariam	Security Printing directorate	0912101468
+2270	Solomon	T/selassie	Gedle	Human Resource Management & General Service directorate	0911884788
+2268	Solomon	Tadesse	G/Kidan	Human Resource Management & General Service directorate	091189000
+1924	Solomon	Wase	Abebe	Printing directorate	0920711446
+1974	Solomon	Yemer	Ayele	Printing directorate	
+2090	Sorecha	Bera	Geda	Security Printing directorate	0911178070
+2641	SOSENA	ASSEFA	ARERU	Human Resource Management & General Service directorate	0913732289
+2466	Sosina	Zewge	Chernet	Security Printing directorate	0913294245
+2482	Tadel	Bishaw	Sewunet	Human Resource Management & General Service directorate	0912607925
+1300	Tadelu	Bete	Manchamo	Marketing directorate	0911714573
+2095	Tadese	Bololo	Megeso	Security Printing directorate	0913316681
+1493	Tadesse	Ayele	Endebelehatu	Printing directorate	0913907861
+1595	Tadesse	Haile	Seretse	Printing directorate	0913e594372
+1332	Tadesse	Tsegaye	Abebe	Purchase & Property Management directorate	0913042536
+2532	Tadiwosi	gebir	sitotaw	Printing directorate	0992089767
+2404	Tadiyose	Goa	Mena	Human Resource Management & General Service directorate	0916834407
+2007	Tagese	Fantaye	Onsamo	Security Printing directorate	0921385292
+1893	Takele	Tesfaye	W/Agegnehu	Printing directorate	0910871443
+1998	Talefe	Eregete	w/Yes	Human Resource Management & General Service directorate	0910101646
+2530	Talefe	mamuye	nake	Printing directorate	0940272779
+1556	Tamene	Zewede	Akalu	Human Resource Management & General Service directorate	
+1922	Tamerat	Habete	Kebede	Security Printing directorate	0910724186
+2522	Tamerat	Hailemariam	Genna	Security Printing directorate	0911369743
+2187	Tamerate	Bekele	Urga	Printing directorate	0923050949
+1393	Tamerate	Berhe	G/Selasse	Security Printing directorate	
+2343	Tamirat	Endashaw	Tereda	Printing directorate	0945255584
+1894	Tamiru	Tena	Meren	Printing directorate	0912002185
+2025	Tangut	Tade	Gelaw	Printing directorate	0912841877
+1620	Tarekegne	Chufamo	Beshir	Marketing directorate	0911856561
+2060	Tariku	Keberku	Gulelate	Technique directorate	0912138819
+2418	Tawedrose	Wolde	Adera	Human Resource Management & General Service directorate	0911997948
+2356	Tayachew	Simachew	Takele	Printing directorate	
+2564	Taye	Mekonnen	Amena	Human Resource Management & General Service directorate	0987852276
+1278	Tebeyen	Yayehyrad	Negusse	Security Printing directorate	0913568991
+2566	Tedros	shihey	Mesele	Human Resource Management & General Service directorate	0928930069
+1559	Tefera	Gebisa	Koricho	Technique directorate	0913267473
+1843	Tegabe	Kassa	Tajebe	Security Printing directorate	0913270010
+0983	Tege	Lemma	Gebere	Security Printing directorate	0910505252
+1965	Tegegn	Abate	Mekonen	Printing directorate	0920558493
+2261	Tegegn	Ayele	Shemebo	Purchase & Property Management directorate	
+1804	Tegene	Habete	Kebede	Printing directorate	0913733649
+2148	Tegest	Kebede	Tesema	Security Printing directorate	0923251369
+2231	Tegest	Shemels	Alemu	Security Printing directorate	0910323139
+2670	TEKA	TESHOME	BELACHEW	Human Resource Management & General Service directorate	
+1539	Tekalegn	Demeke	Tesema	Marketing directorate	0913478337
+1981	Tekle	W/Abe	Bayu	Human Resource Management & General Service directorate	
+1967	Teklit	Kibrom	G/Meskel	Marketing directorate	
+1771	Tekola	Neguse	Bekele	Human Resource Management & General Service directorate	0912196046
+1632	Telekesew	Admasu	Tiruneh	Printing directorate	
+1791	Temesgen	Abereham	Asefa	Printing directorate	0913733911
+2474	Temesgen	Alemu	Menta	Human Resource Management & General Service directorate	0912084592
+2676	TEMESGEN	ASSFA	ABEBE	Human Resource Management & General Service directorate	0923-62-56-58
+1840	Tenagnwork	Abebaye	Kabtimer	Security Printing directorate	0913728683
+2582	Tenaia	Almu	Aferasa	Human Resource Management & General Service directorate	0932279327
+1864	Tensae	Negash	Chaka	Marketing directorate	
+2494	Tesefamicale	Kassaye	Getaneh	Human Resource Management & General Service directorate	0927355734
+2212	Tesfa	Mulugeta	Seifu	Human Resource Management & General Service directorate	0913121656
+1786	Tesfahune	Asefaw	Mengistu	Printing directorate	0913833964
+2296	Tesfalidet	G/tsadik	Wolde	Printing directorate	0912387970
+2308	Tesfamikale	Wuletaw	Geremew	Printing directorate	0913649758
+2439	Tesfanesh	W/tensay	Molla	Security Printing directorate	0947566736
+2340	Tesfaye	Asrat	G/medhin	Printing directorate	0911645454
+2068	Tesfaye	Birru	Dubale	Printing directorate	0911433791
+1594	Tesfaye	Getachew	Degife	Human Resource Management & General Service directorate	011135943
+1306	Tesfaye	Tadesse	W/Mikeal	Printing directorate	0912014083
+2315	Tesfaye	Tufa	Itana	Printing directorate	0941136775
+1568	Teshome	Dadi	Mogie	Finance directorate	0910558901
+2410	Teshome	Tsegaye	Bekele	Human Resource Management & General Service directorate	0913767988
+1419	Tewabech	G/Selassie	Maru	Security Printing directorate	0913647712
+1938	Tewabech	Habete	Yegezu	Printing directorate	0910683239
+2291	Tewoderos	Abera	Jeru	Printing directorate	0911546432
+2207	Tewoderos	Misiker	H/Mariam	Human Resource Management & General Service directorate	0913399216
+1701	Tewoderos	Tadesse	Kebede	Publication & Communication Directorate	0911107564
+1866	Tewoderose	Eshete	Gashaw	Printing directorate	0913852729
+2574	Tewodros	Gezahegn	Akro	Human Resource Management & General Service directorate	0934487821
+1003	Tibebe	Tarekege	Reta	Printing directorate	
+2159	Tigest	Ademasu	Takele	Security Printing directorate	0912843309
+2154	Tigest	Berehanu	Ambaw	Security Printing directorate	0912409963
+2053	Tigest	Berehanu	Hora	Security Printing directorate	0912383249
+2152	Tigest	Melese	Haile	Security Printing directorate	0922346641
+2091	Tigist	Argaw	Alemu	Security Printing directorate	0912032457
+2460	Tigist	Bimrew	Addisu	Security Printing directorate	0983021855
+2621	TIGIST	SEIFU	AREFAYNE	Human Resource Management & General Service directorate	0913282773
+2599	Tigist	Tesfaye	Dechasa	Human Resource Management & General Service directorate	0986342746
+2481	Tilahun	Abera	Gelagay	Technique directorate	0912966846
+2295	Tilahun	Aletaye	Felate	Printing directorate	0913967467
+2031	Tilahun	Bekele	Alemayehu	Human Resource Management & General Service directorate	0913100033
+2124	Tilahun	Fuje	Adeb	Internal Audit	0927081029
+2593	Tizibet	Abedla	Uomare	Human Resource Management & General Service directorate	0936687566
+1719	Tizita	Desse	W/Kidan	Printing directorate	0922872447
+1182	Tizita	Kasaye	Beyene	Human Resource Management & General Service directorate	0911-41-76-81
+2501	Tofik	Rago	Anuar	Security Printing directorate	0973090618
+1379	Tolosa	Megersa	Garedew	Marketing directorate	0911080483
+1448	Truwork	Tilahun	Deseta	Printing directorate	0912963963
+2573	Tsedale	Bulcha	Sena	Printing directorate	0966257739
+2264	Tseganesh	Belay	Agmasse	Printing directorate	
+2611	Tsegaye	tsehaye	choramo	Human Resource Management & General Service directorate	0929417388
+1159	Tsegie	G/mekeal	W/Medin	Printing directorate	0910224165
+2633	TSEGNASH	BOBOETO	BEYRE	Security Printing directorate	0973042754
+2651	TSEHAY	TESFAYE	KASSAYE	Printing directorate	0913-58-18-23
+1130	Tsehaye	Mekonen	Beyene	Finance directorate	0912803510
+1715	Tsehaye	Melese	Seboka	Printing directorate	0910041012
+1362	Tsehaye	Tefera	Yeheyes	Printing directorate	0912075002
+2642	TSIGE	BEKELE	TULU	Human Resource Management & General Service directorate	0912915318
+2449	Tsige	Bizuneh	Mengst	Printing directorate	0940208168
+1752	Tsion	Emeru	Mekuria	Publication & Communication Directorate	0911612276
+2634	TSION	SLISHI	NADEW	Security Printing directorate	945709679
+1936	Tsion	Yohnes	Afwork	Printing directorate	0924402417
+2650	TUJARIE	GEREMEW	MORKA	Printing directorate	0922-59-81-26
+2206	W/Hawariat	Tensae	Habete	Security Printing directorate	
+2586	Waganesh	Getachew	Minilu	Human Resource Management & General Service directorate	0978998471
+2673	WAKTOLA	JABSA	BABU	Human Resource Management & General Service directorate	0918200288
+1124	Wegayehu	Tsegaye	Bekele	Human Resource Management & General Service directorate	0913042953
+2254	Wendmagegn	Abrham	Chosha	Digital Transformation directorate	0920712850
+2263	Wendmagegn	Mulugeta	Metku	Printing directorate	
+2552	Wendmagegn	Shewangezw	Fetene	Human Resource Management & General Service directorate	0902339641
+2486	Wenedewsen	Tadess	Alemu	Printing directorate	0940478446
+2342	Werkineh	Tolessa	Diribu	Printing directorate	0925400148
+2147	Weynshet	Debebe	Gelaye	Security Printing directorate	0913247127
+1423	Woineshet	Ayele	Engeda	Security Printing directorate	0913204096
+1705	Woinshet	Abebe	Gizaw	Security Printing directorate	0910349931
+1952	Woinshet	Melese	Gadina	Security Printing directorate	0910550308
+1313	Woinshet	Tilahun	Belachew	Security Printing directorate	0913910383
+1066	Wolde	Kaftimer	Batu	Security Printing directorate	0911762748
+1154	Wonde	Kebede	Ayele	Printing directorate	0912103814
+1232	Wondeosen	Tsegaye	Abebe	Purchase & Property Management directorate	
+1827	Wondimagegne	f/mareyam	Bezuwork	Printing directorate	
+2357	Wondimkun	Alayou	T/	Publication & Communication Directorate	
+2109	Wondosen	Hailu	T/Mariam	Marketing directorate	0911638337
+1215	Wondwesen	Mengesha	Belachew	Marketing directorate	0912192150
+2213	Wondwesen	Tebeje	Mekonen	Human Resource Management & General Service directorate	0923244012
+2298	Workenesh	G/mariyam	Kahesay	Deputy Chief Excutive Office Human Resource Management Sector	0911443225
+1770	Workneh	Aberu	Zenebe	Marketing directorate	0910534695
+2191	Workshet	G/Hanna	Nedane	Printing directorate	0920667238
+2615	Worku	Berhe	Gurantu	Human Resource Management & General Service directorate	0911312876
+2464	Woyenishet	Wuhibe	Muluneh	Human Resource Management & General Service directorate	0945038962
+2454	Woyenshet	Taye	Degefa	Security Printing directorate	0913649278
+2382	Wubalem	Getachew	Asmare	Human Resource Management & General Service directorate	0911718819
+1921	Wubalem	Kidane	Mamo	Security Printing directorate	0921752033
+2468	Wubayehu	Teferra	Tsefaya	Human Resource Management & General Service directorate	0913138399
+2321	Wubishet	Amare	Kebde	Technique directorate	
+1907	Wubit	Mekuria	Kiflu	Printing directorate	0913051376
+2450	Wubnesh	Getnt	Yirtaw	Security Printing directorate	0913079055
+2005	Wubshet	Degu	Jerane	Human Resource Management & General Service directorate	0913884881
+2119	Wude	Kebede	Muluneh	Security Printing directorate	0910895919
+1712	Wudenesh	Megabo	Agano	Printing directorate	0983356232
+2137	Yalew	Asefaw	Tarekegne	Finance directorate	0921004054
+2672	YALEW	MERACH	ASRESAHANG	Human Resource Management & General Service directorate	0913-04-39-01
+2385	Yared	Abera	Tefera	College Dean	0935848573
+1914	Yared	Mengistu	Aregahegne	Printing directorate	0921604981
+2184	Yared	Tefera	Begashaw	Printing directorate	
+1869	Yedenekachew	Yemer	Abegaz	Printing directorate	0923242540
+1904	Yedeneku	Tsehaye	Adegehe	Security Printing directorate	0911350932
+2512	Yednekachw	Dereje	Haile	Printing directorate	0922589941
+2314	Yehalawork	Chernet	Zenebe	Deputy Chief Excutive Office Operation Sector	0920718328
+1521	Yehedega	Asemahegn	Yegzaw	Marketing directorate	0913043342
+1714	Yekob	Ewenetu	Kasa	Printing directorate	0912102429
+1837	Yekuskamwork	Alemayehu	Urge	Security Printing directorate	0946348947
+2153	Yelefashewa	Derebe	Tsegaye	Security Printing directorate	0921330337
+1600	Yelema	W/Gebreal	Alemare	Printing directorate	0912370135
+1716	Yematawork	Tadesse	Gonte	Printing directorate	0913043778
+2667	YEMATAWORK	TSEGAYE	WOLDEMEDHN	Human Resource Management & General Service directorate	0991-13-46-26
+2158	Yemegnushal	Begashaw	Mengesha	Security Printing directorate	0984874403
+2398	Yemegushal	Demesie	Aregu	Printing directorate	0920713333
+1596	Yenenesh	Habete	W/mikeal	Security Printing directorate	0913609726
+2637	YENENESHE	ABESHA	MEZGA	Security Printing directorate	0926757549
+1819	Yergalem	Abebe	Adane	Security Printing directorate	0911569438
+1798	Yergalem	Tereda	Neda	Digital Transformation directorate	0912000502
+1916	Yeshewaget	Mengistu	Mengesha	Printing directorate	0941244482
+1821	Yeshi	Belayneh	Zewede	Security Printing directorate	0920716386
+1301	Yeshihareg	G/musse	Asefaw	Printing directorate	
+2540	Yeshiwas	Emiru	Mekonnen	Human Resource Management & General Service directorate	0947849716
+1360	Yeshiwork	Erkihun	Getahun	Printing directorate	0912214392
+1756	Yetagesu	Gadisa	Dendena	Printing directorate	0913067942
+2131	Yetagesu	Mamo	w/tsadik	Publication & Communication Directorate	0913954552
+1754	Yewebdar	Zerihun	Tsige	Marketing directorate	0910806109
+2041	Yewyneshet	G/Hanna	H/wold	Finance directorate	
+2678	YIMEGNUSHAL	MULEYE	KASSA	Purchase & Property Management directorate	0913-01-35-47
+1797	Yimenashu	Mamo	Jeffar	Purchase & Property Management directorate	
+2306	Yirgalm	Anberbir	Shiferaw	Printing directorate	0911428654
+2571	Yisak	Getnet	Gest	Human Resource Management & General Service directorate	0913649626
+2414	Yitayal	Derseh	Tenaw	Human Resource Management & General Service directorate	0933524810
+2087	Yohanes	Awgchew	T/weled	Printing directorate	0922344230
+1943	Yonatan	Solomon	Arega	Finance directorate	0912844539
+2480	Yordanos	Debesay	Gebremariam	Purchase & Property Management directorate	0912230080
+2149	Yordanos	Zerfeneh	Deme	Security Printing directorate	0919821962
+2313	Yosaf	Tsehaye	Choramo	Security Printing directorate	0941298980
+1833	Yosef	Endeshaw	Habete	Digital Transformation directorate	
+1684	Yosef	Tadesse	G/Medine	Chief Excutive Office	
+2248	Zelalem	Gezaw	Bedada	Security Printing directorate	0911434912
+2204	Zelalem	Abera	Keneni	College Dean	0911489114
+2675	ZELALEM	TAYE	AMENU	Human Resource Management & General Service directorate	0942-38-29-49
+2517	Zelalem	Zenebe	Chenda	Printing directorate	0940736440
+2485	Zeleke	Lerago	Kendo	Human Resource Management & General Service directorate	0913249528
+2535	Zemed	bete	tekletsion	Printing directorate	0941016099
+2194	Zena	H/Mariam	Fetene	Printing directorate	0920744731
+2674	ZENEBE	MESHESHA	LEMMA	Human Resource Management & General Service directorate	
+2145	Zenebech	Zeleke	Emeru	Printing directorate	0912426425
+2023	Zerihun	Bekele	Wonide	Digital Transformation directorate	0922868766
+1947	Zerihun	Girma	Hirpo	Printing directorate	0913651084
+1931	Zerihun	Hasen	Endere	Security Printing directorate	
+1961	Zerihun	Mengesha	Zegeye	Security Printing directorate	0913889405
+2181	Zerihun	Tefera	Gizaw	Printing directorate	0910008901
+2604	Zeritu	Erbeto	Erichafo	Human Resource Management & General Service directorate	0912376296
+2059	Zeru	Amare	W/Cherkose	Publication & Communication Directorate	0911455612
+2375	Zeru	Shiferaw	Aragaw	Human Resource Management & General Service directorate	0922747866
+2625	ZEWDENISH	LAKEW	DEMESSA	Printing directorate	0932177832
+2453	Zewditu	Teka	Tiema	Printing directorate	0964603989
+1892	Zewudu	G/tsadik	Derese	Printing directorate	0911931480
+2292	Zinash	Tsaegabizu	Besufekad	Purchase & Property Management directorate	0913246632
+1509	Ziyadu	Kemale	Hussen	Deputy Chief Excutive Office Operation Sector	0913637953

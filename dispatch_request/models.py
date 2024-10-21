@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, Group
+from django.db.models.functions import Lower
 from django.utils import timezone
 from enum import Enum
 
@@ -127,8 +128,9 @@ class Driver(models.Model):
   fname = models.CharField(max_length=50)
   mname = models.CharField(max_length=50)
   lname = models.CharField(max_length=50, blank=True, default='')
-  phone_number = models.CharField(max_length=20, unique=True)
-  license_number = models.CharField(max_length=20, unique=True)
+  phone_number = models.CharField(max_length=20, blank=True, default='')
+  id_no = models.CharField(max_length=20, unique=True)
+  position = models.CharField(max_length=200, blank=True, default='')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
@@ -205,11 +207,13 @@ class Refuel(models.Model):
   vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
   refuel_request_date = models.DateField(default='')
   refuel_date = models.DateField(default='')
-  fuel_type = models.CharField(max_length=50, choices=[(tag.name, tag.value) for tag in FuelType], default=FuelType.NAFTA.value)
+  nafta = models.CharField(max_length=50, blank=True, default='')
+  benzine = models.CharField(max_length=50, blank=True, default='')
+  nafta_price_ppl = models.FloatField(blank=True, default=0)
+  benzine_price_ppl = models.FloatField(blank=True, default=0)
   km_during_refuel = models.IntegerField()
   km_during_previous_refuel = models.IntegerField()
-  km_per_liter = models.FloatField()
-  current_fuel_level = models.FloatField()
+  # current_fuel_level = models.FloatField()
   remark = models.CharField(max_length=500, default='')
 
 class Department(models.Model):
@@ -218,6 +222,55 @@ class Department(models.Model):
   location = models.CharField(max_length=100, default='')
   extension = models.CharField(max_length=50, default='')
   phone_number = models.CharField(max_length=100, default='')
+
+
+class PricePerLiter(models.Model):
+  ''' Price per liter class'''
+  nafta = models.CharField(max_length=200, default='')
+  benzine = models.CharField(max_length=100, default='')
+  nafta_active = models.BooleanField()
+  benzine_active = models.BooleanField()
+
+# class MonthlyPlan(models.Model):
+#   ''' refuel monthly plan'''  
+#   vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+#   month = models.CharField(max_length=100, default='')
+#   km = models.CharField(max_length=100, default='')
+#   liters = models.FloatField(blank=True, default=0)
+
+class MonthlyPlan(models.Model):
+  ''' refuel monthly plan'''  
+  # vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+  month = models.CharField(max_length=100, default='')
+  nafta = models.FloatField(blank=True, default=0)
+  benzine = models.FloatField(blank=True, default=0)
+  nafta_cost = models.FloatField(blank=True, default=0)
+  benzine_cost = models.FloatField(blank=True, default=0)
+  oil_lts = models.FloatField(blank=True, default=0)
+  oil_cost = models.FloatField(blank=True, default=0)
+  tire_maint_cnt = models.IntegerField(blank=True, default=0)
+  tire_maint_cost = models.FloatField(blank=True, default=0)
+
+class Oil(models.Model):
+  ''' oil daily usage'''
+  liters = models.FloatField(blank=True, default=0)
+  cost = models.FloatField(blank=True, default=0)
+
+class Maintenance(models.Model):
+  ''' maintenance daily'''
+  count = models.IntegerField(blank=True, default=0)
+  cost = models.FloatField(blank=True, default=0)
+
+class VehicleMake(models.Model):
+  ''' Vehicle make class'''
+  make = models.CharField(max_length=100, unique=True)
+  class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                Lower('make'),
+                name='unique_make_case_insensitive'
+            )
+        ]
 
 # class DispatchReport(models.Model):
 #   ''' A class to store actual dispatch data after the vehicle returns'''

@@ -1,0 +1,28 @@
+To install the service:
+npm install -g pm2
+
+
+To configure:
+	Copy the following to jsreport.config.json:
+		{
+		  "apps": [
+			{
+			  "name": "jsreport",
+			  "script": "path/to/jsreport.js"
+			}
+		  ]
+		}
+
+To start the service:
+	From jsreport folder:	pm2 start jsreport.config.json
+	
+To make it startup:
+	pm2 startup, but not working. check task scheduler.
+
+Finally to stop the service:
+
+pm2 stop jsreport
+
+Verify service status:
+
+pm2 status

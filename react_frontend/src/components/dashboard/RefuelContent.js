@@ -1,4 +1,4 @@
-import { Alert, Autocomplete, Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Box, Button, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, Switch, TextField, Typography } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import Chart from "./Chart"
 import Deposits from "./Deposits"
@@ -13,49 +13,74 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import RefuelsTable from "./RefuelsTable";
-import { createRefuel, fetchRefuels } from "../../redux/refuel/refuelSlice";
+import { createPPL, createRefuel, fetchActivePPL, fetchRefuels, updatePPL } from "../../redux/refuel/refuelSlice";
 import { fetchVehicles } from "../../redux/vehicle/vehicleSlice";
+import EtDatePicker from "mui-ethiopian-datepicker";
 
 
 const RefuelContent = () => {
     const dispatch = useDispatch();
     const [success, setSuccess] = useState(false);
+    const [successAdd, setSuccessAdd] = useState(false);
     const [error, setError] = useState('');
-    const [rrdate, setRRdate] = useState(dayjs('2022-04-17'));
-    const [rdate, setRdate] = useState(dayjs('2022-04-17'));
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const [errorAdd, setErrorAdd] = useState('');
+    const [rrdate, setRRdate] = useState(null);
+    const [rdate, setRdate] = useState(null);
+    const [addPPL, setAddPPL] = useState(false);
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
+    const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const [refuelData, setRefuelData] = useState({
         vehicle: '1',
-        refuel_request_date: rrdate.format('YYYY-MM-DD'), 
-        refuel_date: rdate.format('YYYY-MM-DD'), 
-        fuel_type: '',        
+        refuel_request_date: '', 
+        refuel_date: '', 
+        nafta: '',
+        benzine: '',
+        nafta_price_ppl: 0,
+        benzine_price_ppl: 0,
         km_during_refuel: '',
         km_during_previous_refuel: '',
-        km_per_liter: '',
-        current_fuel_level: '',
+        // current_fuel_level: '',
         remark: '',
     });
+
+
+    const [PPLData, setPPLData] = useState({
+        nafta: 0,
+        benzine: 0,
+        nafta_active: false,
+        benzine_active: false,
+    })
+
 
     useEffect(() => {
         setRefuelData(prevState => ({
             ...prevState,
-            refuel_request_date: rrdate.format('YYYY-MM-DD'),
-            refuel_date: rdate.format('YYYY-MM-DD'),
+            refuel_request_date: new Date(rdate).toISOString().split('T')[0],
+            refuel_date: new Date(rrdate).toISOString().split('T')[0]
+
         }));
-    }, [rrdate, rdate]);
+    }, [rdate, rrdate]);
+
+    useEffect(() => {
+        
+    }, [PPLData]);
 
     useEffect(() => {
         dispatch(fetchVehicles());
+        dispatch(fetchActivePPL());
     }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setError('');
+            setErrorAdd('');
             setSuccess(false);
+            setSuccessAdd(false);
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, [error, success]);
+    }, [error, success, errorAdd, successAdd]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createRefuel(refuelData)).then((res) => {
@@ -69,6 +94,65 @@ const RefuelContent = () => {
             }
         }
     )}
+
+
+    const handleAddPPL = async (e) => {
+        e.preventDefault();
+        
+        // console.log(PPLData.nafta);
+        
+        dispatch(createPPL(PPLData)).then((res) => {
+            if (res.payload?.id) {
+                dispatch(fetchActivePPL());
+                setSuccessAdd(true);
+                ppls.forEach((ppl) => {
+                    if (ppl.nafta_active == true || ppl.benzine_active == true) {
+                        dispatch(updatePPL({id: ppl.id, benzine_active: false, nafta_active: false}));
+                    }
+                });
+            } else {
+                setErrorAdd(res.payload);
+                console.log(res.payload);
+            }
+        }).catch((error) => {
+            // Handle any errors from the first then block
+            setErrorAdd(error);
+            console.log(error);
+        });
+    };
+
+
+    const handlePriceChange = (e, gas) => {
+        const val = e.target.value;
+        if (gas === "nafta") {
+            if (val > 0) {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    nafta_active: true
+                }))
+            } else {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    nafta_active: false
+                }))
+            }            
+            setPPLData((prev) => ({...prev, nafta: val}))
+        }
+        if (gas === "benzine") {
+            if (val > 0) {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    benzine_active: true
+                }))
+            } else {
+                setPPLData(prevState => ({
+                    ...prevState,
+                    benzine_active: false
+                }))
+            }            
+            setPPLData((prev) => ({...prev, benzine: val}))
+        }
+    }
 
     return <>
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
@@ -94,49 +178,39 @@ const RefuelContent = () => {
                 </FormControl>
             </Grid>
 
-            <Grid item xs={12} md={6} lg={4} sx={{ mt: '-7px' }}>
+            <Grid item xs={12} md={6} lg={4} sx={{ mt: '1px' }}>
             <FormControl fullWidth>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={['DateTimePicker']}>
-                        <DatePicker
-                            label='Refuel request date (ሙሊት የተጠየቀበት ቀን)'
-                            value={rrdate}
-                            onChange={(newValue) => setRRdate(newValue)}
-                        />
-                    </DemoContainer>
-                </LocalizationProvider>
+                <EtDatePicker
+                        label="Refuel request date (የተጠየቀበት ቀን)"
+                        onChange={(selectedDate) => {
+                            setRRdate(selectedDate);
+                        }}
+                        value={rrdate}
+                    />
             </FormControl>
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={['DateTimePicker']}>
-                        <DatePicker
-                            label='Refuel date (የተሞላበት ቀን)'
-                            value={rdate}
-                            onChange={(newValue) => setRdate(newValue)}
-                        />
-                    </DemoContainer>
-                </LocalizationProvider>
+                <EtDatePicker
+                        label="Refuel date (የተሞላበት ቀን)"
+                        onChange={(selectedDate) => {
+                            setRdate(selectedDate);
+                        }}
+                        value={rdate}
+                    />
             </FormControl>
         </Grid>
 
 
         <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
-                <InputLabel id="fuel_type" sx={{ marginBottom: '8px' }}>Fuel type (የነዳጅ አይነት)</InputLabel>
-                <Select
-                    labelId="fuel_type"
-                    id="fuel_type"
-                    label="Fuel type"
-                    sx={{ minWidth: '100%' }}
-                    // Handle value, label, onChange
-                    onChange={(e) => setRefuelData((prev) => ({ ...prev, fuel_type: e.target.value }))}
-                >
-                    <MenuItem value={'BENZINE'}>BENZINE (ቤንዚን)</MenuItem>
-                    <MenuItem value={'NAFTA'}>NAFTA (ናፍጣ)</MenuItem>
-                </Select>
+                <TextField label="Nafta (ናፍጣ)" type="number" name="nafta" id="nafta" onChange={(e) => setRefuelData((prev) => ({ ...prev, nafta: e.target.value }))} />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} md={6} lg={4}>
+            <FormControl fullWidth>
+                <TextField label="Benzine (ቤንዚን)" type="number" name="benzine" id="benzine" onChange={(e) => setRefuelData((prev) => ({ ...prev, benzine: e.target.value }))} />
             </FormControl>
         </Grid>
 
@@ -152,17 +226,11 @@ const RefuelContent = () => {
             </FormControl>
         </Grid>
 
-
-        <Grid item xs={12} md={6} lg={4}>
-            <FormControl fullWidth>
-                <TextField label="KM per liter (በሊትር ኪ/ሜ)" type="number" name="fname" id="fname" onChange={(e) => setRefuelData((prev) => ({ ...prev, km_per_liter: e.target.value }))} />
-            </FormControl>
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
+        {/* <Grid item xs={12} md={6} lg={4}>
             <FormControl fullWidth>
                 <TextField label="Current fuel level (አሁን ያለዉ የነዳጅ መጠን)" type="number" name="fname" id="fname" onChange={(e) => setRefuelData((prev) => ({ ...prev, current_fuel_level: e.target.value }))} />
             </FormControl>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
             <FormControl fullWidth>
                 <TextField label="Remark (ማስታወሻ)" type="text" name="fname" id="fname" multiline onChange={(e) => setRefuelData((prev) => ({ ...prev, remark: e.target.value }))} />
@@ -186,8 +254,44 @@ const RefuelContent = () => {
                 {/* <Alert severity="info">This is an info Alert.</Alert>
                 <Alert severity="warning">This is a warning Alert.</Alert> */}
             </Grid>
+
+            <Grid item xs={12} marginTop={2}>
+                <FormControlLabel control={<Switch />} label="Add fuel price" onClick={() => setAddPPL(!addPPL)}/>
+            </Grid>
         </Grid>
 
+        { addPPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
+            <Typography variant="h4">Price per Liter (የነዳጅ ዋጋ በሊትር)</Typography>
+        </Grid> }
+        { addPPL && <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label={`Nafta (ናፍጣ): ${ppls[ppls.length - 1]?.nafta}` || "Nafta (ናፍጣ)"} type="number" name="nafta" id="nafta" onChange={(e) => handlePriceChange(e, 'nafta')}/>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+                <FormControl fullWidth>
+                    <TextField label={`Benzine (ቤንዚን): ${ppls[ppls.length - 1]?.benzine}` || "Benzine (ቤንዚን)"} type="number" name="benzine" id="benzine" onChange={(e) => handlePriceChange(e, 'benzine')}/>
+                </FormControl>
+            </Grid>
+            <Grid item xs={12} marginTop={2}>
+                <form onSubmit={(e)=> handleAddPPL(e)}>
+                    <FormControl fullWidth>
+                        <Button variant="outlined" type="submit">Create (ፍጠር)</Button>
+                    </FormControl>
+                </form>                
+            </Grid>
+            <Grid item xs={12} marginTop={2}>
+                {
+                    successAdd && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+                            PPL added successfully!
+                    </Alert>
+                }
+                { errorAdd && <Alert severity="error">{errorAdd}</Alert>} 
+                {/* <Alert severity="info">This is an info Alert.</Alert>
+                <Alert severity="warning">This is a warning Alert.</Alert> */}
+            </Grid>
+        </Grid>}
         <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2, my: '30px' }}>
             <Typography variant="h4">Refuels</Typography>
         </Grid>

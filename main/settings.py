@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    '192.168.5.6',
+    '192.168.5.6',  # Add your LAN IP
+    '127.0.0.1',    # Add loopback address
 ]
 
 
@@ -168,8 +169,16 @@ SIMPLE_JWT = {
 }
 
 # CORS_ORIGIN_WHITELIST = [
-    # "http://localhost:3000",
-    # "http://192.168.5.6:3000",
+#     "http://localhost:3000",
+#     "http://192.168.5.6:3000",
 # ]
 # CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]

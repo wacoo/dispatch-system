@@ -1,5 +1,6 @@
 import {
     Alert,
+    Autocomplete,
     Box,
     Button,
     FormControl,
@@ -18,7 +19,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createApproval, fetchApprovals } from "../../redux/approval/approvalSlice";
 import { fetchPendingRequests } from "../../redux/request/requestSlice";
-import { fetchUsers } from "../../redux/user/userSlice";
+import { fetchApprovers, fetchUsers } from "../../redux/user/userSlice";
 import ApprovalTable from "./ApprovalTable";
 import dayjs from "dayjs";
 import moment from 'moment';
@@ -38,7 +39,7 @@ const ApprovalContent = () => {
     });
 
     const requests = useSelector((state) => state.requests.pending_requests.results) ?? [];
-    const managers = useSelector((state) => state.users.users.results) ?? [];
+    const managers = useSelector((state) => state.users.approvers) ?? [];
 
     useEffect(() => {
         setApprovalData((prev) => ({
@@ -49,7 +50,7 @@ const ApprovalContent = () => {
 
     useEffect(() => {
         dispatch(fetchPendingRequests());
-        dispatch(fetchUsers());
+        dispatch(fetchApprovers());
     }, [dispatch]);
 
     useEffect(() => {
@@ -67,8 +68,8 @@ const ApprovalContent = () => {
             .then((res) => {
                 if (res.payload?.id) {
                     setSuccess(true);
-                    console.log(success);
                     dispatch(fetchApprovals());
+                    dispatch(fetchPendingRequests());
                 } else {
                     setError(res.payload);
                     // setSuccess(false);
@@ -84,8 +85,8 @@ const ApprovalContent = () => {
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel>
-                        <Select
+                        {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel> */}
+                        {/* <Select
                             labelId="dept_lbl"
                             id="demo-simple-select"
                             label="Request"
@@ -97,25 +98,37 @@ const ApprovalContent = () => {
                                     {` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
                                 </MenuItem>
                             ))}
-                        </Select>
+                        </Select> */}
+                    <Autocomplete
+                            options={requests}
+                            getOptionLabel={(request) => ` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
+                            onChange={(event, value) => setApprovalData((prev) => ({ ...prev, request: value ? value.id : '' }))}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Request (የመኪና ጥያቄ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        />                        
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        <InputLabel id="manager_lbl" sx={{ marginBottom: '8px' }}>Manager (ሃላፊ)</InputLabel>
-                        <Select
-                            labelId="manager_lbl"
-                            id="manager-select"
-                            label="Manager"
-                            sx={{ minWidth: '100%' }}
-                            onChange={(e) => setApprovalData((prev) => ({ ...prev, manager: e.target.value }))}
-                        >
-                            {managers.map((manager) => (
-                                <MenuItem key={manager.id} value={manager.id}>
-                                    {`${manager.fname} ${manager.mname}`}
-                                </MenuItem>
-                            ))}
-                        </Select>
+                        <Autocomplete
+                            options={managers}
+                            getOptionLabel={(manager) => `(${manager.username}) ${manager.fname} ${manager.mname}`}
+                            onChange={(event, value) => setApprovalData((prev) => ({ ...prev, manager: value ? value.id : '' }))}
+                            renderInput={(params) => (
+                                <TextField
+                                {...params}
+                                label="Approver (ፍቃድ ሰጪ)"
+                                variant="outlined"
+                                sx={{ minWidth: '100%' }}
+                                />
+                            )}
+                        /> 
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>

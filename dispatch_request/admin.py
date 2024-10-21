@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin  as BaseUserAdmin
 # Register your models here.
-from .models import User, VehicleRequest, Vehicle, Driver, Dispatch, Approval
+from .models import User, VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter, MonthlyPlan, Oil, Maintenance
 
 class UserAdmin(BaseUserAdmin):
     ''' Custom user admin page '''
@@ -20,8 +20,15 @@ class UserAdmin(BaseUserAdmin):
     )
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Vehicle)
 admin.site.register(VehicleRequest)
 admin.site.register(Driver)
-admin.site.register(Dispatch)
 admin.site.register(Approval)
+admin.site.register(Vehicle)
+admin.site.register(Dispatch)
+admin.site.register(Refuel)
+admin.site.register(Department)
+admin.site.register(VehicleMake)
+admin.site.register(PricePerLiter)
+admin.site.register(MonthlyPlan)
+admin.site.register(Oil)
+admin.site.register(Maintenance)

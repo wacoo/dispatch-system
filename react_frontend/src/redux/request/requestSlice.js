@@ -23,6 +23,7 @@ const fetchRequests = createAsyncThunk('requests/fetchRequests', async() => {
     const full_url = `${url}requests/`;
     try {
         const res = await axios.get(full_url, { headers: authHeader() });
+        console.log(res.data);
         return res.data;
     } catch(error) {
         return error.message;

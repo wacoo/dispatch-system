@@ -12,11 +12,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department
-from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSerializer, VehicleSerializer, DispatchSerializer, GroupSerializer, UserSerializer, RefuelSerializer, DepartmentSerializer
+from .models import VehicleRequest, Driver, Approval, Vehicle, Dispatch, Refuel, Department, VehicleMake, PricePerLiter, MonthlyPlan, Oil, Maintenance
+from .serializers import VehicleRequestSerializer, DriverSerializer, ApprovalSerializer, VehicleSerializer, DispatchSerializer, GroupSerializer, UserSerializer, RefuelSerializer, DepartmentSerializer, VehicleMakeSerializer, PricePerLiterSerializer, MonthlyPlanSerializer, OilSerializer, MaintenanceSerializer
 
 from rest_framework import viewsets
 from .models import User, Group
+from rest_framework.decorators import action
 
 # class UserLoginAPIView(APIView):
 #     # authentication_classes = [JWTAuthentication]
@@ -116,6 +117,7 @@ class ApprovalViewSet(viewsets.ModelViewSet):
 
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'options']
 
 class VehicleRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
@@ -123,6 +125,8 @@ class VehicleRequestViewSet(viewsets.ModelViewSet):
     serializer_class = VehicleRequestSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    # http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'options']
 
     
 
@@ -137,6 +141,26 @@ class VehicleApprovedRequestViewSet(viewsets.ModelViewSet):
         ''' Returns queryset filtered to include only requests with status 'APPROVED' '''        
         return VehicleRequest.objects.filter(status='APPROVED').select_related('user').order_by('-created_at')
 
+class ApproversViewSet(viewsets.ModelViewSet):
+    '''Vehicle request API view set for approvers.'''
+    
+    serializer_class = UserSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):       
+        return User.objects.filter(access_level='1')
+    
+class DispatchersViewSet(viewsets.ModelViewSet):
+    '''Vehicle request API view set for approvers.'''
+    
+    serializer_class = UserSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):       
+        return User.objects.filter(access_level='2')
+    
 class VehiclePendingRequestViewSet(viewsets.ModelViewSet):
     ''' vehicle request api view set '''
     serializer_class = VehicleRequestSerializer
@@ -174,6 +198,12 @@ class RefuelViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    @action(detail=False, methods=['get'], url_path='vehicle/(?P<vehicle_id>[^/.]+)')
+    def by_vehicle(self, request, vehicle_id=None):
+        queryset = self.get_queryset().filter(vehicle_id=vehicle_id)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 class DepartmentViewSet(viewsets.ModelViewSet):
     ''' department api view set '''
     queryset = Department.objects.all()
@@ -182,13 +212,43 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-# class DispatchReportViewSet(viewsets.ModelViewSet):
-#     ''' dispatch report api view set '''
-#     queryset = DispatchReport.objects.all()
-#     serializer_class = DispatchReportSerializer
+class VehicleMakeViewSet(viewsets.ModelViewSet):
+    ''' department api view set '''
+    queryset = VehicleMake.objects.all()
+    serializer_class = VehicleMakeSerializer
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class MonthlyPlanViewSet(viewsets.ModelViewSet):
+    ''' department api view set '''
+    queryset = MonthlyPlan.objects.all()
+    serializer_class = MonthlyPlanSerializer
+
+    @action(detail=False, methods=['get'], url_path='last-monthly-plan/(?P<vehicle_id>\d+)')
+    def last_monthly_plan(self, request, vehicle_id=None):
+        try:
+            # Assuming 'vehicle_id' is a foreign key in the MonthlyPlan model
+            last_plan = MonthlyPlan.objects.filter(vehicle_id=vehicle_id).order_by('-id').first()
+            if not last_plan:
+                return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = self.get_serializer(last_plan)
+            return Response(serializer.data)
+        except MonthlyPlan.DoesNotExist:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class PricePerLiterViewSet(viewsets.ModelViewSet):
+    ''' PricePerLiter api view set '''
+    serializer_class = PricePerLiterSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return PricePerLiter.objects.filter(nafta_active=True) | PricePerLiter.objects.filter(benzine_active=True)
 
 class VehicleRequestDispatchUpdateAPIView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -214,3 +274,17 @@ class VehicleRequestDispatchUpdateAPIView(APIView):
             return Response(serializer.data)
         else:
             return Response({"error": "Dispatch ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+class OilViewSet(viewsets.ModelViewSet):
+    ''' Oil api view set '''
+    queryset = Oil.objects.all()
+    serializer_class = OilSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class MaintenaceViewSet(viewsets.ModelViewSet):
+    ''' Maintenace api view set '''
+    queryset = Maintenance.objects.all()
+    serializer_class = MaintenanceSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]

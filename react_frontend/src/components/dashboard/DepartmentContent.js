@@ -25,7 +25,7 @@ const DepartmentContent = () => {
     const [error, setError] = useState('');
     const [rrdate, setRRdate] = useState(dayjs('2022-04-17'));
     const [rdate, setRdate] = useState(dayjs('2022-04-17'));
-    const vehicles = useSelector((state) => state.vehicles.vehicles.results) ?? [];
+    const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const [departmentData, setDepartmentData] = useState({
         dept_name: '',
         location: '',

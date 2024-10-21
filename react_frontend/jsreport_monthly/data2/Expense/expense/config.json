@@ -1,0 +1,19 @@
+{
+    "name": "expense",
+    "engine": "handlebars",
+    "recipe": "chrome-pdf",
+    "data": null,
+    "chrome": {
+        "printBackground": true,
+        "landscape": false
+    },
+    "creationDate": {
+        "$$date": 1713505749261
+    },
+    "modificationDate": {
+        "$$date": 1713508811535
+    },
+    "shortid": "VzhEGTN",
+    "_id": "AqLC3p6NcOUV2Xh3",
+    "$entitySet": "templates"
+}

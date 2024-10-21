@@ -18,25 +18,25 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function VehiclesTable({title}) {
+export default function VehiclesTable({ title }) {
 
   const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
   const dispatch = useDispatch();
-    // React.useEffect(() => {
-    //     console.log(vehicles);
-    // }, [vehicles]);
+  // React.useEffect(() => {
+  //     console.log(vehicles);
+  // }, [vehicles]);
 
-    React.useEffect(() => {
-        dispatch(fetchVehicles());
-    }, []);
-  
+  React.useEffect(() => {
+    dispatch(fetchVehicles());
+  }, []);
+
   return (
     <React.Fragment>
       <Title>{title}</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-          <TableCell>ID</TableCell>
+            <TableCell>ID</TableCell>
             <TableCell>Make</TableCell>
             <TableCell>Model</TableCell>
             <TableCell>Year</TableCell>
@@ -44,13 +44,13 @@ export default function VehiclesTable({title}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {vehicles.slice(0, 10).map((vehicle) => (
+          {Array.isArray(vehicles) && vehicles.slice(0, 10).map((vehicle) => (
             <TableRow key={vehicle.id}>
               <TableCell>{vehicle.id}</TableCell>
               <TableCell>{vehicle.make}</TableCell>
               <TableCell>{vehicle.model}</TableCell>
               <TableCell>{vehicle.year}</TableCell>
-              <TableCell align="right">{`${vehicle.license_plate}`}</TableCell>
+              <TableCell align="right">{vehicle.license_plate}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -45,7 +45,7 @@ export default function DriversTable({title}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users?.slice(0, 10).map((user) => (
+          {Array.isArray(users) && users.slice(0, 10).map((user) => (
             <TableRow key={user.id}>
               <TableCell>{user.id}</TableCell>
               <TableCell>{`${user.fname} ${user.mname}`}</TableCell>

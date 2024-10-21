@@ -296,7 +296,7 @@ const GenerateDispatchReport = () => {
                         )}
                         onChange={(event, newValue) => setVehicleID(newValue?.id ?? '')}
                         isOptionEqualToValue={(option, value) => option.id === value}
-                        value={vehicles?.find(vehicle => vehicle.id === vehicleId) || null} // Handle the selected value
+                        value={Array.isArray(vehicles) && vehicles.find(vehicle => vehicle.id === vehicleId) || null} // Handle the selected value
                         />
                 </FormControl>
             </Grid>

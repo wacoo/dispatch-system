@@ -50,7 +50,7 @@ export default function RefuelsTable({title}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {refuels.slice(0, 10).map((refuel) => (
+          {Array.isArray(refuels) && refuels.slice(0, 10).map((refuel) => (
             <TableRow key={refuel.id}>
               <TableCell>{refuel.id}</TableCell>
               <TableCell>{`(${refuel.vehicle.license_plate}) ${refuel.vehicle.make} ${refuel.vehicle.model} ${refuel.vehicle.year}; ${refuel.vehicle.type}`}</TableCell>

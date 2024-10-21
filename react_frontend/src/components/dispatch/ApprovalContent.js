@@ -85,20 +85,6 @@ const ApprovalContent = () => {
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'background.paper', pr: '12px', pb: '12px', borderRadius: 4, boxShadow: 3, padding: 2 }}>
                 <Grid item xs={12} md={6} lg={4}>
                     <FormControl fullWidth>
-                        {/* <InputLabel id="dept_lbl" sx={{ marginBottom: '8px' }}>Request (ጥያቄ)</InputLabel> */}
-                        {/* <Select
-                            labelId="dept_lbl"
-                            id="demo-simple-select"
-                            label="Request"
-                            sx={{ minWidth: '100%' }}
-                            onChange={(e) => setApprovalData((prev) => ({ ...prev, request: e.target.value }))}
-                        >
-                            {requests.map((request) => (
-                                <MenuItem key={request.id} value={request.id}>
-                                    {` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
-                                </MenuItem>
-                            ))}
-                        </Select> */}
                     <Autocomplete
                             options={requests}
                             getOptionLabel={(request) => ` (${request.id}) ${request.request_date.slice(0, 10)}; ${request.user.fname} ${request.user.mname}; ${request.requested_vehicle_type}; ${request.destination}`}
@@ -139,10 +125,6 @@ const ApprovalContent = () => {
                                 setDdate(selectedDate);
                             }}
                             value={ddate}
-                            // minDate={new Date("2023-08-20")}
-                            // maxDate={new Date("2023-08-26")}
-
-                            // other TextField props here, except InputProps
                         />
                     </FormControl>
                 </Grid>

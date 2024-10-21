@@ -258,7 +258,7 @@ const DispatchContent = () => {
                         onChange={(e) => setDispatchData((prev) => ({...prev, assigned_vehicle: e.target.value}))}
                     >
                         {
-                            vehicles?.map((vehicle) => (
+                            Array.isArray(vehicles) && vehicles.map((vehicle) => (
                                 <MenuItem value={vehicle.id}>{`(${vehicle.id}) ${vehicle.license_plate}; ${vehicle.make} ${vehicle.model}; ${vehicle.type}`}</MenuItem>
                             ))
                         

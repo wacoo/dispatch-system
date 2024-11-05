@@ -26,6 +26,7 @@ if defined PID1 (
 ) else (
     echo Port %PORT% is not in use. Restarting VBScript...
     taskkill /IM wscript.exe /F
+    call stop.bat
     start "" wscript "%VBS_PATH1%"
 )
 
@@ -34,6 +35,7 @@ if defined PID2 (
 ) else (
     echo Port %PORT2% is not in use. Restarting VBScript...
     taskkill /IM wscript.exe /F
+    call react_frontend\jsreport\stop.bat
     start "" wscript "%VBS_PATH2%"
 )
 
@@ -42,6 +44,7 @@ if defined PID3 (
 ) else (
     echo Port %PORT3% is not in use. Restarting VBScript...
     taskkill /IM wscript.exe /F
+    call react_frontend\jsreport_monthly\stop.bat
     start "" wscript "%VBS_PATH3%"
 )
 

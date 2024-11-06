@@ -20,7 +20,9 @@ from dispatch_request import views
 # router.register(r'users', views.UserViewSet)
 # router.register(r'groups', views.GroupViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('dispatch_request.urls')),
+    path('api/maint/', include('maintenance.urls')),
 ]

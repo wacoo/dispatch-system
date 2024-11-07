@@ -225,7 +225,7 @@ class MonthlyPlanViewSet(viewsets.ModelViewSet):
     queryset = MonthlyPlan.objects.all()
     serializer_class = MonthlyPlanSerializer
 
-    @action(detail=False, methods=['get'], url_path='last-monthly-plan/(?P<vehicle_id>\d+)')
+    @action(detail=False, methods=['get'], url_path=r'last-monthly-plan/(?P<vehicle_id>\d+)')
     def last_monthly_plan(self, request, vehicle_id=None):
         try:
             # Assuming 'vehicle_id' is a foreign key in the MonthlyPlan model

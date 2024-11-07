@@ -90,14 +90,15 @@ WSGI_APPLICATION = 'main.wsgi.application'
         # 'NAME': BASE_DIR / 'db.sqlite3',
     # }
 # }
-
+#'HOST': 'localhost\\SQL2019',
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'vehicle_dispatch',
         'USER': 'sa',
         'PASSWORD': '',
-        'HOST': 'localhost\\SQL2019',
+        'HOST': '192.168.5.6\\SQL2019',
+
         'OPTIONS': {
             'driver': 'ODBC Driver 18 for SQL Server',
             'extra_params': 'TrustServerCertificate=yes;Encrypt=no',

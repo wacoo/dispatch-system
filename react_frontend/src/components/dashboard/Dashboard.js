@@ -39,6 +39,7 @@ import GenerateDispatchReport from './GenerateDispatchReport';
 import { AuthContext } from '../../redux/user/authContext';
 import MonthlyPlan from './MonthlyPlan';
 import OilAndMaintenace from './OilAndMaintenance';
+import MaintRequestContent from '../maintenance/MaintRequestContent';
 
 function Copyright(props) {
   return (
@@ -240,6 +241,7 @@ export default function Dashboard({ active }) {
                 {active === 'OilTire' && (user.user?.access_level >= 2 ? <OilAndMaintenace /> : <Error403 />)}
                 {active === 'Departments' && (user.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
                 {active === 'GenerateDispatchReport' && (user.user?.access_level >= 2 ? <GenerateDispatchReport /> : <Error403 />)}
+                {active === 'Maintenance' && (user.user?.access_level >= 2 ? <MaintRequestContent /> : <Error403 />)}
                 
               </>
             )

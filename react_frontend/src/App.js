@@ -79,6 +79,10 @@ function App() {
         element: <Dashboard active="DispatchReport" />
       },
       {
+        path: '/maintenance/maint_request',
+        element: <Dashboard active="Maintenance" />
+      },
+      {
         path: '/signin',
         element: <SignIn />
       },

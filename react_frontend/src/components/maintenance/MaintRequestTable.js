@@ -5,8 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Title from './Title';
-import { fetchUsers } from '../../redux/user/userSlice';
+import { fetchVehicles } from '../../redux/vehicle/vehicleSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Generate Order Data
@@ -14,45 +13,43 @@ function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
 }
 
-
 function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function DriversTable({title}) {
-  const users = useSelector((state) => state.users.users) ?? [];
+export default function MaintRequestTable({title}) {
+
+  const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
   const dispatch = useDispatch();
-    React.useEffect(() => {
-      console.log(users);
-    }, [users]);
+    // React.useEffect(() => {
+    //     console.log(vehicles);
+    // }, [vehicles]);
 
     React.useEffect(() => {
-        dispatch(fetchUsers());
+        dispatch(fetchVehicles());
     }, []);
   
   return (
     <React.Fragment>
-      <Title>{title}</Title>
+      {/* <Title>{title}</Title> */}
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Username</TableCell>
-            <TableCell>Phone</TableCell>
-            <TableCell>Department</TableCell>
-            <TableCell>Role</TableCell>
+          <TableCell>ID</TableCell>
+            <TableCell>Make</TableCell>
+            <TableCell>Model</TableCell>
+            <TableCell>Year</TableCell>
+            <TableCell align="right">License plate</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {Array.isArray(users) && users.slice(0, 10).map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{user.id}</TableCell>
-              <TableCell>{`${user.fname} ${user.mname}`}</TableCell>
-              <TableCell>{user.username}</TableCell>
-              <TableCell>{user.phone_number}</TableCell>
-              <TableCell>{user.department}</TableCell>
-              <TableCell>{user.access_level}</TableCell>
+          {Array.isArray(vehicles) && vehicles.slice(0, 10).map((vehicle) => (
+            <TableRow key={vehicle.id}>
+              <TableCell>{vehicle.id}</TableCell>
+              <TableCell>{vehicle.make}</TableCell>
+              <TableCell>{vehicle.model}</TableCell>
+              <TableCell>{vehicle.year}</TableCell>
+              <TableCell align="right">{`${vehicle.license_plate}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>

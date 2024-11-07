@@ -75,6 +75,12 @@ const MainListItems = ({active}) => {
         </ListItemIcon>
         <ListItemText primary="Refuels" />
       </ListItemButton>}
+      {user?.user?.access_level >= 2 && <ListItemButton onClick={() => navigate('/maintenance/maint_request')}>
+        <ListItemIcon>
+          <LocalGasStationIcon />
+        </ListItemIcon>
+        <ListItemText primary="Maintenance Request" />
+      </ListItemButton>}
       {user?.user?.access_level == 3 && <ListItemButton onClick={() => navigate('/users')}>
         <ListItemIcon>
           <PeopleIcon />

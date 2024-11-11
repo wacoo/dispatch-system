@@ -110,6 +110,7 @@ const MaintRequestContent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(maintRequestData);
         dispatch(createMaintRequest(maintRequestData)).then((res) => {
             if (res.payload?.id) {
                 setSuccess(true);
@@ -139,7 +140,7 @@ const MaintRequestContent = () => {
                         label="Vehicle"
                         sx={{ minWidth: '100%' }}
                         // Handle value, label, onChange
-                        onChange={(e) => setVehicleId(e.target.value)}
+                        onChange={(e) => setMaintRequestData((prev) => ({...prev, vehicle: e.target.value}))}
                     >
                         {Array.isArray(vehicles) && vehicles.map((vehicle) => (
                             <MenuItem key={vehicle.id} value={vehicle.id}>
@@ -223,7 +224,7 @@ const MaintRequestContent = () => {
             <Grid item xs={12} marginTop={2}>
                 {
                     success && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-                            Vehicle created successfully!
+                            Maintenance request created successfully!
                     </Alert>
                 }
                 { error && <Alert severity="error">{error}</Alert>} 

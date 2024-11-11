@@ -15,7 +15,7 @@ const initialState = {
 //     Authorization: `Bearer ${token}`,
 // };
 
-const full_url = `${url}maint/maint_requests`;
+const full_url = `${url}maint/maint_requests/`;
 const fetchMaintRequests = createAsyncThunk('maint_request/fetchMaintRequests', async() => {
     try {
         const res = await axios.get(full_url, { headers: authHeader() });

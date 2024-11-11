@@ -44,7 +44,7 @@ export default function VehiclesTable({title}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {vehicles.slice(0, 10).map((vehicle) => (
+          {Array.isArray(vehicles) && vehicles.slice(0, 10).map((vehicle) => (
             <TableRow key={vehicle.id}>
               <TableCell>{vehicle.id}</TableCell>
               <TableCell>{vehicle.make}</TableCell>

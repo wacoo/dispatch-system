@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MainListItems from './listItems';
 import SecondaryListItems from './SecondaryListItems';
-import DashboardContent from './DashboadContent';
+import MaintDashboardContent from './MaintDashboadContent';
 import UserContent from './UserContent';
 import RequestContent from './RequestContent';
 import DispatchContent from './DispatchContent';
@@ -40,6 +40,10 @@ import { AuthContext } from '../../redux/user/authContext';
 import MonthlyPlan from './MonthlyPlan';
 import OilAndMaintenace from './OilAndMaintenance';
 import MaintRequestContent from '../maintenance/MaintRequestContent';
+import MaintMainListItems from './maintListItems';
+import DashboardContent from './DashboadContent';
+import PreventiveMaintContent from '../maintenance/PreventiveMaintContent';
+import InsuranceClaimContent from '../maintenance/InsuranceClaimContent';
 
 function Copyright(props) {
   return (
@@ -103,7 +107,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard({ active }) {
+export default function MaintDashboard({ active }) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -141,8 +145,8 @@ export default function Dashboard({ active }) {
     }, []);
 
 
-  const handleLogout = () => {
-    sessionStorage.setItem("module", "dispatch");
+  const handleLogout = () => {    
+    sessionStorage.setItem("module", "maintenance");
     logout();
     navigate('/signin');
   }
@@ -176,7 +180,7 @@ export default function Dashboard({ active }) {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Vehicle Dispatch (የተሽከርካሪ ስምሪት)
+              Vehicle Maintenance (ተሽከርካሪ ጥገና)
             </Typography>
             <IconButton color="inherit">
               
@@ -207,7 +211,7 @@ export default function Dashboard({ active }) {
           </Toolbar>
           <Divider />
           <List component="nav">
-            <MainListItems />
+            <MaintMainListItems />
             {/* <Divider sx={{ my: 1 }} /> */}
             {/* <SecondaryListItems /> */}
           </List>
@@ -229,20 +233,10 @@ export default function Dashboard({ active }) {
           {user?.user?.access_level >= 0 && ( // Ensure valid user
             active && ( // Check if user is active
               <>
-                {active === 'Dashboard' && <DashboardContent />}
-                {active === 'Requests' && <RequestContent />}
-                {/* Access level checks for other content */}
-                {active === 'Approvals' && (user.user?.access_level >= 1 ? <ApprovalContent /> : <Error403 />)}
-                {active === 'Vehicles' && (user.user?.access_level >= 2 ? <VehicleContent /> : <Error403 />)}
-                {active === 'Drivers' && (user.user?.access_level >= 2 ? <DriverContent /> : <Error403 />)}
-                {active === 'Refuel' && (user.user?.access_level >= 2 ? <RefuelContent /> : <Error403 />)}
-                {active === 'Dispatches' && (user.user?.access_level >= 2 ? <DispatchContent /> : <Error403 />)}
-                {active === 'DispatchReport' && (user.user?.access_level >= 2 ? <DispatchReport /> : <Error403 />)}
-                {active === 'Users' && (user.user?.access_level >= 3 ? <UserContent /> : <Error403 />)}
-                {active === 'MonthlyPlan' && (user.user?.access_level >= 2 ? <MonthlyPlan /> : <Error403 />)}
-                {active === 'OilTire' && (user.user?.access_level >= 2 ? <OilAndMaintenace /> : <Error403 />)}
-                {active === 'Departments' && (user.user?.access_level >= 3 ? <DepartmentContent /> : <Error403 />)}
-                {active === 'GenerateDispatchReport' && (user.user?.access_level >= 2 ? <GenerateDispatchReport /> : <Error403 />)}
+                {active === 'Dashboard' && <MaintDashboardContent />}
+                {active === 'Maintenance' && (user.user?.access_level >= 2 ? <MaintRequestContent /> : <Error403 />)}
+                {active === 'Preventive' && (user.user?.access_level >= 2 ? <PreventiveMaintContent /> : <Error403 />)}
+                {active === 'Insurance' && (user.user?.access_level >= 2 ? <InsuranceClaimContent /> : <Error403 />)}
                 
               </>
             )

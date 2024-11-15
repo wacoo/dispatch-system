@@ -38,7 +38,7 @@ export default function SignIn() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userx = useSelector((state) => state.users.user) ?? '';
-    
+    const module = sessionStorage.getItem("module");
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -49,8 +49,15 @@ export default function SignIn() {
         dispatch(signIn(credential))
         .then((res) => {
           if (res.payload?.access) {
-            navigate('/');
-          } else {
+            if (module === "dispatch") {
+              navigate('/');
+            }
+          } else if (res.payload?.access) {
+           if (module === "maintenance") {
+            navigate('/maintenance/');
+           }
+          }          
+          else {
             console.error('User data not found after sign-in');
           }
         })

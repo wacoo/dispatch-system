@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Dashboard from './components/dashboard/Dashboard';
+import MaintDashboard from './components/dashboard/MaintDashboard';
 import SignIn from './components/SignIn';
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import NotFound from './components/NotFound';
@@ -79,8 +80,20 @@ function App() {
         element: <Dashboard active="DispatchReport" />
       },
       {
+        path: '/maintenance/',
+        element: <MaintDashboard active="Dashboard" />
+      },
+      {
         path: '/maintenance/maint_request',
-        element: <Dashboard active="Maintenance" />
+        element: <MaintDashboard active="Maintenance" />
+      },
+      {
+        path: '/maintenance/preventive',
+        element: <MaintDashboard active="Preventive" />
+      },
+      {
+        path: '/maintenance/insurance',
+        element: <MaintDashboard active="Insurance" />
       },
       {
         path: '/signin',

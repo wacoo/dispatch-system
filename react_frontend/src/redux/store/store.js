@@ -8,7 +8,7 @@ import approvalReducer from '../approval/approvalSlice';
 import refuelReducer from '../refuel/refuelSlice';
 import departmentReducer from '../department/departmentSlice';
 import dashboardReducer from '../dashboard/dashboardSlice';
-import fetchMaintRequestsReducer from '../maintenance_request/maintRequestSlice';
+import maintRequestsReducer from '../maintenance_request/maintRequestSlice';
 
 const store = configureStore({
     reducer: {
@@ -21,7 +21,7 @@ const store = configureStore({
         refuels: refuelReducer,
         departments: departmentReducer,
         dashboard: dashboardReducer,
-        maint_requests: fetchMaintRequestsReducer,
+        maint_requests: maintRequestsReducer
     }
 });
 

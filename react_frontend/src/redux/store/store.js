@@ -9,6 +9,7 @@ import refuelReducer from '../refuel/refuelSlice';
 import departmentReducer from '../department/departmentSlice';
 import dashboardReducer from '../dashboard/dashboardSlice';
 import maintRequestsReducer from '../maintenance_request/maintRequestSlice';
+import preventiveReducer from '../preventive/preventiveSlice';
 
 const store = configureStore({
     reducer: {
@@ -21,7 +22,8 @@ const store = configureStore({
         refuels: refuelReducer,
         departments: departmentReducer,
         dashboard: dashboardReducer,
-        maint_requests: maintRequestsReducer
+        maint_requests: maintRequestsReducer,
+        preventives: preventiveReducer
     }
 });
 

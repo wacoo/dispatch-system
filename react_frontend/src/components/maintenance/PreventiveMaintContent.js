@@ -19,14 +19,14 @@ const PreventiveMaintContent = () => {
     const [successAdd, setSuccessAdd] = useState(false);
     const [error, setError] = useState('');
     const [errorAdd, setErrorAdd] = useState('');
-    const [rrdate, setRRdate] = useState(null);
-    const [rdate, setRdate] = useState(null);
+    const [sdate, setSdate] = useState(null);
     const [addPPL, setAddPPL] = useState(false);
     const vehicles = useSelector((state) => state.vehicles.vehicles) ?? [];
     const ppls = useSelector((state) => state.refuels.activePPLs.results) ?? [];
     const [prevMaintData, setPrevMaintData] = useState({
         vehicle: '',
-        scheduled_dates: '',
+        scheduled_date: '',
+        round: '',
         status: '',
         remark: ''
     });
@@ -38,14 +38,13 @@ const PreventiveMaintContent = () => {
         - Two tabs, one for generating schedule: that includes vehicle to be seleted and generates dates,
         - Second, to view and follow and update status, vehilce to be selected and complete date to be ticked.     
     */
-    // useEffect(() => {
-    //     setRefuelData(prevState => ({
-    //         ...prevState,
-    //         refuel_request_date: new Date(rdate).toISOString().split('T')[0],
-    //         refuel_date: new Date(rrdate).toISOString().split('T')[0]
+    useEffect(() => {
+        setPrevMaintData(prevState => ({
+            ...prevState,
+            scheduled_date: new Date(sdate).toISOString().split('T')[0]
 
-    //     }));
-    // }, [rdate, rrdate]);
+        }));
+    }, [sdate]);
 
     // useEffect(() => {
 
@@ -164,10 +163,22 @@ const PreventiveMaintContent = () => {
                     />
                 </FormControl>
             </Grid>
+            
+            <Grid item xs={12} md={6} lg={4} sx={{mt: '-7px'}}>
+                <FormControl fullWidth>
+                <EtDatePicker
+                        label="Maintenance date (የጥገና ቀን)"
+                        onChange={(selectedDate) => {
+                            setSdate(selectedDate);
+                        }}
+                        value={sdate}
+                    />
+                </FormControl>
+            </Grid>
 
             <Grid item xs={12} md={6} lg={4}>
                 <FormControl fullWidth>
-                    <TextField label="Scheduled dates (የሴርቪስ ቀናት)" type="text" name="sdates" id="sdates" onChange={(e) => setPrevMaintData((prev) => ({ ...prev, scheduled_dates: e.target.value }))} />
+                    <TextField label="Round (ዙር)" type="text" name="round" id="round" onChange={(e) => setPrevMaintData((prev) => ({ ...prev, round: e.target.value }))} />
                 </FormControl>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
